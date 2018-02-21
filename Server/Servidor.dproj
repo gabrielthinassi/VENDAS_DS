@@ -101,12 +101,12 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-        <DCCReference Include="UFrmServer.pas">
-            <Form>FrmServer</Form>
+        <DCCReference Include="UFrmServidor.pas">
+            <Form>FrmServidor</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="USMBase.pas">
-            <Form>SMBase</Form>
+        <DCCReference Include="USMPai.pas">
+            <Form>SMPai</Form>
             <FormType>dfm</FormType>
             <DesignClass>TDSServerModule</DesignClass>
         </DCCReference>
@@ -114,6 +114,10 @@
             <Form>SC</Form>
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="UFrmServerDatabase.pas">
+            <Form>FrmServerDatabase</Form>
+            <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
@@ -142,7 +146,7 @@
                 </Excluded_Packages>
             </Delphi.Personality>
             <Deployment Version="3">
-                <DeployFile LocalName="Win32\Debug\Servidor.exe" Configuration="Debug" Class="ProjectOutput">
+                <DeployFile LocalName="..\Exec\Servidor.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>Servidor.exe</RemoteName>
                         <Overwrite>true</Overwrite>

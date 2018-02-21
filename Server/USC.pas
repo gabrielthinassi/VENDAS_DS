@@ -27,12 +27,12 @@ implementation
 
 {$R *.dfm}
 
-uses USMBase;
+uses USMPai;
 
 procedure TSC.DSServerClass1GetClass(
   DSServerClass: TDSServerClass; var PersistentClass: TPersistentClass);
 begin
-  PersistentClass := USMBase.TSMBase;
+  PersistentClass := USMPai.TSMPai;
 end;
 
 end.

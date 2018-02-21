@@ -1,29 +1,29 @@
-unit UFrmServer;
+unit UFrmServidor;
 
 interface
 
 uses Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
-  Vcl.ExtCtrls, Vcl.Menus, Vcl.AppEvnts;
+  Vcl.ExtCtrls, Vcl.Menus, Vcl.AppEvnts, Vcl.Imaging.pngimage;
 
 type
-  TFrmServer = class(TForm)
-    pnlBackground: TPanel;
-    imgDB: TImage;
+  TFrmServidor = class(TForm)
+    pnlFundo: TPanel;
+    imgBD: TImage;
     imgMonitor: TImage;
     Image2: TImage;
     Image3: TImage;
     Image4: TImage;
     AppEvents: TApplicationEvents;
     TrayIcon: TTrayIcon;
-    pmServer: TPopupMenu;
+    pmServidor: TPopupMenu;
     mpRestore: TMenuItem;
     pmClose: TMenuItem;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure TrayIconDblClick(Sender: TObject);
     procedure AppEventsMinimize(Sender: TObject);
-    procedure imgDBClick(Sender: TObject);
+    procedure imgBDClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -31,37 +31,39 @@ type
   end;
 
 var
-  FrmServer: TFrmServer;
+  FrmServidor: TFrmServidor;
 
 implementation
 
 {$R *.dfm}
 
-procedure TFrmServer.AppEventsMinimize(Sender: TObject);
+uses UFrmServerDatabase;
+
+procedure TFrmServidor.AppEventsMinimize(Sender: TObject);
 begin
   Self.Hide;
   Self.WindowState := wsMinimized;
 end;
 
-procedure TFrmServer.FormClose(Sender: TObject; var Action: TCloseAction);
+procedure TFrmServidor.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   Action := caFree;
 end;
 
-procedure TFrmServer.FormCreate(Sender: TObject);
+procedure TFrmServidor.FormCreate(Sender: TObject);
 begin
   Self.Hide;
-  Self.WindowState := wsNormal;
+  Self.WindowState := wsMinimized;
 end;
 
-procedure TFrmServer.imgDBClick(Sender: TObject);
+procedure TFrmServidor.imgBDClick(Sender: TObject);
 begin
-  frmConfigDatabase := TfrmConfigDatabase.Create(Self);
-  frmConfigDatabase.ShowModal;
-  frmConfigDatabase.FreeOnRelease;
+  FrmServerDatabase := TFrmServerDatabase.Create(Self);
+  FrmServerDatabase.ShowModal;
+  FrmServerDatabase.FreeOnRelease;
 end;
 
-procedure TFrmServer.TrayIconDblClick(Sender: TObject);
+procedure TFrmServidor.TrayIconDblClick(Sender: TObject);
 begin
   Show;
   Self.WindowState := wsNormal;

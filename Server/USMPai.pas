@@ -1,4 +1,4 @@
-unit USMBase;
+unit USMPai;
 
 interface
 
@@ -7,7 +7,7 @@ uses System.SysUtils, System.Classes, System.Json,
     Datasnap.DSServer, Datasnap.DSAuth;
 
 type
-  TSMBase = class(TDSServerModule)
+  TSMPai = class(TDSServerModule)
   private
     { Private declarations }
   public
