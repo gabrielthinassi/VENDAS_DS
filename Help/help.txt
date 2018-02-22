@@ -1,0 +1,13 @@
+1)
+TFClassPaiCadastro = class of TClassPaiCadastro;
+
+Porque Cria-se uma Classe e não se utiliza direto o ClassPaiCadastro ?
+
+
+2)
+class function TClassPaiCadastro.ParametrosSql: TListaDeParametrosSql;
+begin
+  SetLength(Result, 0);
+end;
+
+Como fazer diferente ???

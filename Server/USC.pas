@@ -2,17 +2,22 @@ unit USC;
 
 interface
 
-uses System.SysUtils, System.Classes,
-  Datasnap.DSTCPServerTransport,
-  Datasnap.DSServer, Datasnap.DSCommonServer,
-  IPPeerServer, IPPeerAPI, Datasnap.DSAuth;
+uses
+System.SysUtils,
+System.Classes,
+Datasnap.DSTCPServerTransport,
+Datasnap.DSServer,
+Datasnap.DSCommonServer,
+IPPeerServer,
+IPPeerAPI,
+Datasnap.DSAuth;
 
 type
   TSC = class(TDataModule)
-    DSServer1: TDSServer;
-    DSTCPServerTransport1: TDSTCPServerTransport;
-    DSServerClass1: TDSServerClass;
-    procedure DSServerClass1GetClass(DSServerClass: TDSServerClass;
+    DSServer: TDSServer;
+    DSTCPServerTransport: TDSTCPServerTransport;
+    DSServerClass: TDSServerClass;
+    procedure DSServerClassGetClass(DSServerClass: TDSServerClass;
       var PersistentClass: TPersistentClass);
   private
     { Private declarations }
@@ -29,7 +34,7 @@ implementation
 
 uses USMPai;
 
-procedure TSC.DSServerClass1GetClass(
+procedure TSC.DSServerClassGetClass(
   DSServerClass: TDSServerClass; var PersistentClass: TPersistentClass);
 begin
   PersistentClass := USMPai.TSMPai;
