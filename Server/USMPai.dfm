@@ -1,5 +1,5 @@
 object SMPai: TSMPai
   OldCreateOrder = False
-  Height = 256
-  Width = 392
+  Height = 211
+  Width = 352
 end

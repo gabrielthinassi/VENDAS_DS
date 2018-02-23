@@ -82,7 +82,7 @@ begin
     else if (Campo = 'DESCRICAO_STATUS') then
     begin
       DisplayLabel := 'Descrição do Status';
-      CustomConstraint := sCC_ValueIsNotNull;
+      CustomConstraint := sCC_ValueIsNotNullAndNotVazio;
     end
 end;
 

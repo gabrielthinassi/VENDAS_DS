@@ -9,7 +9,14 @@ uses
   USC in 'USC.pas' {SC: TDataModule},
   UFrmServerDatabase in 'UFrmServerDatabase.pas' {FrmServerDatabase},
   ClassPai in '..\Class\ClassPai.pas',
-  ClassPaiCadastro in '..\Class\ClassPaiCadastro.pas';
+  ClassPaiCadastro in '..\Class\ClassPaiCadastro.pas',
+  URegistraClassesServidoras in 'URegistraClassesServidoras.pas',
+  ClassExpositorDeClasses in '..\Class\ClassExpositorDeClasses.pas',
+  ClassStatus in '..\Class\ClassStatus.pas',
+  USMConexao in 'USMConexao.pas' {SMConexao: TDSServerModule},
+  Constantes in '..\Class\Constantes.pas',
+  ClassDataSet in '..\Class\ClassDataSet.pas',
+  USMPaiCadastro in 'USMPaiCadastro.pas' {SMPaiCadastro: TDSServerModule};
 
 {$R *.res}
 
@@ -18,6 +25,7 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TFrmServidor, FrmServidor);
   Application.CreateForm(TSC, SC);
+  Application.CreateForm(TSMConexao, SMConexao);
   Application.Run;
 end.
 

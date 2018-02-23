@@ -17,7 +17,7 @@ uses
   Rtti,
   ClassPai;
 
-//Cria os parametros do DataSet | Ainda não utilizado
+//Cria os parametros do DataSet
 type
   TParametrosSql = record
     Nome: string;

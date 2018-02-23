@@ -1,7 +1,9 @@
 object SC: TSC
   OldCreateOrder = False
-  Height = 271
-  Width = 415
+  OnCreate = DataModuleCreate
+  OnDestroy = DataModuleDestroy
+  Height = 160
+  Width = 336
   object DSServer: TDSServer
     Left = 96
     Top = 11
