@@ -58,6 +58,7 @@ begin
       if (Components[X] is TClientDataSet) then
         (Components[X] as TClientDataSet).Close;
     end;
+  Action := caFree;
 end;
 
 end.

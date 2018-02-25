@@ -56,6 +56,7 @@ type
     procedure btnProximoClick(Sender: TObject);
     procedure btnUltimoClick(Sender: TObject);
     procedure DSCadastroStateChange(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
     FDMCadastro: TDMPaiCadastro;
@@ -182,9 +183,23 @@ begin
   btnRelatorio.Enabled := (DSCadastro.DataSet.State in [dsBrowse, dsInactive]);
 end;
 
-procedure TFrmPaiCadastro.FormCreate(Sender: TObject);
+procedure TFrmPaiCadastro.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   inherited;
+  Action := caFree;
+end;
+
+procedure TFrmPaiCadastro.FormCreate(Sender: TObject);
+var
+  I : Integer;
+begin
+  inherited;
+  for I := 0 to ComponentCount - 1 do
+  begin
+    if (Components[I] is TDBEdit) then
+      (Components[I] as TDBEdit).CharCase := ecUpperCase;
+  end;
+
   if pgctrlCadastro.PageCount = 1 then
   begin
     pgEdit.TabVisible := False;

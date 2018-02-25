@@ -79,6 +79,7 @@ ResourceString
   sCPFInvalido = 'Atenção C.P.F. inválido, verifique.';
 
   // Sucesso
+  sSucessoNaConexao = 'Sucesso na Conexão!';
   sSucessoEmProcesso = 'Processo executado com sucesso.';
   sProcessoTerminado = 'Processo terminado.';
 

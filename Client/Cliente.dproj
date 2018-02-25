@@ -111,6 +111,27 @@
             <Form>FrmPaiCadastro</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="..\Class\ClassDataSet.pas"/>
+        <DCCReference Include="..\Class\Constantes.pas"/>
+        <DCCReference Include="Dm\UDMConexao.pas">
+            <Form>DMConexao</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="Dm\UDMPai.pas">
+            <Form>DMPai</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="Dm\UDMPaiCadastro.pas">
+            <Form>DMPaiCadastro</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="Form\UFrmConfigServidorAplicacao.pas">
+            <Form>FrmConfigServidorAplicacao</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
