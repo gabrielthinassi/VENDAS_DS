@@ -42,6 +42,7 @@ type
 
     class function ParametrosSql: TListaDeParametrosSql; static;
     class procedure CriarParametros(ASQLDataSet: TSQLDataSet);
+    class procedure ConfigurarPropriedadesDoCampo(CDS: TDataSet); virtual;
 
     //Não utilizados ainda
     class function CamposFechamento: string; virtual;
@@ -154,6 +155,10 @@ begin
   end;
 end;
 
+class procedure TClassPaiCadastro.ConfigurarPropriedadesDoCampo(CDS: TDataSet);
+begin
+    //
+end;
 
 function CriarClassePeloNome(const Nome: string): TClassPaiCadastro;
 var

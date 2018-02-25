@@ -16,7 +16,8 @@ uses
   USMConexao in 'USMConexao.pas' {SMConexao: TDSServerModule},
   Constantes in '..\Class\Constantes.pas',
   ClassDataSet in '..\Class\ClassDataSet.pas',
-  USMPaiCadastro in 'USMPaiCadastro.pas' {SMPaiCadastro: TDSServerModule};
+  USMPaiCadastro in 'USMPaiCadastro.pas' {SMPaiCadastro: TDSServerModule},
+  USMCadStatus in 'USMCadStatus.pas' {SMCadStatus: TDSServerModule};
 
 {$R *.res}
 
@@ -26,6 +27,7 @@ begin
   Application.CreateForm(TFrmServidor, FrmServidor);
   Application.CreateForm(TSC, SC);
   Application.CreateForm(TSMConexao, SMConexao);
+  Application.CreateForm(TSMCadStatus, SMCadStatus);
   Application.Run;
 end.
 

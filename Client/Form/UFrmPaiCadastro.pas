@@ -62,6 +62,7 @@ type
     FDMCadastro: TDMPaiCadastro;
   public
     { Public declarations }
+    property DMCadastro: TDMPaiCadastro read FDMCadastro write FDMCadastro;
   end;
 
 var
@@ -82,39 +83,33 @@ procedure TFrmPaiCadastro.btnCancelarClick(Sender: TObject);
 begin
   inherited;
 
-  if FDMCadastro.CDSCadastro.State in [dsEdit, dsInsert] then
+  if DSCadastro.DataSet.State in [dsEdit, dsInsert] then
   begin
     if MessageDlg('Deseja realmente cancelar?',mtWarning,mbYesNo,0) = mrYes then
       FDMCadastro.CDSCadastro.Cancel;
   end;
-  FDMCadastro.CDSCadastro.Close;
+  DSCadastro.DataSet.Close;
 end;
 
 procedure TFrmPaiCadastro.btnExcluirClick(Sender: TObject);
 begin
   inherited;
 
-  if ((not FDMCadastro.CDSCadastro.Active) or (FDMCadastro.CDSCadastro.IsEmpty)) then
+  if ((not DSCadastro.DataSet.Active) or (DSCadastro.DataSet.IsEmpty)) then
   begin
     ShowMessage('Não há o que excluir!');
   end
   else
   begin
-    if MessageDlg('Deseja deletar o registro?', mtConfirmation, mbYesNo,0) = mrYes then
+    if MessageDlg('Deseja realmente deletar o registro?', mtConfirmation, mbYesNo,0) = mrNo then
       Exit;
 
     if FDMCadastro.CDSCadastro.State in [dsEdit, dsInsert] then
       Exit;
 
-    try
       FDMCadastro.CDSCadastro.Delete;
-      FDMCadastro.CDSCadastro.ApplyUpdates(0);
-    except
-      FDMCadastro.CDSCadastro.UndoLastChange(True);
-      FDMCadastro.CDSCadastro.Close;
-      FDMCadastro.CDSCadastro.Open;
-      raise Exception.Create('Ocorreram erros ao tentar deletar o Registro!');
-    end;
+      edtCodigo.AsInteger := 0;
+      edtCodigo.SetFocus;
   end;
 end;
 
@@ -124,12 +119,7 @@ begin
 
   if FDMCadastro.CDSCadastro.State in [dsEdit, dsInsert] then
     FDMCadastro.CDSCadastro.Post;
-
-  try
-    FDMCadastro.CDSCadastro.ApplyUpdates(0);
-  except
-    raise Exception.Create('Ocorreram erros ao tentar gravar o Registro!');
-  end;
+  edtCodigo.SetFocus;
 end;
 
 procedure TFrmPaiCadastro.btnIncluirClick(Sender: TObject);
@@ -146,6 +136,8 @@ begin
     FDMCadastro.CDSCadastro.Close;
     FDMCadastro.CDSCadastro.Open;
     FDMCadastro.CDSCadastro.Insert;
+    //Vai para o proximo Edit;
+    //Perform(WM_NEXTDLGCTL, 0, 0);
   except
     raise Exception.Create('Ocorreram erros ao tentar incluir o Registro!');
   end;
@@ -175,10 +167,11 @@ begin
   if FDMCadastro = nil then
     Exit;
 
+  pnlTop.Enabled       := not (DSCadastro.DataSet.State in [dsInsert, dsEdit]);
   btnIncluir.Enabled   := (DSCadastro.DataSet.State in [dsBrowse, dsInactive]);
-  btnExcluir.Enabled := (DSCadastro.DataSet.State in [dsBrowse]) and DSCadastro.DataSet.IsEmpty;
-  btnGravar.Enabled := (DSCadastro.DataSet.State in [dsInsert, dsEdit]);
-  btnCancelar.Enabled := (DSCadastro.DataSet.State in [dsInsert, dsEdit]);
+  btnExcluir.Enabled   := (DSCadastro.DataSet.State in [dsBrowse]) and DSCadastro.DataSet.IsEmpty;
+  btnGravar.Enabled    := (DSCadastro.DataSet.State in [dsInsert, dsEdit]);
+  btnCancelar.Enabled  := (DSCadastro.DataSet.State in [dsInsert, dsEdit]);
   btnPesquisar.Enabled := (DSCadastro.DataSet.State in [dsBrowse, dsInactive]);
   btnRelatorio.Enabled := (DSCadastro.DataSet.State in [dsBrowse, dsInactive]);
 end;

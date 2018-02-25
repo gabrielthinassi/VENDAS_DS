@@ -15,10 +15,6 @@ inherited FrmConfigServidorAplicacao: TFrmConfigServidorAplicacao
     BevelKind = bkFlat
     BevelOuter = bvNone
     TabOrder = 0
-    ExplicitLeft = 140
-    ExplicitTop = 25
-    ExplicitWidth = 185
-    ExplicitHeight = 41
     object lblServidor: TLabel
       Left = 15
       Top = 8
@@ -47,6 +43,7 @@ inherited FrmConfigServidorAplicacao: TFrmConfigServidorAplicacao
       Width = 81
       Height = 22
       Caption = 'Gravar'
+      OnClick = btnGravarClick
     end
     object edtServidor: TEdit
       Left = 15

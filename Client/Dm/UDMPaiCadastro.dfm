@@ -1,16 +1,21 @@
 inherited DMPaiCadastro: TDMPaiCadastro
   OldCreateOrder = True
   OnCreate = DataModuleCreate
-  Width = 225
+  Width = 136
   object CDSCadastro: TClientDataSet
     Aggregates = <>
     Params = <>
     RemoteServer = DSPCCadastro
+    AfterOpen = CDSCadastroAfterOpen
+    BeforeInsert = CDSCadastroBeforeInsert
+    AfterPost = CDSCadastroAfterPost
+    AfterDelete = CDSCadastroAfterDelete
+    OnReconcileError = CDSCadastroReconcileError
     Left = 48
-    Top = 53
+    Top = 73
   end
   object DSPCCadastro: TDSProviderConnection
     Left = 49
-    Top = 5
+    Top = 25
   end
 end

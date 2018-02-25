@@ -1,0 +1,2 @@
+inherited DMCadStatus: TDMCadStatus
+end

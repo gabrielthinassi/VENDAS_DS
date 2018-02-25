@@ -29,6 +29,7 @@ type
     btnGravar: TSpeedButton;
     procedure FormCreate(Sender: TObject);
     procedure btnTestarClick(Sender: TObject);
+    procedure btnGravarClick(Sender: TObject);
   private
     { Private declarations }
     const NomeArquivoConfig = 'ClientConfig.ini';
@@ -43,11 +44,28 @@ implementation
 
 {$R *.dfm}
 
+uses UDMConexao, Constantes;
+
+procedure TFrmConfigServidorAplicacao.btnGravarClick(Sender: TObject);
+var
+  ClienteConfig: TIniFile;
+begin
+  inherited;
+  ClienteConfig := TIniFile.Create(ExtractFilePath(Application.ExeName) + NomeArquivoConfig);
+  try
+    ClienteConfig.WriteString('Configuracao', 'Servidor', edtServidor.Text);
+    ClienteConfig.WriteString('Configuracao', 'Porta', edtPorta.Text);
+  finally
+    ClienteConfig.Free;
+  end;
+  Close;
+end;
+
 procedure TFrmConfigServidorAplicacao.btnTestarClick(Sender: TObject);
 begin
   inherited;
-  if DMConexao.TestaConexao(edtServidor.Text) then
-    MensagemInformacao('Conexão efetuada com sucesso!');
+  if DMConexao.TestaConexao(edtServidor.Text, edtPorta.Text) then
+    ShowMessage(sSucessoNaConexao);
 end;
 
 procedure TFrmConfigServidorAplicacao.FormCreate(Sender: TObject);

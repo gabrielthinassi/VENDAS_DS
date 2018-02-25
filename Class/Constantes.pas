@@ -100,6 +100,7 @@ ResourceString
     'Certifique-se de que a rede está operando corretamente e tente entrar no sistema novamente.' + #13#13;
   sOcorreuErro = 'Ocorreu o seguinte erro: '#13;
   ErroServidorApl = '>> ERRO DO SERVIDOR DE APLICAÇÃO <<'#13#13;
+  ErroServidorAplNaoEstaRodando = 'Servidor de Aplicação não está rodando!'#13#13;
   MensagemServidorApl = '>> MENSAGEM DO SERVIDOR DE APLICAÇÃO <<'#13#13;
 
   // Arquivos

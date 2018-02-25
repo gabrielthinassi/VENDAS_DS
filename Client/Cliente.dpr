@@ -5,12 +5,18 @@ uses
   UFrmPrincipal in 'Form\UFrmPrincipal.pas' {FrmPrincipal},
   UFrmPai in 'Form\UFrmPai.pas' {FrmPai},
   UFrmPaiCadastro in 'Form\UFrmPaiCadastro.pas' {FrmPaiCadastro},
-  ClassDataSet in '..\Class\ClassDataSet.pas',
-  Constantes in '..\Class\Constantes.pas',
   UDMConexao in 'Dm\UDMConexao.pas' {DMConexao: TDataModule},
   UDMPai in 'Dm\UDMPai.pas' {DMPai: TDataModule},
   UDMPaiCadastro in 'Dm\UDMPaiCadastro.pas' {DMPaiCadastro: TDataModule},
-  UFrmConfigServidorAplicacao in 'Form\UFrmConfigServidorAplicacao.pas' {FrmConfigServidorAplicacao};
+  UFrmConfigServidorAplicacao in 'Form\UFrmConfigServidorAplicacao.pas' {FrmConfigServidorAplicacao},
+  ClassDataSet in '..\Class\ClassDataSet.pas',
+  ClassExpositorDeClasses in '..\Class\ClassExpositorDeClasses.pas',
+  ClassPai in '..\Class\ClassPai.pas',
+  ClassStatus in '..\Class\ClassStatus.pas',
+  Constantes in '..\Class\Constantes.pas',
+  ClassPaiCadastro in '..\Class\ClassPaiCadastro.pas',
+  UFrmCadStatus in 'Form\UFrmCadStatus.pas' {FrmCadStatus},
+  UDMCadStatus in 'Dm\UDMCadStatus.pas' {DMCadStatus: TDataModule};
 
 {$R *.res}
 
@@ -24,5 +30,7 @@ begin
   Application.CreateForm(TDMPai, DMPai);
   Application.CreateForm(TDMPaiCadastro, DMPaiCadastro);
   Application.CreateForm(TFrmConfigServidorAplicacao, FrmConfigServidorAplicacao);
+  Application.CreateForm(TFrmCadStatus, FrmCadStatus);
+  Application.CreateForm(TDMCadStatus, DMCadStatus);
   Application.Run;
 end.

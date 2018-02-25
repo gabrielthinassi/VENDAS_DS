@@ -17,7 +17,7 @@ type
     class function SQLBaseRelatorio: string; override;
     class function SQLBaseConsulta: string; override;
 
-    class procedure ConfigurarPropriedadesDoCampo(CDS: TDataSet; Campo: string);
+    class procedure ConfigurarPropriedadesDoCampo(CDS: TDataSet); override;
   end;
 
 implementation
