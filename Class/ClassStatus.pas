@@ -17,7 +17,7 @@ type
     class function SQLBaseRelatorio: string; override;
     class function SQLBaseConsulta: string; override;
 
-    class procedure ConfigurarPropriedadesDoCampo(CDS: TDataSet); override;
+    class procedure ConfigurarPropriedadesDoCampo(DataSet: TDataSet); override;
   end;
 
 implementation
@@ -73,17 +73,25 @@ begin
             'from STATUS';
 end;
 
-class procedure TClassStatus.ConfigurarPropriedadesDoCampo(CDS: TDataSet; Campo: string);
+class procedure TClassStatus.ConfigurarPropriedadesDoCampo(DataSet: TDataSet);
+var
+  Campo : String;
+  I     : Integer;
 begin
   inherited;
-  with CDS.FieldByName(Campo) do
-    if (Campo = 'CODIGO_STATUS') then
-      DisplayLabel := 'Código'
-    else if (Campo = 'DESCRICAO_STATUS') then
-    begin
-      DisplayLabel := 'Descrição do Status';
-      CustomConstraint := sCC_ValueIsNotNullAndNotVazio;
-    end
+  for I := 0 to DataSet.FieldCount - 1 do
+  begin
+    Campo := DataSet.Fields[I].FieldName;
+
+    with DataSet.FieldByName(Campo) do
+      if (Campo = 'CODIGO_STATUS') then
+        DisplayLabel := 'Código'
+      else if (Campo = 'DESCRICAO_STATUS') then
+      begin
+        DisplayLabel := 'Descrição do Status';
+        CustomConstraint := sCC_ValueIsNotNullAndNotVazio;
+      end
+  end;
 end;
 
 initialization

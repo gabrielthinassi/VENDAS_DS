@@ -260,7 +260,7 @@ end;
 procedure TDMPaiCadastro.CDSCadastroAfterOpen(DataSet: TDataSet);
 begin
   inherited;
-  FClasseFilha.ConfigurarPropriedadesDoCampo(cdsCadastro);
+  FClasseFilha.ConfigurarPropriedadesDoCampo(DataSet);
 end;
 
 procedure TDMPaiCadastro.CDSCadastroAfterPost(DataSet: TDataSet);

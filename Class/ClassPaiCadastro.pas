@@ -42,7 +42,7 @@ type
 
     class function ParametrosSql: TListaDeParametrosSql; static;
     class procedure CriarParametros(ASQLDataSet: TSQLDataSet);
-    class procedure ConfigurarPropriedadesDoCampo(CDS: TDataSet); virtual;
+    class procedure ConfigurarPropriedadesDoCampo(DataSet: TDataSet); virtual;
 
     //Não utilizados ainda
     class function CamposFechamento: string; virtual;
@@ -155,7 +155,7 @@ begin
   end;
 end;
 
-class procedure TClassPaiCadastro.ConfigurarPropriedadesDoCampo(CDS: TDataSet);
+class procedure TClassPaiCadastro.ConfigurarPropriedadesDoCampo(DataSet: TDataSet);
 begin
     //
 end;
