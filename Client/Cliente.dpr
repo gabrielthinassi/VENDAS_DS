@@ -16,7 +16,8 @@ uses
   Constantes in '..\Class\Constantes.pas',
   ClassPaiCadastro in '..\Class\ClassPaiCadastro.pas',
   UFrmCadStatus in 'Form\UFrmCadStatus.pas' {FrmCadStatus},
-  UDMCadStatus in 'Dm\UDMCadStatus.pas' {DMCadStatus: TDataModule};
+  UDMCadStatus in 'Dm\UDMCadStatus.pas' {DMCadStatus: TDataModule},
+  Funcoes in '..\Class\Funcoes.pas';
 
 {$R *.res}
 

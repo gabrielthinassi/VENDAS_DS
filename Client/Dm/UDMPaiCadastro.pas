@@ -47,15 +47,11 @@ type
     procedure CDSCadastroAfterOpen(DataSet: TDataSet);
 
   private
-    FClasseFilha: TClassPaiCadastro;
     function GetIdDetalhe: integer;
     function ProximoCodigo(Tabela: string): int64;
   protected
+    FClasseFilha: TFClassPaiCadastro;
   public
-    property ClasseFilha: TClassPaiCadastro read FClasseFilha write FClasseFilha;
-
-    //property CodigoAtual: integer read FCodigoAtual write FCodigoAtual;
-    //property RefreshRecordAfterPost: boolean read FRefreshRecordAfterPost write FRefreshRecordAfterPost;
 
     property IdDetalhe: integer read GetIdDetalhe;
 
@@ -113,7 +109,7 @@ end;
 function TDMPaiCadastro.Primeiro: integer;
 var
   SQL: string;
-  Classe: TClassPaiCadastro;
+  Classe: TFClassPaiCadastro;
 begin
   Classe := FClasseFilha;
 
@@ -129,7 +125,7 @@ end;
 function TDMPaiCadastro.Proximo(Atual: integer): integer;
 var
   SQL: string;
-  Classe: TClassPaiCadastro;
+  Classe: TFClassPaiCadastro;
 begin
   Classe := FClasseFilha;
 
@@ -154,7 +150,7 @@ end;
 function TDMPaiCadastro.Anterior(Atual: integer): integer;
 var
   SQL: string;
-  Classe: TClassPaiCadastro;
+  Classe: TFClassPaiCadastro;
 begin
   Classe := FClasseFilha;
 
@@ -171,7 +167,7 @@ end;
 function TDMPaiCadastro.Ultimo: integer;
 var
   SQL: string;
-  Classe: TClassPaiCadastro;
+  Classe: TFClassPaiCadastro;
 begin
   Classe := FClasseFilha;
 

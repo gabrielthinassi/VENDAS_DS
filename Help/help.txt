@@ -11,3 +11,7 @@ begin
 end;
 
 Como fazer diferente ???
+
+
+3)
+Explicar a function TELA para abrir Forms;

@@ -29,7 +29,7 @@ uses ClassStatus, UDMConexao;
 procedure TDMCadStatus.DataModuleCreate(Sender: TObject);
 begin
   inherited;
-  ClasseFilha := TClassStatus;
+  FClasseFilha := TClassStatus;
   DSPCCadastro.ServerClassName := 'TSMCadStatus';
 end;
 

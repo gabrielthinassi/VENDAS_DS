@@ -21,9 +21,10 @@ implementation
 uses
   //Lista de Server Módules a serem exportados;
   USMPai,
-  //USMPaiCadastro,
-  //USMCadStatus,
-  ClassExpositorDeClasses;
+  USMPaiCadastro,
+  ClassExpositorDeClasses,
+  USMCadStatus;
+
 
 
 
@@ -33,7 +34,7 @@ begin
   Assert(AServer.Started = false, 'Não é possível adicionar classes com o servidor ativo');
 
   //Lista de Classes que Serão Exportadas para a Aplicação Cliente
-  //TExpositorDeClasses.Create(AOwner, AServer, TSMCadStatus, True, TDSLifeCycle.Session);
+  TExpositorDeClasses.Create(AOwner, AServer, TSMCadStatus, True, TDSLifeCycle.Session);
 end;
 
 {
