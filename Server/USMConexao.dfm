@@ -64,7 +64,7 @@ object SMConexao: TSMConexao
       'VendorLib=fbclient.dll'
       'VendorLibWin64=fbclient.dll'
       'VendorLibOsx=/Library/Frameworks/Firebird.framework/Firebird'
-      'Database=127.0.0.1/3054:C:\TRABALHO\VENDAS\Dados\VENDAS.FDB'
+      'Database=127.0.0.1/3054:C:\TRABALHO\VENDAS_DS\Data\VENDAS.FDB'
       'User_Name=sysdba'
       'Password=masterkey'
       'Role=RoleName'

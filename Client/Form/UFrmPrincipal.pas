@@ -11,7 +11,10 @@ type
     MainMenu1: TMainMenu;
     mnCadastros: TMenuItem;
     mmStatus: TMenuItem;
+    mnUtilitarios: TMenuItem;
+    mnConfiguracoes: TMenuItem;
     procedure mmStatusClick(Sender: TObject);
+    procedure mnConfiguracoesClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -25,11 +28,16 @@ implementation
 
 {$R *.dfm}
 
-uses Funcoes, UFrmCadStatus;
+uses Funcoes, UFrmCadStatus, UFrmConfigServidorAplicacao;
 
 procedure TFrmPrincipal.mmStatusClick(Sender: TObject);
 begin
   FrmCadStatus := TFrmCadStatus(CriaForm(Self, FrmCadStatus, TFrmCadStatus, False, Sender));
+end;
+
+procedure TFrmPrincipal.mnConfiguracoesClick(Sender: TObject);
+begin
+  FrmConfigServidorAplicacao := TFrmConfigServidorAplicacao(CriaForm(Self, FrmConfigServidorAplicacao, TFrmConfigServidorAplicacao, False, Sender));
 end;
 
 end.

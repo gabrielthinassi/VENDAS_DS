@@ -25,13 +25,5 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TFrmPrincipal, FrmPrincipal);
-  Application.CreateForm(TFrmPai, FrmPai);
-  Application.CreateForm(TFrmPaiCadastro, FrmPaiCadastro);
-  Application.CreateForm(TDMConexao, DMConexao);
-  Application.CreateForm(TDMPai, DMPai);
-  Application.CreateForm(TDMPaiCadastro, DMPaiCadastro);
-  Application.CreateForm(TFrmConfigServidorAplicacao, FrmConfigServidorAplicacao);
-  Application.CreateForm(TFrmCadStatus, FrmCadStatus);
-  Application.CreateForm(TDMCadStatus, DMCadStatus);
   Application.Run;
 end.

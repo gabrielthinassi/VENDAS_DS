@@ -24,8 +24,8 @@ uses
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  Application.CreateForm(TFrmServidor, FrmServidor);
   Application.CreateForm(TSC, SC);
+  Application.CreateForm(TFrmServidor, FrmServidor);
   Application.Run;
 end.
 

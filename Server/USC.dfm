@@ -5,6 +5,7 @@ object SC: TSC
   Height = 160
   Width = 336
   object DSServer: TDSServer
+    AutoStart = False
     Left = 96
     Top = 11
   end

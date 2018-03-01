@@ -95,12 +95,12 @@ function TDMConexao.TestaConexao(Servidor, Porta: string): Boolean;
 var
   ClienteConfig: TIniFile;
 begin
-  Servidor := '';
-  Porta := '';
   ClienteConfig := TIniFile.Create(ExtractFilePath(Application.ExeName) + 'ClientConfig.ini');
 
   if Servidor = '' then
-      Servidor := ClienteConfig.ReadString('Configuracao', 'Servidor', 'localhost');
+    Servidor := ClienteConfig.ReadString('Configuracao', 'Servidor', 'localhost');
+  if Porta = '' then
+    Porta := ClienteConfig.ReadString('Configuracao', 'Porta', '211');
 
   try
     with ConexaoDS do
@@ -118,6 +118,9 @@ begin
           Params.Add('CommunicationProtocol=tcp/ip');
           Params.Add('DatasnapContext=datasnap/');
           Params.Add('Borland.Data.TDBXClientDriverLoader,Borland.Data.DbxClientDriver,Version=22.0.0.0,Culture=neutral,PublicKeyToken=91d62ebb5b0d1b1b');
+
+          ShowMessage(Params.Text);
+
           Connected := True;
           Result := True;
         finally
@@ -215,7 +218,7 @@ end;
 
 function TDMConexao.ExecuteCommand_Update(sql: WideString; Campo: string; Valor: OleVariant): int64;
 begin
-
+  //teste
 end;
 
 procedure TDMConexao.CarregarListaDeTabelasEProceduresDoBDD;

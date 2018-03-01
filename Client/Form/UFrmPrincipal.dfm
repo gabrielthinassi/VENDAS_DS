@@ -24,5 +24,12 @@ object FrmPrincipal: TFrmPrincipal
         OnClick = mmStatusClick
       end
     end
+    object mnUtilitarios: TMenuItem
+      Caption = 'Utilit'#225'rios'
+      object mnConfiguracoes: TMenuItem
+        Caption = 'Configura'#231#245'es'
+        OnClick = mnConfiguracoesClick
+      end
+    end
   end
 end
