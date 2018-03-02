@@ -191,6 +191,10 @@ inherited FrmPaiCadastro: TFrmPaiCadastro
     TabOrder = 3
     object pgEdit: TTabSheet
       Caption = 'Edit'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
     end
   end
   object DSCadastro: TDataSource

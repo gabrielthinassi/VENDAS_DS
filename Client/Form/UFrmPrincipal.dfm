@@ -12,6 +12,8 @@ object FrmPrincipal: TFrmPrincipal
   Font.Style = []
   Menu = MainMenu1
   OldCreateOrder = False
+  OnClose = FormClose
+  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
   object MainMenu1: TMainMenu

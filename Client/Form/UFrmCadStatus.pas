@@ -14,6 +14,7 @@ type
     edtDescricao: TDBEdit;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
@@ -27,13 +28,18 @@ implementation
 
 {$R *.dfm}
 
-uses UDMCadStatus;
+uses UDMCadStatus, ClassStatus;
+
+procedure TFrmCadStatus.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  inherited;
+  FreeAndNil(DMCadStatus);
+end;
 
 procedure TFrmCadStatus.FormCreate(Sender: TObject);
 begin
-  inherited;
   DMCadastro := TDMCadStatus.Create(Self);
-  //ProcConsulta := cConsultaStatus;
+  inherited;
 end;
 
 procedure TFrmCadStatus.FormDestroy(Sender: TObject);

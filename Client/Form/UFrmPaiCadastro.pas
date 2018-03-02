@@ -8,6 +8,7 @@ uses
   System.SysUtils,
   System.Variants,
   System.Classes,
+  System.UITypes,
   Vcl.Graphics,
   Vcl.Controls,
   Vcl.Forms,
@@ -60,10 +61,15 @@ type
   private
     { Private declarations }
     FDMCadastro: TDMPaiCadastro;
+  protected
+    //FDMCadastro: TDMPaiCadastro;
   public
     { Public declarations }
     property DMCadastro: TDMPaiCadastro read FDMCadastro write FDMCadastro;
   end;
+
+    //FDMCadsatro = class of TDMPaiCadastro;
+
 
 var
   FrmPaiCadastro: TFrmPaiCadastro;

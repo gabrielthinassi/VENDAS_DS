@@ -89,14 +89,12 @@ begin
 
   with FClasseFilha do
   begin
-    if Trim(CDSCadastro.CommandText) = '' then
-      CDSCadastro.CommandText := SQLBaseCadastro;
-
     CDSCadastro.AdicionarCampos;
   end;
-    //cdsCadastro.FetchParams;
-    //cdsCadastro.ParamByName('Cod').AsInteger := -1;
-    //cdsCadastro.Open;
+
+  cdsCadastro.FetchParams;
+  cdsCadastro.ParamByName('Cod').AsInteger := -1;
+  cdsCadastro.Open;
 end;
 
 procedure TDMPaiCadastro.DataModuleDestroy(Sender: TObject);

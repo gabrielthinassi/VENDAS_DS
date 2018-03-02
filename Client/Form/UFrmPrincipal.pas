@@ -15,6 +15,8 @@ type
     mnConfiguracoes: TMenuItem;
     procedure mmStatusClick(Sender: TObject);
     procedure mnConfiguracoesClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
@@ -28,7 +30,18 @@ implementation
 
 {$R *.dfm}
 
-uses Funcoes, UFrmCadStatus, UFrmConfigServidorAplicacao;
+uses Funcoes, UFrmCadStatus, UFrmConfigServidorAplicacao, UDMConexao;
+
+procedure TFrmPrincipal.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  FreeAndNil(DMConexao);
+  Action := caFree;
+end;
+
+procedure TFrmPrincipal.FormCreate(Sender: TObject);
+begin
+  DMConexao := TDMConexao.Create(Self);
+end;
 
 procedure TFrmPrincipal.mmStatusClick(Sender: TObject);
 begin
