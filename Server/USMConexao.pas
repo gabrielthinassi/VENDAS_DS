@@ -7,7 +7,7 @@ uses
   Winapi.Windows, Data.DB, DBClient, Provider, Vcl.Forms, Data.SqlConst, System.StrUtils, System.Math,
   Datasnap.DSServer, acQBBase, acQBdbExMetaProvider, acAST, acFbSynProvider, Graphics, jpeg, Generics.Collections,
   Data.DBXJSONReflect, Datasnap.DSCommonServer, Datasnap.DSProviderDataModuleAdapter,
-  Data.DBXFirebird;
+  Data.DBXFirebird, DbxDevartInterBase;
 
 type
   TSMConexao = class(TDSServerModule)
@@ -37,10 +37,10 @@ implementation
 
 procedure TSMConexao.DSServerModuleCreate(Sender: TObject);
 begin
-  ConexaoBD.Params.Clear;
-  ConexaoBD.LoginPrompt := False;
-  ConexaoBD.DriverName := 'Firebird';
-  ConexaoBD.Params.LoadFromFile(ExtractFilePath(Application.ExeName) + 'ServerConfig.ini');
+  //ConexaoBD.Params.Clear;
+  //ConexaoBD.LoginPrompt := False;
+  //ConexaoBD.DriverName := 'Firebird';
+  //ConexaoBD.Params.LoadFromFile(ExtractFilePath(Application.ExeName) + 'ServerConfig.ini');
 end;
 
 procedure TSMConexao.DSServerModuleDestroy(Sender: TObject);
@@ -64,6 +64,7 @@ var
   TipoCampo : TFieldType;
 begin
   try
+    DataSet := TSQLDataSet.Create(nil);
     try
       ConexaoBD.Execute(SQL, nil, TDataSet(DataSet));
       DataSet.ParamCheck := False; //Deixa um pouco mais rápido por não checar os Params.

@@ -142,14 +142,12 @@ var
   Comando : TDBXCommand;
   I : Integer;
 begin
-  if Comando = nil then
-  begin
     Comando := ConexaoDS.DBXConnection.CreateCommand;
     try
       Comando.CommandType := TDBXCommandTypes.DSServerMethod;
       Comando.Text := Metodo;
       Comando.Prepare;
-      Comando.ExecuteUpdate;
+
 
       for I := low(Parametros_Valor) to high(Parametros_Valor) do
       begin
@@ -186,12 +184,11 @@ begin
         end;
         //Executa e retorna
         Comando.ExecuteUpdate;
-        Result := Comando.Parameters[I].Value.AsVariant;
+        Result := Comando.Parameters[I+1].Value.AsVariant;
       end;
     finally
-      Comando.Free;
+      //Comando.Free;
     end;
-  end;
 end;
 
 function TDMConexao.ProximoCodigo(Tabela: string): int64;

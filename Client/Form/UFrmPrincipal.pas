@@ -45,7 +45,10 @@ end;
 
 procedure TFrmPrincipal.mmStatusClick(Sender: TObject);
 begin
-  FrmCadStatus := TFrmCadStatus(CriaForm(Self, FrmCadStatus, TFrmCadStatus, False, Sender));
+  //FrmCadStatus := TFrmCadStatus(CriaForm(Self, FrmCadStatus, TFrmCadStatus, False, Sender));
+
+  FrmCadStatus := TFrmCadStatus.Create(Self);
+  FrmCadStatus.ShowModal;
 end;
 
 procedure TFrmPrincipal.mnConfiguracoesClick(Sender: TObject);

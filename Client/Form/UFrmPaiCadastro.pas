@@ -206,7 +206,7 @@ begin
   end;
   pgctrlCadastro.ActivePageIndex := 0;
 
-  DSCadastro.DataSet := DMPaiCadastro.CDSCadastro;
+  DSCadastro.DataSet := FDMCadastro.CDSCadastro;
 end;
 
 end.

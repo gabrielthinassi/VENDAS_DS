@@ -132,7 +132,7 @@ begin
     SQL := ' SELECT MIN(' + TabelaPrincipal + '.' + CampoChave + ')' +#13+
            ' FROM '  + TabelaPrincipal +#13+
            ' WHERE ' + TabelaPrincipal + '.' + CampoChave + ' > ' + IntToStr(Atual) +#13+
-           ' AND '   + TabelaPrincipal + '.' + CampoChave + ' <> 0)';
+           ' AND '   + TabelaPrincipal + '.' + CampoChave + ' <> 0';
   end;
   Result := DMConexao.ExecuteScalar(SQL);
 end;
@@ -157,7 +157,7 @@ begin
     SQL := ' SELECT MAX(' + TabelaPrincipal + '.' + CampoChave + ')' +#13+
            ' FROM '  + TabelaPrincipal +#13+
            ' WHERE ' + TabelaPrincipal + '.' + CampoChave + ' < ' + IntToStr(Atual) +#13+
-           ' AND '   + TabelaPrincipal + '.' + CampoChave + ' <> 0)';
+           ' AND '   + TabelaPrincipal + '.' + CampoChave + ' <> 0';
   end;
   Result := DMConexao.ExecuteScalar(SQL);
 end;
@@ -274,6 +274,7 @@ procedure TDMPaiCadastro.CDSCadastroReconcileError(
   var Action: TReconcileAction);
 begin
   inherited;
+  ShowMessage(E.Message);
   Action := raAbort;
 end;
 

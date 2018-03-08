@@ -40,47 +40,30 @@ object SMConexao: TSMConexao
     Top = 13
   end
   object ConexaoBD: TSQLConnection
-    DriverName = 'Firebird'
+    DriverName = 'DevartInterBase'
     LoginPrompt = False
     Params.Strings = (
-      'DriverUnit=Data.DBXFirebird'
-      
-        'DriverPackageLoader=TDBXDynalinkDriverLoader,DbxCommonDriver240.' +
-        'bpl'
-      
-        'DriverAssemblyLoader=Borland.Data.TDBXDynalinkDriverLoader,Borla' +
-        'nd.Data.DbxCommonDriver,Version=24.0.0.0,Culture=neutral,PublicK' +
-        'eyToken=91d62ebb5b0d1b1b'
-      
-        'MetaDataPackageLoader=TDBXFirebirdMetaDataCommandFactory,DbxFire' +
-        'birdDriver240.bpl'
-      
-        'MetaDataAssemblyLoader=Borland.Data.TDBXFirebirdMetaDataCommandF' +
-        'actory,Borland.Data.DbxFirebirdDriver,Version=24.0.0.0,Culture=n' +
-        'eutral,PublicKeyToken=91d62ebb5b0d1b1b'
-      'GetDriverFunc=getSQLDriverINTERBASE'
-      'LibraryName=dbxfb.dll'
-      'LibraryNameOsx=libsqlfb.dylib'
+      'GetDriverFunc=getSQLDriverInterBase'
+      'LibraryName=dbexpida40.dll'
       'VendorLib=fbclient.dll'
-      'VendorLibWin64=fbclient.dll'
-      'VendorLibOsx=/Library/Frameworks/Firebird.framework/Firebird'
-      'Database=127.0.0.1/3054:C:\TRABALHO\VENDAS_DS\Data\VENDAS.FDB'
+      'DataBase=localhost/3054:c:\trabalho\vendas_ds\data\vendas.fdb'
       'User_Name=sysdba'
       'Password=masterkey'
-      'Role=RoleName'
-      'MaxBlobSize=-1'
-      'LocaleCode=0000'
-      'IsolationLevel=ReadCommitted'
       'SQLDialect=3'
-      'CommitRetain=False'
-      'WaitOnLocks=True'
-      'TrimChar=False'
       'BlobSize=-1'
       'ErrorResourceFile='
-      'RoleName=RoleName'
-      'ServerCharSet='
-      'Trim Char=False')
-    Left = 200
-    Top = 20
+      'LocaleCode=0000'
+      'DevartInterBase TransIsolation=ReadCommitted'
+      'ProductName=DevartInterBase'
+      
+        'DriverPackageLoader=TDBXDynalinkDriverLoader,DBXCommonDriver240.' +
+        'bpl'
+      
+        'MetaDataPackageLoader=TDBXDevartInterBaseMetaDataCommandFactory,' +
+        'DbxDevartInterBaseDriver240.bpl'
+      'DriverUnit=DbxDevartInterBase')
+    Connected = True
+    Left = 210
+    Top = 10
   end
 end
