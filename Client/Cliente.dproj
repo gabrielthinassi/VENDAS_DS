@@ -1,7 +1,7 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
         <ProjectGuid>{255435CA-B045-480A-A8C1-4313C7D89E50}</ProjectGuid>
-        <ProjectVersion>18.1</ProjectVersion>
+        <ProjectVersion>18.2</ProjectVersion>
         <FrameworkType>VCL</FrameworkType>
         <MainSource>Cliente.dpr</MainSource>
         <Base>True</Base>
@@ -58,14 +58,18 @@
         <DCC_K>false</DCC_K>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
+        <UWP_DelphiLogo150>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_150.png</UWP_DelphiLogo150>
+        <UWP_DelphiLogo44>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_44.png</UWP_DelphiLogo44>
         <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductVersion=1.0.0.0;Comments=;ProgramID=com.embarcadero.$(ModuleName);FileDescription=$(ModuleName);ProductName=$(ModuleName)</VerInfo_Keys>
         <DCC_UsePackage>DBXSqliteDriver;fcxcd24;DBXDb2Driver;vclactnband;vclFireDAC;fs24;tethering;FireDACADSDriver;JvPluginSystem;FireDACMSSQLDriver;vcltouch;JvBands;vcldb;fcxd24;svn;JvJans;JvDotNetCtrls;MeusComponentes_XE10_1;frx24;vclib;frxDBX24;brzLib_XE10;FireDACDBXDriver;acQueryBuilderDsgnD24;tmsexdXE10;vclx;RESTBackendComponents;VCLRESTComponents;SynEdit_RXE10_1;DbxDevartInterBaseDriver240;vclie;bindengine;CloudService;JvHMI;FireDACMySQLDriver;fsDB24;rRwWebBrowserVCL240;DataSnapClient;acQueryBuilderD24;frxcs24;bindcompdbx;rRwEasyMAPI240;DBXSybaseASEDriver;IndyIPServer;Intraweb_14_D10_1;fsIBX24;IndySystem;tmsxlsdXE10;dsnapcon;acQueryBuilderADOD24;inetwinsockets;FireDACMSAccDriver;fmxFireDAC;FireDACInfxDriver;vclimg;Jcl;emshosting;FMXfrx24;fcxed24;DBXOdbcDriver;FireDACTDataDriver;FMXTee;soaprtl;DbxCommonDriver;QRWRunDXE10_1_w64;JvManagedThreads;xmlrtl;soapmidas;DataSnapNativeClient;fmxobj;JvTimeFramework;rtl;acQueryBuilderDsgnADOD24;DbxClientDriver;DBXSybaseASADriver;JvSystem;JvStdCtrls;appanalytics;dRwWebBrowserVCL240;fsTee24;IndyIPClient;bindcompvcl;TeeUI;frxe24;JvDocking;JvPascalInterpreter;VclSmp;FireDACODBCDriver;JclVcl;DataSnapIndy10ServerTransport;FlatStyle_DXE10_1;DataSnapProviderClient;FireDACMongoDBDriver;CompDPR_XE10_1;JvControls;JvPrintPreview;DataSnapServerMidas;RESTComponents;ZComponent;DBXInterBaseDriver;ZCore;emsclientfiredac;rRwControlsVCL240;DataSnapFireDAC;svnui;JvGlobus;DBXMSSQLDriver;JvMM;DatasnapConnectorsFreePascal;bindcompfmx;JvNet;dRwWebBrowserFMX240;DBXOracleDriver;acQueryBuilderDbExD24;inetdb;JvAppFrm;FMXfrxDB24;DelPrintDX101;frxADO24;SweetDrawing_DXE10_1;FmxTeeUI;emsedge;FireDACIBDriver;fmx;fmxdae;ZipMasterR;JvWizards;PackageComponentesACG;dbexpress;IndyCore;ZParseSql;JvPageComps;dsnap;DataSnapCommon;emsclient;fsADO24;FireDACCommon;acQueryBuilderFireDACD24;JvDB;bdertl;TekProt9;DataSnapConnectors;fcxpd24;soapserver;JclDeveloperTools;FireDACOracleDriver;DBXMySQLDriver;JvCmp;TekComponente_DXE10_1;DBXFirebirdDriver;FireDACCommonODBC;FireDACCommonDriver;inet;IndyIPCommon;JvCustom;vcl;JvXPCtrls;fcxpTeed24;FireDACDb2Driver;acQueryBuilderDsgnFireDACD24;ZDbc;TeeDB;FireDAC;rRwControlsFMX240;JvCore;JvCrypt;FireDACSqliteDriver;FireDACPgDriver;ibmonitor;FireDACASADriver;rRwCommon240;rRwEasyMAPIFMX240;JvDlgs;JvRuntimeDesign;ibxpress;Tee;DataSnapServer;ibxbindings;vclwinx;FireDACDSDriver;frxIBX24;EditCompPac_XE10_1;rRwWebBrowserFMX240;frxTee24;CustomIPTransport;vcldsnap;bindcomp;ZPlain;DBXInformixDriver;acQueryBuilderDsgnDbExD24;dbxcds;rRwEasyMAPIVCL240;adortl;frxDB24;dsnapxml;dbrtl;inetdbxpress;IndyProtocols;JclContainers;tmsdXE10;fmxase;$(DCC_UsePackage)</DCC_UsePackage>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win64)'!=''">
+        <UWP_DelphiLogo44>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_44.png</UWP_DelphiLogo44>
+        <UWP_DelphiLogo150>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_150.png</UWP_DelphiLogo150>
         <DCC_UsePackage>DBXSqliteDriver;DBXDb2Driver;vclactnband;vclFireDAC;tethering;FireDACADSDriver;FireDACMSSQLDriver;vcltouch;vcldb;fcxd24;MeusComponentes_XE10_1;vclib;brzLib_XE10;FireDACDBXDriver;acQueryBuilderDsgnD24;vclx;RESTBackendComponents;VCLRESTComponents;SynEdit_RXE10_1;vclie;bindengine;CloudService;FireDACMySQLDriver;DataSnapClient;acQueryBuilderD24;bindcompdbx;DBXSybaseASEDriver;IndyIPServer;IndySystem;dsnapcon;acQueryBuilderADOD24;FireDACMSAccDriver;fmxFireDAC;FireDACInfxDriver;vclimg;emshosting;DBXOdbcDriver;FireDACTDataDriver;FMXTee;soaprtl;DbxCommonDriver;QRWRunDXE10_1_w64;xmlrtl;soapmidas;DataSnapNativeClient;fmxobj;rtl;acQueryBuilderDsgnADOD24;DbxClientDriver;DBXSybaseASADriver;appanalytics;IndyIPClient;bindcompvcl;TeeUI;VclSmp;FireDACODBCDriver;DataSnapIndy10ServerTransport;FlatStyle_DXE10_1;DataSnapProviderClient;FireDACMongoDBDriver;CompDPR_XE10_1;DataSnapServerMidas;RESTComponents;ZComponent;DBXInterBaseDriver;ZCore;emsclientfiredac;DataSnapFireDAC;DBXMSSQLDriver;DatasnapConnectorsFreePascal;bindcompfmx;DBXOracleDriver;acQueryBuilderDbExD24;inetdb;SweetDrawing_DXE10_1;FmxTeeUI;emsedge;FireDACIBDriver;fmx;fmxdae;ZipMasterR;dbexpress;IndyCore;ZParseSql;dsnap;DataSnapCommon;emsclient;FireDACCommon;acQueryBuilderFireDACD24;TekProt9;DataSnapConnectors;soapserver;FireDACOracleDriver;DBXMySQLDriver;TekComponente_DXE10_1;DBXFirebirdDriver;FireDACCommonODBC;FireDACCommonDriver;inet;IndyIPCommon;vcl;FireDACDb2Driver;acQueryBuilderDsgnFireDACD24;ZDbc;TeeDB;FireDAC;FireDACSqliteDriver;FireDACPgDriver;ibmonitor;FireDACASADriver;ibxpress;Tee;DataSnapServer;ibxbindings;vclwinx;FireDACDSDriver;EditCompPac_XE10_1;CustomIPTransport;vcldsnap;bindcomp;ZPlain;DBXInformixDriver;acQueryBuilderDsgnDbExD24;dbxcds;adortl;dsnapxml;dbrtl;inetdbxpress;IndyProtocols;fmxase;$(DCC_UsePackage)</DCC_UsePackage>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1)'!=''">
@@ -77,6 +81,7 @@
         <DCC_RemoteDebug>true</DCC_RemoteDebug>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
+        <BT_BuildType>Debug</BT_BuildType>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <DCC_DcuOutput>..\Dcu\</DCC_DcuOutput>
@@ -179,27 +184,12 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployClass Name="DependencyModule">
-                    <Platform Name="Win32">
-                        <Operation>0</Operation>
-                        <Extensions>.dll;.bpl</Extensions>
-                    </Platform>
+                <DeployClass Name="ProjectiOSDeviceResourceRules">
                     <Platform Name="iOSDevice64">
                         <Operation>1</Operation>
-                        <Extensions>.dylib</Extensions>
-                    </Platform>
-                    <Platform Name="OSX32">
-                        <RemoteDir>Contents\MacOS</RemoteDir>
-                        <Operation>1</Operation>
-                        <Extensions>.dylib</Extensions>
                     </Platform>
                     <Platform Name="iOSDevice32">
                         <Operation>1</Operation>
-                        <Extensions>.dylib</Extensions>
-                    </Platform>
-                    <Platform Name="iOSSimulator">
-                        <Operation>1</Operation>
-                        <Extensions>.dylib</Extensions>
                     </Platform>
                 </DeployClass>
                 <DeployClass Name="ProjectOSXResource">
@@ -283,6 +273,14 @@
                         <RemoteDir>Contents\MacOS</RemoteDir>
                         <Operation>1</Operation>
                         <Extensions>.framework</Extensions>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="ProjectUWPManifest">
+                    <Platform Name="Win32">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Win64">
+                        <Operation>1</Operation>
                     </Platform>
                 </DeployClass>
                 <DeployClass Name="iPhone_Launch640">
@@ -397,6 +395,16 @@
                         <Operation>1</Operation>
                     </Platform>
                 </DeployClass>
+                <DeployClass Name="UWP_DelphiLogo44">
+                    <Platform Name="Win32">
+                        <RemoteDir>Assets</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Win64">
+                        <RemoteDir>Assets</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
                 <DeployClass Name="ProjectiOSEntitlements">
                     <Platform Name="iOSDevice64">
                         <RemoteDir>..\</RemoteDir>
@@ -428,6 +436,16 @@
                 <DeployClass Name="ProjectOSXEntitlements">
                     <Platform Name="OSX32">
                         <RemoteDir>..\</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="UWP_DelphiLogo150">
+                    <Platform Name="Win32">
+                        <RemoteDir>Assets</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Win64">
+                        <RemoteDir>Assets</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
                 </DeployClass>
@@ -550,12 +568,27 @@
                         <Operation>1</Operation>
                     </Platform>
                 </DeployClass>
-                <DeployClass Name="ProjectiOSDeviceResourceRules">
+                <DeployClass Name="DependencyModule">
+                    <Platform Name="Win32">
+                        <Operation>0</Operation>
+                        <Extensions>.dll;.bpl</Extensions>
+                    </Platform>
                     <Platform Name="iOSDevice64">
                         <Operation>1</Operation>
+                        <Extensions>.dylib</Extensions>
+                    </Platform>
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\MacOS</RemoteDir>
+                        <Operation>1</Operation>
+                        <Extensions>.dylib</Extensions>
                     </Platform>
                     <Platform Name="iOSDevice32">
                         <Operation>1</Operation>
+                        <Extensions>.dylib</Extensions>
+                    </Platform>
+                    <Platform Name="iOSSimulator">
+                        <Operation>1</Operation>
+                        <Extensions>.dylib</Extensions>
                     </Platform>
                 </DeployClass>
                 <ProjectRoot Platform="iOSDevice64" Name="$(PROJECTNAME).app"/>

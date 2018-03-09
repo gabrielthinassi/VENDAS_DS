@@ -32,8 +32,6 @@ object FrmServerDatabase: TFrmServerDatabase
       BevelKind = bkFlat
       BevelOuter = bvNone
       TabOrder = 0
-      ExplicitTop = 300
-      ExplicitWidth = 500
       object btnGravar: TSpeedButton
         Left = 405
         Top = 4
@@ -41,6 +39,14 @@ object FrmServerDatabase: TFrmServerDatabase
         Height = 37
         Caption = 'Gravar'
         OnClick = btnGravarClick
+      end
+      object btnTestar: TSpeedButton
+        Left = 318
+        Top = 4
+        Width = 81
+        Height = 37
+        Caption = 'Testar'
+        OnClick = btnTestarClick
       end
     end
     object lstConfigBD: TValueListEditor
@@ -54,13 +60,12 @@ object FrmServerDatabase: TFrmServerDatabase
       TitleCaptions.Strings = (
         'Chave'
         'Valor')
-      ExplicitLeft = 75
-      ExplicitTop = 15
-      ExplicitWidth = 306
-      ExplicitHeight = 300
       ColWidths = (
         150
         340)
+      RowHeights = (
+        18
+        18)
     end
   end
 end

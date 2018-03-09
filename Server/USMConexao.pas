@@ -3,11 +3,28 @@ unit USMConexao;
 interface
 
 uses
-  System.SysUtils, System.Classes, System.Variants, Data.SqlExpr, DBXCommon, Data.FMTBcd,
-  Winapi.Windows, Data.DB, DBClient, Provider, Vcl.Forms, Data.SqlConst, System.StrUtils, System.Math,
-  Datasnap.DSServer, acQBBase, acQBdbExMetaProvider, acAST, acFbSynProvider, Graphics, jpeg, Generics.Collections,
-  Data.DBXJSONReflect, Datasnap.DSCommonServer, Datasnap.DSProviderDataModuleAdapter,
-  Data.DBXFirebird, DbxDevartInterBase;
+  System.SysUtils,
+  System.Classes,
+  System.Variants,
+  Data.SqlExpr,
+  DBXCommon,
+  Data.FMTBcd,
+  Winapi.Windows,
+  Data.DB,
+  DBClient,
+  Provider,
+  Vcl.Forms,
+  Data.SqlConst,
+  System.StrUtils,
+  System.Math,
+  Datasnap.DSServer,
+  Graphics,
+  jpeg,
+  Generics.Collections,
+  Data.DBXJSONReflect,
+  Datasnap.DSCommonServer,
+  Datasnap.DSProviderDataModuleAdapter,
+  Data.DBXFirebird;
 
 type
   TSMConexao = class(TDSServerModule)
@@ -37,10 +54,10 @@ implementation
 
 procedure TSMConexao.DSServerModuleCreate(Sender: TObject);
 begin
-  //ConexaoBD.Params.Clear;
-  //ConexaoBD.LoginPrompt := False;
-  //ConexaoBD.DriverName := 'Firebird';
-  //ConexaoBD.Params.LoadFromFile(ExtractFilePath(Application.ExeName) + 'ServerConfig.ini');
+  ConexaoBD.Params.Clear;
+  ConexaoBD.LoginPrompt := False;
+  ConexaoBD.DriverName := 'Firebird';
+  ConexaoBD.Params.LoadFromFile(ExtractFilePath(Application.ExeName) + 'ServerConfig.ini');
 end;
 
 procedure TSMConexao.DSServerModuleDestroy(Sender: TObject);
