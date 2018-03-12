@@ -1,6 +1,6 @@
 object FrmPrincipal: TFrmPrincipal
-  Left = 0
-  Top = 0
+  Left = 560
+  Top = 332
   Caption = 'FrmPrincipal'
   ClientHeight = 400
   ClientWidth = 800
@@ -12,6 +12,7 @@ object FrmPrincipal: TFrmPrincipal
   Font.Style = []
   Menu = MainMenu1
   OldCreateOrder = False
+  Position = poDesigned
   OnClose = FormClose
   OnCreate = FormCreate
   PixelsPerInch = 96

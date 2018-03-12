@@ -119,8 +119,6 @@ begin
           Params.Add('DatasnapContext=datasnap/');
           Params.Add('Borland.Data.TDBXClientDriverLoader,Borland.Data.DbxClientDriver,Version=22.0.0.0,Culture=neutral,PublicKeyToken=91d62ebb5b0d1b1b');
 
-          ShowMessage(Params.Text);
-
           Connected := True;
           Result := True;
         finally
