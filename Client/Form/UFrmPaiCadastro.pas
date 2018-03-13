@@ -61,15 +61,10 @@ type
   private
     { Private declarations }
     FDMCadastro: TDMPaiCadastro;
-  protected
-    //FDMCadastro: TDMPaiCadastro;
   public
     { Public declarations }
     property DMCadastro: TDMPaiCadastro read FDMCadastro write FDMCadastro;
   end;
-
-    //FDMCadsatro = class of TDMPaiCadastro;
-
 
 var
   FrmPaiCadastro: TFrmPaiCadastro;

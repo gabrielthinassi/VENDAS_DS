@@ -5,6 +5,10 @@ inherited FrmCadStatus: TFrmCadStatus
   TextHeight = 13
   inherited pgctrlCadastro: TPageControl
     inherited pgEdit: TTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 24
+      ExplicitWidth = 366
+      ExplicitHeight = 240
       object lblDescricaoStatus: TLabel
         Left = 15
         Top = 16

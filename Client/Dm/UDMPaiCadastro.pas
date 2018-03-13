@@ -93,7 +93,7 @@ begin
   end;
 
   cdsCadastro.FetchParams;
-  cdsCadastro.ParamByName('Cod').AsInteger := -1;
+  cdsCadastro.ParamByName('COD').AsInteger := -1;
   cdsCadastro.Open;
 end;
 
