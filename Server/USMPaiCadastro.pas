@@ -61,12 +61,11 @@ begin
     if (Components[x] is TSQLDataSet) then
       (Components[x] as TSQLDataSet).SQLConnection := TSMConexao(SMConexao).ConexaoBD;
 
-  // Passado para este local para remover o erro de falta do parametro COD nos cadastros básico.
-  //if Assigned(FClasseFilha) then
-  //begin
+  if Assigned(FClasseFilha) then
+  begin
     SQLDSCadastro.CommandText := FClasseFilha.SQLBaseCadastro;
     FClasseFilha.CriarParametros(SQLDSCadastro);
-  //end;
+  end;
 end;
 
 procedure TSMPaiCadastro.DSServerModuleCreate_Filho(Sender: TObject);

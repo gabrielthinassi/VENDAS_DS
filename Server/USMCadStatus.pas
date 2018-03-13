@@ -3,9 +3,21 @@ unit USMCadStatus;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, USMPaiCadastro, Data.FMTBcd,
-  Datasnap.Provider, Data.DB, Data.SqlExpr;
+  Winapi.Windows,
+  Winapi.Messages,
+  System.SysUtils,
+  System.Variants,
+  System.Classes,
+  Vcl.Graphics,
+  Vcl.Controls,
+  Vcl.Forms,
+  Vcl.Dialogs,
+  USMPaiCadastro,
+  Data.FMTBcd,
+  Datasnap.Provider,
+  Data.DB,
+  Data.SqlExpr,
+  ClassStatus;
 
 type
   TSMCadStatus = class(TSMPaiCadastro)
@@ -23,8 +35,6 @@ var
 implementation
 
 {$R *.dfm}
-
-uses ClassStatus;
 
 { TSMCadStatus }
 
