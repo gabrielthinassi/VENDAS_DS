@@ -17,6 +17,7 @@ type
     class function SQLBaseRelatorio: string; override;
     class function SQLBaseConsulta: string; override;
 
+    class function ParametrosSql: TListaDeParametrosSql; override;
     class procedure ConfigurarPropriedadesDoCampo(DataSet: TDataSet); override;
   end;
 
@@ -92,6 +93,17 @@ begin
         CustomConstraint := sCC_ValueIsNotNullAndNotVazio;
       end
   end;
+end;
+
+class function TClassStatus.ParametrosSql: TListaDeParametrosSql;
+var
+  Parametros: TListaDeParametrosSql;
+begin
+    SetLength(Parametros, 1);
+    Parametros[0].Nome := 'COD';
+    Parametros[0].Tipo := ftInteger;
+
+    Result := Parametros;
 end;
 
 initialization

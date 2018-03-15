@@ -15,6 +15,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure edtCodigoButtonClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -29,6 +30,12 @@ implementation
 {$R *.dfm}
 
 uses UDMCadStatus, ClassStatus;
+
+procedure TFrmCadStatus.edtCodigoButtonClick(Sender: TObject);
+begin
+  //Deixar o Inherited no final;
+  inherited;
+end;
 
 procedure TFrmCadStatus.FormClose(Sender: TObject; var Action: TCloseAction);
 begin

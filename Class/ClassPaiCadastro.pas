@@ -40,9 +40,12 @@ type
     class function SQLBaseConsulta: string; virtual;
     class function SQLBaseRelatorio: string; overload; virtual; abstract;
 
-    class function ParametrosSql: TListaDeParametrosSql; static;
-    class procedure CriarParametros(ASQLDataSet: TSQLDataSet);
+    class function ParametrosSql: TListaDeParametrosSql; virtual;
+
+    class function CriarParametros(ASQLDataSet: TSQLDataSet): string;
+
     class procedure ConfigurarPropriedadesDoCampo(DataSet: TDataSet); virtual;
+
 
     //Não utilizados ainda
     class function CamposFechamento: string; virtual;
@@ -133,7 +136,7 @@ begin
 }
 end;
 
-class procedure TClassPaiCadastro.CriarParametros(ASQLDataSet: TSQLDataSet);
+class function TClassPaiCadastro.CriarParametros(ASQLDataSet: TSQLDataSet): string;
 var
   Parametros: TListaDeParametrosSql;
   i: integer;

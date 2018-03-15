@@ -6,6 +6,7 @@ inherited DMPaiCadastro: TDMPaiCadastro
     Aggregates = <>
     Params = <>
     RemoteServer = DSPCCadastro
+    BeforeOpen = CDSCadastroBeforeOpen
     AfterOpen = CDSCadastroAfterOpen
     BeforeInsert = CDSCadastroBeforeInsert
     AfterPost = CDSCadastroAfterPost

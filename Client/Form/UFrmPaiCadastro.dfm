@@ -58,6 +58,7 @@ inherited FrmPaiCadastro: TFrmPaiCadastro
       ButtonWidth = 34
       TabOrder = 0
       DecimalPlacesAlwaysShown = False
+      OnButtonClick = edtCodigoButtonClick
     end
     object pnlNavegar: TPanel
       Left = 315
@@ -162,6 +163,8 @@ inherited FrmPaiCadastro: TFrmPaiCadastro
       Align = alTop
       Caption = '&Gravar'
       OnClick = btnGravarClick
+      ExplicitLeft = 0
+      ExplicitTop = 83
     end
     object btnCancelar: TSpeedButton
       Left = 1
@@ -191,10 +194,6 @@ inherited FrmPaiCadastro: TFrmPaiCadastro
     TabOrder = 3
     object pgEdit: TTabSheet
       Caption = 'Edit'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
     end
   end
   object DSCadastro: TDataSource

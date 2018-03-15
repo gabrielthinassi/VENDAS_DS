@@ -58,6 +58,7 @@ type
     procedure btnUltimoClick(Sender: TObject);
     procedure DSCadastroStateChange(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure edtCodigoButtonClick(Sender: TObject);
   private
     { Private declarations }
     FDMCadastro: TDMPaiCadastro;
@@ -73,12 +74,6 @@ implementation
 
 {$R *.dfm}
 
-
-procedure TFrmPaiCadastro.btnAnteriorClick(Sender: TObject);
-begin
-  inherited;
-  edtCodigo.AsInteger := FDMCadastro.Anterior(edtCodigo.AsInteger);
-end;
 
 procedure TFrmPaiCadastro.btnCancelarClick(Sender: TObject);
 begin
@@ -126,40 +121,37 @@ end;
 procedure TFrmPaiCadastro.btnIncluirClick(Sender: TObject);
 begin
   inherited;
-
-  if FDMCadastro.CDSCadastro.State in [dsEdit, dsInsert] then
-    Exit;
-
-  try
-    edtCodigo.AsInteger            := 0;
-    pgctrlCadastro.ActivePageIndex := 0;
-
-    FDMCadastro.CDSCadastro.Close;
-    FDMCadastro.CDSCadastro.Open;
-    FDMCadastro.CDSCadastro.Insert;
-    //Vai para o proximo Edit;
-    //Perform(WM_NEXTDLGCTL, 0, 0);
-  except
-    raise Exception.Create('Ocorreram erros ao tentar incluir o Registro!');
-  end;
+  FDMCadastro.IncluirRegistro;
 end;
 
 procedure TFrmPaiCadastro.btnPrimeiroClick(Sender: TObject);
 begin
   inherited;
+
   edtCodigo.AsInteger := FDMCadastro.Primeiro;
+  FDMCadastro.AbreCasdastro(FDMCadastro.Primeiro);
+end;
+
+procedure TFrmPaiCadastro.btnAnteriorClick(Sender: TObject);
+begin
+  inherited;
+  edtCodigo.AsInteger := FDMCadastro.Anterior(edtCodigo.AsInteger);
+  FDMCadastro.AbreCasdastro(FDMCadastro.Anterior(edtCodigo.AsInteger));
 end;
 
 procedure TFrmPaiCadastro.btnProximoClick(Sender: TObject);
 begin
   inherited;
+
   edtCodigo.AsInteger := FDMCadastro.Proximo(edtCodigo.AsInteger);
+  FDMCadastro.AbreCasdastro(FDMCadastro.Proximo(edtCodigo.AsInteger));
 end;
 
 procedure TFrmPaiCadastro.btnUltimoClick(Sender: TObject);
 begin
   inherited;
   edtCodigo.AsInteger := FDMCadastro.Ultimo;
+  FDMCadastro.AbreCasdastro(FDMCadastro.Ultimo);
 end;
 
 procedure TFrmPaiCadastro.DSCadastroStateChange(Sender: TObject);
@@ -175,6 +167,12 @@ begin
   btnCancelar.Enabled  := (DSCadastro.DataSet.State in [dsInsert, dsEdit]);
   btnPesquisar.Enabled := (DSCadastro.DataSet.State in [dsBrowse, dsInactive]);
   btnRelatorio.Enabled := (DSCadastro.DataSet.State in [dsBrowse, dsInactive]);
+end;
+
+procedure TFrmPaiCadastro.edtCodigoButtonClick(Sender: TObject);
+begin
+  inherited;
+  Abort;
 end;
 
 procedure TFrmPaiCadastro.FormClose(Sender: TObject; var Action: TCloseAction);

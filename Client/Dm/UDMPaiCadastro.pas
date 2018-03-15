@@ -45,12 +45,13 @@ type
       E: EReconcileError; UpdateKind: TUpdateKind;
       var Action: TReconcileAction);
     procedure CDSCadastroAfterOpen(DataSet: TDataSet);
+    procedure CDSCadastroBeforeOpen(DataSet: TDataSet);
 
   private
     function GetIdDetalhe: integer;
-    function ProximoCodigo(Tabela: string): int64;
   protected
     FClasseFilha: TFClassPaiCadastro;
+    FCodigoAtual: Integer;
   public
 
     property IdDetalhe: integer read GetIdDetalhe;
@@ -61,8 +62,11 @@ type
     function Anterior(Atual: integer): integer; virtual;
     function Proximo(Atual: integer): integer; virtual;
     function Ultimo: integer; virtual;
-    function Novo: integer; virtual;
+    function NovoCodigo: integer; virtual;
 
+    procedure IncluirRegistro;
+
+    procedure AbreCasdastro(Codigo: Integer);
     //procedure AtribuiAutoIncDetalhe(DataSet: TDataSet; Classe: TClassPaiCadastro; CampoChaveEstrangeira: String);
   end;
 
@@ -104,6 +108,15 @@ begin
   DSPCCadastro.SQLConnection := nil;
 end;
 
+procedure TDMPaiCadastro.AbreCasdastro(Codigo: Integer);
+begin
+  CDSCadastro.Close;
+  CDSCadastro.FetchParams;
+  CDSCadastro.ParamByName('COD').AsInteger := Codigo;
+  CDSCadastro.Open;
+end;
+
+
 function TDMPaiCadastro.Primeiro: integer;
 var
   SQL: string;
@@ -135,14 +148,6 @@ begin
            ' AND '   + TabelaPrincipal + '.' + CampoChave + ' <> 0';
   end;
   Result := DMConexao.ExecuteScalar(SQL);
-end;
-
-
-function TDMPaiCadastro.ProximoCodigo(Tabela: string): int64;
-begin
-  //Busca o Próximo Código no Servidor de Aplicação
-  Tabela := AnsiUpperCase(Tabela);
-  Result := DMConexao.ExecutaMetodo('TSMConexao.ProximoCodigo', [Tabela]);
 end;
 
 function TDMPaiCadastro.Anterior(Atual: integer): integer;
@@ -178,7 +183,7 @@ begin
   Result := DMConexao.ExecuteScalar(SQL);
 end;
 
-function TDMPaiCadastro.Novo: integer;
+function TDMPaiCadastro.NovoCodigo: integer;
 begin
   // Retorna o novo código a ser usado na inserção
   with FClasseFilha do
@@ -199,6 +204,20 @@ function TDMPaiCadastro.GetIdDetalhe: integer;
 begin
   //FIdDetalhe := FIdDetalhe - 1;
   //Result := FIdDetalhe;
+end;
+
+procedure TDMPaiCadastro.IncluirRegistro;
+begin
+  if CDSCadastro.State in [dsInsert, dsEdit] then
+    Exit;
+
+  with CDSCadastro do
+  begin
+    Close;
+    FCodigoAtual := -1;
+    Open;
+    Append;
+  end;
 end;
 
 {procedure TDMPaiCadastro.AtribuiAutoIncDetalhe(DataSet: TDataSet; Classe: TFClassPaiCadastro; CampoChaveEstrangeira: String);
@@ -267,6 +286,21 @@ procedure TDMPaiCadastro.CDSCadastroBeforeInsert(DataSet: TDataSet);
 begin
   inherited;
   cdsCadastro.EmptyDataSet;
+end;
+
+procedure TDMPaiCadastro.CDSCadastroBeforeOpen(DataSet: TDataSet);
+var
+  X : Integer;
+begin
+  inherited;
+  with CDSCadastro do
+    for X := 0 to ParamCount -1 do
+    begin
+      if AnsiUpperCase(Params.Items[X].Name) = 'COD' then
+        Params.ParamByName('COD').AsInteger := FCodigoAtual;
+    end;
+
+
 end;
 
 procedure TDMPaiCadastro.CDSCadastroReconcileError(

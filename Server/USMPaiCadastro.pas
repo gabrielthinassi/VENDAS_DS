@@ -61,11 +61,8 @@ begin
     if (Components[x] is TSQLDataSet) then
       (Components[x] as TSQLDataSet).SQLConnection := TSMConexao(SMConexao).ConexaoBD;
 
-  if Assigned(FClasseFilha) then
-  begin
     SQLDSCadastro.CommandText := FClasseFilha.SQLBaseCadastro;
     FClasseFilha.CriarParametros(SQLDSCadastro);
-  end;
 end;
 
 procedure TSMPaiCadastro.DSServerModuleCreate_Filho(Sender: TObject);

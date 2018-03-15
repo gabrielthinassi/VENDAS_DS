@@ -18,8 +18,8 @@ object FrmPrincipal: TFrmPrincipal
   PixelsPerInch = 96
   TextHeight = 13
   object MainMenu1: TMainMenu
-    Left = 210
-    Top = 150
+    Left = 26
+    Top = 6
     object mnCadastros: TMenuItem
       Caption = 'Cadastros'
       object mmStatus: TMenuItem
