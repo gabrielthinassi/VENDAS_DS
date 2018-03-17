@@ -149,7 +149,10 @@ begin
            ' WHERE ' + TabelaPrincipal + '.' + CampoChave + ' > ' + IntToStr(Atual) +#13+
            ' AND '   + TabelaPrincipal + '.' + CampoChave + ' <> 0';
   end;
+
   Result := DMConexao.ExecuteScalar(SQL);
+  if Result = 0 then
+    Result := Atual;
 end;
 
 function TDMPaiCadastro.Anterior(Atual: integer): integer;
@@ -167,6 +170,8 @@ begin
            ' AND '   + TabelaPrincipal + '.' + CampoChave + ' <> 0';
   end;
   Result := DMConexao.ExecuteScalar(SQL);
+  if Result = 0 then
+    Result := Atual;
 end;
 
 function TDMPaiCadastro.Ultimo: integer;

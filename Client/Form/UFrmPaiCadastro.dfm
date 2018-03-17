@@ -59,6 +59,7 @@ inherited FrmPaiCadastro: TFrmPaiCadastro
       TabOrder = 0
       DecimalPlacesAlwaysShown = False
       OnButtonClick = edtCodigoButtonClick
+      OnExit = edtCodigoExit
     end
     object pnlNavegar: TPanel
       Left = 315

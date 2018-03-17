@@ -35,7 +35,14 @@ object SMConexao: TSMConexao
       '_AUTOINC'#13#10'from AUTOINCREMENTOS'#13#10'where AUTOINCREMENTOS.TABELA_AUT' +
       'OINC = :TABELA'
     MaxBlobSize = -1
-    Params = <>
+    Params = <
+      item
+        DataType = ftWideString
+        Name = 'TABELA'
+        ParamType = ptInput
+        Value = 'STATUS'
+      end>
+    SQLConnection = ConexaoBD
     Left = 62
     Top = 13
   end
@@ -80,6 +87,7 @@ object SMConexao: TSMConexao
       'RoleName=RoleName'
       'ServerCharSet='
       'Trim Char=False')
+    Connected = True
     Left = 210
     Top = 10
   end

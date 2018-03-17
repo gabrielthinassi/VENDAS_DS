@@ -258,6 +258,7 @@ begin
   try
     repeat //similar ao DO WHILE
       CDSProximoCodigo.Close;
+      CDSProximoCodigo.FetchParams;
       CDSProximoCodigo.Params.ParamByName('TABELA').AsString  := Tabela;
       CDSProximoCodigo.Open;
 
