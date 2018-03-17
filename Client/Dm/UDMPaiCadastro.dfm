@@ -9,6 +9,7 @@ inherited DMPaiCadastro: TDMPaiCadastro
     BeforeOpen = CDSCadastroBeforeOpen
     AfterOpen = CDSCadastroAfterOpen
     BeforeInsert = CDSCadastroBeforeInsert
+    BeforePost = CDSCadastroBeforePost
     AfterPost = CDSCadastroAfterPost
     AfterDelete = CDSCadastroAfterDelete
     OnReconcileError = CDSCadastroReconcileError

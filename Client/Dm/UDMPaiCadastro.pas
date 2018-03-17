@@ -46,6 +46,7 @@ type
       var Action: TReconcileAction);
     procedure CDSCadastroAfterOpen(DataSet: TDataSet);
     procedure CDSCadastroBeforeOpen(DataSet: TDataSet);
+    procedure CDSCadastroBeforePost(DataSet: TDataSet);
 
   private
     function GetIdDetalhe: integer;
@@ -53,7 +54,7 @@ type
     FClasseFilha: TFClassPaiCadastro;
     FCodigoAtual: Integer;
   public
-
+    property CodigoAtual: integer read FCodigoAtual write FCodigoAtual;
     property IdDetalhe: integer read GetIdDetalhe;
 
     function GetClassNameClasseFilha: string;
@@ -65,6 +66,7 @@ type
     function NovoCodigo: integer; virtual;
 
     procedure IncluirRegistro;
+    procedure GravarRegistro;
 
     procedure AbreCasdastro(Codigo: Integer);
     //procedure AtribuiAutoIncDetalhe(DataSet: TDataSet; Classe: TClassPaiCadastro; CampoChaveEstrangeira: String);
@@ -206,6 +208,18 @@ begin
   //Result := FIdDetalhe;
 end;
 
+procedure TDMPaiCadastro.GravarRegistro;
+begin
+  if CDSCadastro.State in [dsEdit, dsInsert] then
+  begin
+    CDSCadastro.BeforePost(CDSCadastro);
+    CDSCadastro.Post;
+  end;
+
+  if not CDSCadastro.ChangeCount <> 0 then
+    CDSCadastro.Edit;
+end;
+
 procedure TDMPaiCadastro.IncluirRegistro;
 begin
   if CDSCadastro.State in [dsInsert, dsEdit] then
@@ -301,6 +315,21 @@ begin
     end;
 
 
+end;
+
+procedure TDMPaiCadastro.CDSCadastroBeforePost(DataSet: TDataSet);
+begin
+  inherited;
+  with CDSCadastro, FClasseFilha do
+  begin
+    if (UpdateStatus = usInserted) and
+        ((FieldByName(CampoChave).IsNull) or
+         (FieldByName(CampoChave).AsInteger <= 0)) then
+    begin
+      FCodigoAtual := NovoCodigo;
+      FieldByName(CampoChave).AsInteger := FCodigoAtual;
+    end;
+  end;
 end;
 
 procedure TDMPaiCadastro.CDSCadastroReconcileError(

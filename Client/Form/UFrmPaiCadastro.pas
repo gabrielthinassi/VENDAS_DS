@@ -112,10 +112,12 @@ end;
 procedure TFrmPaiCadastro.btnGravarClick(Sender: TObject);
 begin
   inherited;
-
-  if FDMCadastro.CDSCadastro.State in [dsEdit, dsInsert] then
-    FDMCadastro.CDSCadastro.Post;
-  edtCodigo.SetFocus;
+  try
+    FDMCadastro.GravarRegistro;
+  finally
+    edtCodigo.AsInteger := FDMCadastro.CodigoAtual;
+    edtCodigo.SetFocus;
+  end;
 end;
 
 procedure TFrmPaiCadastro.btnIncluirClick(Sender: TObject);
