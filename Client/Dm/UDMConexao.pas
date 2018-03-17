@@ -43,7 +43,8 @@ uses
   DSHTTPLayer,
   ImgList,
   DBGrids,
-  JvDBGrid;
+  JvDBGrid,
+  Data.DBXCDSReaders;
 
 type
   TDMConexao = class(TDataModule)
@@ -137,56 +138,146 @@ end;
 
 function TDMConexao.ExecutaMetodo(Metodo: string; Parametros_Valor: array of OleVariant): OleVariant;
 var
-  Comando : TDBXCommand;
-  I : Integer;
-begin
-    Comando := ConexaoDS.DBXConnection.CreateCommand;
-    try
-      Comando.CommandType := TDBXCommandTypes.DSServerMethod;
-      Comando.Text := Metodo;
-      Comando.Prepare;
+  LDBXCommand: TDBXCommand;
+  I, NumParamEntrada, PosRetorno: Integer;
 
+  Reader: TDBXReader;
+  CDS: TClientDataSet;
+begin
+  LDBXCommand := ConexaoDS.DBXConnection.CreateCommand;
+  try
+    try
+      LDBXCommand.CommandType := TDBXCommandTypes.DSServerMethod;
+      LDBXCommand.Text := Metodo;
+      LDBXCommand.Prepare;
+
+      NumParamEntrada := LDBXCommand.Parameters.Count;
+      if (NumParamEntrada > 0) and (LDBXCommand.Parameters[NumParamEntrada - 1].Name = 'ReturnParameter') then
+      begin
+        Dec(NumParamEntrada);
+        PosRetorno := NumParamEntrada;
+      end
+      else
+        PosRetorno := -1;
+
+      if (NumParamEntrada <> High(Parametros_Valor) + 1) then
+        raise Exception.Create(
+          'Numero de parâmetros inválidos para a chamada do metodos "' + Metodo + '", esperado ' +
+          IntToStr(NumParamEntrada) + ' encontrado ' + IntToStr(High(Parametros_Valor) + 1));
 
       for I := low(Parametros_Valor) to high(Parametros_Valor) do
-      begin
-        case Comando.Parameters[I].DataType of
+        case LDBXCommand.Parameters[I].DataType of
           TDBXDataTypes.BooleanType:
-            Comando.Parameters[I].Value.SetBoolean(Parametros_Valor[I]);
+            LDBXCommand.Parameters[I].Value.SetBoolean(Parametros_Valor[I]);
           TDBXDataTypes.CurrencyType:
-            Comando.Parameters[I].Value.AsCurrency := StrToCurr(Parametros_Valor[I]);
+            LDBXCommand.Parameters[I].Value.AsCurrency := StrToCurr(Parametros_Valor[I]);
           TDBXDataTypes.DateType,
             TDBXDataTypes.DateTimeType,
             TDBXDataTypes.TimeStampType:
-            Comando.Parameters[I].Value.AsDateTime := StrToDateTime(Parametros_Valor[I]);
+            LDBXCommand.Parameters[I].Value.AsDateTime := StrToDateTime(Parametros_Valor[I]);
+          // TDBXDataTypes.TimeType:
+          // LDBXCommand.Parameters[I].Value.SetTime(StrToTime(Parametros_Valor[I]));
           TDBXDataTypes.DoubleType,
             TDBXDataTypes.BcdType:
-            Comando.Parameters[I].Value.SetDouble(StrToCurr(Parametros_Valor[I]));
+            LDBXCommand.Parameters[I].Value.SetDouble(StrToCurr(Parametros_Valor[I]));
           TDBXDataTypes.UInt8Type,
             TDBXDataTypes.Int8Type:
-            Comando.Parameters[I].Value.SetInt8(StrToInt(Parametros_Valor[I]));
+            LDBXCommand.Parameters[I].Value.SetInt8(StrToInt(Parametros_Valor[I]));
           TDBXDataTypes.Int16Type:
-            Comando.Parameters[I].Value.SetInt16(StrToInt(Parametros_Valor[I]));
+            LDBXCommand.Parameters[I].Value.SetInt16(StrToInt(Parametros_Valor[I]));
           TDBXDataTypes.Int32Type:
-            Comando.Parameters[I].Value.SetInt32(StrToInt(Parametros_Valor[I]));
+            LDBXCommand.Parameters[I].Value.SetInt32(StrToInt(Parametros_Valor[I]));
           TDBXDataTypes.Int64Type,
             TDBXDataTypes.Uint64Type:
-            Comando.Parameters[I].Value.SetInt64(StrToInt64(Parametros_Valor[I]));
+            LDBXCommand.Parameters[I].Value.SetInt64(StrToInt64(Parametros_Valor[I]));
           TDBXDataTypes.VariantType:
-            Comando.Parameters[I].Value.AsVariant := Parametros_Valor[I];
+            LDBXCommand.Parameters[I].Value.AsVariant := Parametros_Valor[I];
           TDBXDataTypes.AnsiStringType:
-            Comando.Parameters[I].Value.AsString := Parametros_Valor[I];
+            LDBXCommand.Parameters[I].Value.AsString := Parametros_Valor[I];
           TDBXDataTypes.WideStringType:
-            Comando.Parameters[I].Value.SetWideString(Parametros_Valor[I]);
+            LDBXCommand.Parameters[I].Value.SetWideString(Parametros_Valor[I]);
           TDBXDataTypes.BlobType:
-            Comando.Parameters[I].Value.SetWideString(Parametros_Valor[I]);
+            LDBXCommand.Parameters[I].Value.SetWideString(Parametros_Valor[I]);
+        else
+          raise Exception.Create('Tipo ' + TDBXValueType.DataTypeName(LDBXCommand.Parameters[I].DataType) +
+            ' não preparado para o parâmetro ' + LDBXCommand.Parameters[I].Name);
         end;
-        //Executa e retorna
-        Comando.ExecuteUpdate;
-        Result := Comando.Parameters[I+1].Value.AsVariant;
+
+      LDBXCommand.ExecuteUpdate;
+
+      if (PosRetorno > -1) then
+      begin
+        case LDBXCommand.Parameters[PosRetorno].DataType of
+          TDBXDataTypes.BooleanType:
+            Result := LDBXCommand.Parameters[PosRetorno].Value.AsBoolean;
+          TDBXDataTypes.CurrencyType:
+            Result := LDBXCommand.Parameters[PosRetorno].Value.AsCurrency;
+          TDBXDataTypes.DateType,
+            TDBXDataTypes.DateTimeType,
+            TDBXDataTypes.TimeStampType:
+            Result := LDBXCommand.Parameters[PosRetorno].Value.AsDateTime;
+          // TDBXDataTypes.TimeType:
+          // Result := LDBXCommand.Parameters[PosRetorno].Value.AsTime;
+          TDBXDataTypes.DoubleType,
+            TDBXDataTypes.BcdType:
+            Result := LDBXCommand.Parameters[PosRetorno].Value.AsCurrency;
+          TDBXDataTypes.UInt8Type,
+            TDBXDataTypes.Int8Type:
+            Result := LDBXCommand.Parameters[PosRetorno].Value.AsInt8;
+          TDBXDataTypes.Int16Type:
+            Result := LDBXCommand.Parameters[PosRetorno].Value.AsInt16;
+          TDBXDataTypes.Int32Type:
+            Result := LDBXCommand.Parameters[PosRetorno].Value.AsInt32;
+          TDBXDataTypes.Int64Type,
+            TDBXDataTypes.Uint64Type:
+            Result := LDBXCommand.Parameters[PosRetorno].Value.AsInt64;
+          TDBXDataTypes.VariantType:
+            Result := LDBXCommand.Parameters[PosRetorno].Value.AsVariant;
+          TDBXDataTypes.AnsiStringType,
+            TDBXDataTypes.WideStringType:
+            Result := LDBXCommand.Parameters[PosRetorno].Value.AsString;
+          TDBXDataTypes.BlobType:
+            Result := LDBXCommand.Parameters[PosRetorno].Value.AsVariant;
+          TDBXDataTypes.JsonValueType:
+            Result := LDBXCommand.Parameters[PosRetorno].Value.GetJSONValue.ToJSON;
+          TDBXDataTypes.TableType:
+            begin
+              CDS := TClientDataSet.Create(nil);
+              try
+                Reader := LDBXCommand.Parameters[PosRetorno].Value.GetDBXReader(True);
+                //{$IFDEF VER230}
+                //TDBXDataSetReader.CopyReaderToClientDataSet(Reader, CDS);
+                //{$ELSE}
+                TDBXClientDataSetReader.CopyReaderToClientDataSet(Reader, CDS);
+                //{$ENDIF}
+                Result := CDS.Data;
+              finally
+                CDS.Free;
+              end;
+            end
+        else
+          raise Exception.Create('Tipo ' + TDBXValueType.DataTypeName(LDBXCommand.Parameters[PosRetorno].DataType) +
+            ' não preparado para o retorno ' + LDBXCommand.Parameters[PosRetorno].Name);
+        end;
       end;
-    finally
-      //Comando.Free;
+    except
+      on E: Exception do
+      begin
+        if (Pos('Socket Error #', E.Message) > 0) or
+           ((Pos('Connection reset by peer', E.Message) > 0) or (Pos('Connection Closed Gracefully', E.Message) > 0) or (Pos('Software caused connection abort', E.Message) > 0)) then
+        begin
+          try
+            ConexaoDS.Close;
+          except
+            //
+          end;
+        end;
+        raise Exception.Create(E.Message + #13#13 + 'Execução do método ' + Metodo);
+      end;
     end;
+  finally
+    LDBXCommand.Free;
+  end;
 end;
 
 function TDMConexao.ProximoCodigo(Tabela: string): int64;
