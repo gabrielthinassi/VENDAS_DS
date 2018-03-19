@@ -68,7 +68,7 @@ type
     procedure IncluirRegistro;
     procedure GravarRegistro;
 
-    procedure AbreCasdastro(Codigo: Integer);
+    function AbreCasdastro(Codigo: Integer): Boolean;
     //procedure AtribuiAutoIncDetalhe(DataSet: TDataSet; Classe: TClassPaiCadastro; CampoChaveEstrangeira: String);
   end;
 
@@ -110,12 +110,17 @@ begin
   DSPCCadastro.SQLConnection := nil;
 end;
 
-procedure TDMPaiCadastro.AbreCasdastro(Codigo: Integer);
+function TDMPaiCadastro.AbreCasdastro(Codigo: Integer): Boolean;
 begin
+  Result := False;
+
   CDSCadastro.Close;
   CDSCadastro.FetchParams;
   CDSCadastro.ParamByName('COD').AsInteger := Codigo;
   CDSCadastro.Open;
+
+  if not CDSCadastro.IsEmpty then
+    Result := True;
 end;
 
 

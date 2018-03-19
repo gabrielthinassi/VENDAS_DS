@@ -59,7 +59,9 @@ type
     procedure DSCadastroStateChange(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure edtCodigoButtonClick(Sender: TObject);
-    procedure edtCodigoExit(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure pnlTopExit(Sender: TObject);
+    procedure FormKeyPress(Sender: TObject; var Key: Char);
   private
     { Private declarations }
     FDMCadastro: TDMPaiCadastro;
@@ -86,6 +88,7 @@ begin
       FDMCadastro.CDSCadastro.Cancel;
   end;
   DSCadastro.DataSet.Close;
+  edtCodigo.SetFocus;
 end;
 
 procedure TFrmPaiCadastro.btnExcluirClick(Sender: TObject);
@@ -117,13 +120,16 @@ begin
     FDMCadastro.GravarRegistro;
   finally
     edtCodigo.AsInteger := FDMCadastro.CodigoAtual;
-    //edtCodigo.SetFocus;
+    pnlTop.Enabled := True;
+    edtCodigo.Enabled := True;
+    edtCodigo.SetFocus;
   end;
 end;
 
 procedure TFrmPaiCadastro.btnIncluirClick(Sender: TObject);
 begin
   inherited;
+  edtCodigo.AsInteger := 0;
   FDMCadastro.IncluirRegistro;
 end;
 
@@ -131,28 +137,28 @@ procedure TFrmPaiCadastro.btnPrimeiroClick(Sender: TObject);
 begin
   inherited;
   edtCodigo.AsInteger := FDMCadastro.Primeiro;
-  edtCodigo.OnExit(edtCodigo);
+  pnlTop.OnExit(pnlTop);
 end;
 
 procedure TFrmPaiCadastro.btnAnteriorClick(Sender: TObject);
 begin
   inherited;
   edtCodigo.AsInteger := FDMCadastro.Anterior(edtCodigo.AsInteger);
-  edtCodigo.OnExit(edtCodigo);
+  pnlTop.OnExit(pnlTop);
 end;
 
 procedure TFrmPaiCadastro.btnProximoClick(Sender: TObject);
 begin
   inherited;
   edtCodigo.AsInteger := FDMCadastro.Proximo(edtCodigo.AsInteger);
-  edtCodigo.OnExit(edtCodigo);
+  pnlTop.OnExit(pnlTop);
 end;
 
 procedure TFrmPaiCadastro.btnUltimoClick(Sender: TObject);
 begin
   inherited;
   edtCodigo.AsInteger := FDMCadastro.Ultimo;
-  edtCodigo.OnExit(edtCodigo);
+  pnlTop.OnExit(pnlTop);
 end;
 
 procedure TFrmPaiCadastro.DSCadastroStateChange(Sender: TObject);
@@ -161,25 +167,20 @@ begin
   if FDMCadastro = nil then
     Exit;
 
-  pnlTop.Enabled       := not (DSCadastro.DataSet.State in [dsInsert, dsEdit]);
+  pnlTop.Enabled       := ((not (DSCadastro.DataSet.State in [dsInsert, dsEdit])) or (DSCadastro.DataSet.State in [dsBrowse, dsInactive]));
   btnIncluir.Enabled   := (DSCadastro.DataSet.State in [dsBrowse, dsInactive]);
   btnExcluir.Enabled   := (DSCadastro.DataSet.State in [dsBrowse]) and not DSCadastro.DataSet.IsEmpty;
   btnGravar.Enabled    := (DSCadastro.DataSet.State in [dsInsert, dsEdit]);
   btnCancelar.Enabled  := (DSCadastro.DataSet.State in [dsInsert, dsEdit]);
   btnPesquisar.Enabled := (DSCadastro.DataSet.State in [dsBrowse, dsInactive]);
   btnRelatorio.Enabled := (DSCadastro.DataSet.State in [dsBrowse, dsInactive]);
+
 end;
 
 procedure TFrmPaiCadastro.edtCodigoButtonClick(Sender: TObject);
 begin
   inherited;
   Abort;
-end;
-
-procedure TFrmPaiCadastro.edtCodigoExit(Sender: TObject);
-begin
-  inherited;
-  FDMCadastro.AbreCasdastro(edtCodigo.AsInteger);
 end;
 
 procedure TFrmPaiCadastro.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -193,6 +194,7 @@ var
   I : Integer;
 begin
   inherited;
+  //Mudando todos os Componentes Edit para MAIUSCULO
   for I := 0 to ComponentCount - 1 do
   begin
     if (Components[I] is TDBEdit) then
@@ -206,7 +208,41 @@ begin
   end;
   pgctrlCadastro.ActivePageIndex := 0;
 
+  //Atribuindo o CDSCadastro para o DSCadastro
   DSCadastro.DataSet := FDMCadastro.CDSCadastro;
+end;
+
+procedure TFrmPaiCadastro.FormKeyPress(Sender: TObject; var Key: Char);
+begin
+  inherited;
+  if Key = #13 then
+  begin
+    Key := #0;
+    Perform(WM_NEXTDLGCTL, 0, 0);
+  end;
+end;
+
+procedure TFrmPaiCadastro.FormShow(Sender: TObject);
+begin
+  inherited;
+  edtCodigo.SetFocus;
+end;
+
+procedure TFrmPaiCadastro.pnlTopExit(Sender: TObject);
+begin
+  inherited;
+
+  if not FDMCadastro.AbreCasdastro(edtCodigo.AsInteger) then
+  begin
+    ShowMessage('Código ' + edtCodigo.Text + ' não encontrado!');
+    if edtCodigo.CanFocus then
+      edtCodigo.SetFocus;
+
+    Abort;
+  end
+  else
+    Perform(WM_NEXTDLGCTL, 0, 0);
+
 end;
 
 end.

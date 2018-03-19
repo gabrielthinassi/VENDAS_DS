@@ -31,16 +31,12 @@ var
 
 implementation
 
-uses Constantes,
-     ClassDataSet;
-     //UDMConexao;
+uses Constantes;
 
 {$R *.dfm}
 
 procedure TFrmPai.FormCreate(Sender: TObject);
 begin
-  ApenasDigitacaoMaiusculo  := True;
-
   //The form remains the size you left it at design time, but
   //is positioned in the center of the form specified by the Owner property.
   //If the Owner property does not specify a form,

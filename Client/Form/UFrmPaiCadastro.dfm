@@ -2,6 +2,8 @@ inherited FrmPaiCadastro: TFrmPaiCadastro
   Caption = 'Formul'#225'rio de Cadastro'
   ClientHeight = 350
   ClientWidth = 500
+  OnKeyPress = FormKeyPress
+  OnShow = FormShow
   ExplicitWidth = 506
   ExplicitHeight = 379
   PixelsPerInch = 96
@@ -44,6 +46,7 @@ inherited FrmPaiCadastro: TFrmPaiCadastro
     DoubleBuffered = False
     ParentDoubleBuffered = False
     TabOrder = 1
+    OnExit = pnlTopExit
     object edtCodigo: TJvCalcEdit
       Left = 12
       Top = 12
@@ -59,7 +62,6 @@ inherited FrmPaiCadastro: TFrmPaiCadastro
       TabOrder = 0
       DecimalPlacesAlwaysShown = False
       OnButtonClick = edtCodigoButtonClick
-      OnExit = edtCodigoExit
     end
     object pnlNavegar: TPanel
       Left = 315
