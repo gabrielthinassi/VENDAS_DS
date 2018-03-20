@@ -17,7 +17,10 @@ uses
   Constantes in '..\Class\Constantes.pas',
   ClassDataSet in '..\Class\ClassDataSet.pas',
   USMPaiCadastro in 'USMPaiCadastro.pas' {SMPaiCadastro: TDSServerModule},
-  USMCadStatus in 'USMCadStatus.pas' {SMCadStatus: TDSServerModule};
+  USMCadStatus in 'USMCadStatus.pas' {SMCadStatus: TDSServerModule},
+  ClassPessoa in '..\Class\ClassPessoa.pas',
+  ClassPessoa_Endereco in '..\Class\ClassPessoa_Endereco.pas',
+  USMCadPessoa in 'USMCadPessoa.pas' {SMCadPessoa: TDSServerModule};
 
 {$R *.res}
 
@@ -27,6 +30,7 @@ begin
   Application.CreateForm(TSMConexao, SMConexao);
   Application.CreateForm(TSC, SC);
   Application.CreateForm(TFrmServidor, FrmServidor);
+  Application.CreateForm(TSMCadPessoa, SMCadPessoa);
   Application.Run;
 end.
 

@@ -48,30 +48,30 @@ end;
 class function TClassStatus.CamposCadastro: string;
 begin
   Result :=
-    '  STATUS.CODIGO_STATUS,' +
-    '  STATUS.DESCRICAO_STATUS';
+    '  STATUS.CODIGO_STATUS,   ' +
+    '  STATUS.DESCRICAO_STATUS ' ;
 end;
 
 class function TClassStatus.SQLBaseCadastro: string;
 begin
-  Result := 'select' + #13 +
-            CamposCadastro + #13 +
-            'from STATUS' + #13 +
-            'where (STATUS.CODIGO_STATUS = :COD)';
+  Result := 'SELECT'        + #13 +
+            CamposCadastro  + #13 +
+            'FROM STATUS'   + #13 +
+            'WHERE (STATUS.CODIGO_STATUS = :COD)';
 end;
 
 class function TClassStatus.SQLBaseConsulta: string;
 begin
-  Result := 'select' + #13 +
+  Result := 'SELECT'       + #13 +
             CamposCadastro + #13 +
-            'from STATUS';
+            'FROM STATUS'  ;
 end;
 
 class function TClassStatus.SQLBaseRelatorio: string;
 begin
-  Result := 'select' + #13 +
+  Result := 'SELECT'       + #13 +
             CamposCadastro + #13 +
-            'from STATUS';
+            'FROM STATUS'  ;
 end;
 
 class procedure TClassStatus.ConfigurarPropriedadesDoCampo(DataSet: TDataSet);
@@ -86,11 +86,14 @@ begin
 
     with DataSet.FieldByName(Campo) do
       if (Campo = 'CODIGO_STATUS') then
+      begin
         DisplayLabel := 'Código'
+      end
       else if (Campo = 'DESCRICAO_STATUS') then
       begin
         DisplayLabel := 'Descrição do Status';
         CustomConstraint := sCC_ValueIsNotNullAndNotVazio;
+        ConstraintErrorMessage := DisplayLabel + sCC_ErrorMessage;
       end
   end;
 end;

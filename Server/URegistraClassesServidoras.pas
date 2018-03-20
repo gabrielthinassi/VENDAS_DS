@@ -20,11 +20,13 @@ implementation
 
 uses
   //Lista de Server Módules a serem exportados;
+  ClassExpositorDeClasses,
   USMPai,
   USMPaiCadastro,
-  ClassExpositorDeClasses,
+  USMConexao,
+  //--------------------//
   USMCadStatus,
-  USMConexao;
+  USMCadPessoa;
 
 
 
@@ -37,6 +39,7 @@ begin
   //Lista de Classes que Serão Exportadas para a Aplicação Cliente
   TExpositorDeClasses.Create(AOwner, AServer, TSMConexao,   True, TDSLifeCycle.Session);
   TExpositorDeClasses.Create(AOwner, AServer, TSMCadStatus, True, TDSLifeCycle.Session);
+  TExpositorDeClasses.Create(AOwner, AServer, TSMCadPessoa, True, TDSLifeCycle.Session);
 end;
 
 {

@@ -29,9 +29,10 @@ const
   // Usado para limitar digitos nos campos numericos
   MaxDigitos = 14;
 
-  sTelefoneDesenvolvedor = '(32)99956-6663';
-  sEmailDesenvolvedor = 'gabrielthinassi@teksystem.com.br';
+  // Contato
   sNomeDesenvolvedor = 'Gabriel M. Thinassi';
+  sEmailDesenvolvedor = 'gabrielthinassi@teksystem.com.br';
+  sTelefoneDesenvolvedor = '+55 (32)99956-6663';
 
   // CustomConstraint
   sCC_ValueIsNotNull = 'VALUE IS NOT NULL';
@@ -49,8 +50,13 @@ const
   sCC_Categoria = '(VALUE = 0) OR ((VALUE >= 1)  AND (VALUE <= 99))';
   sCC_DP_ResutadoEvento = 'VALUE >= 0 AND VALUE <=2';
 
-ResourceString
+  sCC_ErrorMessage = ' Deve ser preenchido!';
 
+ResourceString
+  {
+  0 = Não salva o "_" no banco de dados.
+  1 = Salva o "_" no banco de dados.
+  }
   sMascaraTelefone = '!(99)cc999-9999;1; ';
   sMascaraCep = '99999-999;1; ';
   sMascaraCnpj = '99.999.999/9999-99;1; ';

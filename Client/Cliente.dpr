@@ -17,7 +17,9 @@ uses
   ClassPaiCadastro in '..\Class\ClassPaiCadastro.pas',
   UFrmCadStatus in 'Form\UFrmCadStatus.pas' {FrmCadStatus},
   UDMCadStatus in 'Dm\UDMCadStatus.pas' {DMCadStatus: TDataModule},
-  Funcoes in '..\Class\Funcoes.pas';
+  Funcoes in '..\Class\Funcoes.pas',
+  ClassPessoa in '..\Class\ClassPessoa.pas',
+  ClassPessoa_Endereco in '..\Class\ClassPessoa_Endereco.pas';
 
 {$R *.res}
 
