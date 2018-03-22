@@ -1,16 +1,16 @@
 inherited FrmPaiCadastro: TFrmPaiCadastro
   Caption = 'Formul'#225'rio de Cadastro'
-  ClientHeight = 350
+  ClientHeight = 392
   ClientWidth = 500
   OnKeyPress = FormKeyPress
   OnShow = FormShow
   ExplicitWidth = 506
-  ExplicitHeight = 379
+  ExplicitHeight = 421
   PixelsPerInch = 96
   TextHeight = 13
   object pnlBot: TPanel
     Left = 0
-    Top = 309
+    Top = 351
     Width = 500
     Height = 41
     Align = alBottom
@@ -21,6 +21,7 @@ inherited FrmPaiCadastro: TFrmPaiCadastro
     DoubleBuffered = False
     ParentDoubleBuffered = False
     TabOrder = 0
+    ExplicitTop = 309
     object txtAjuda: TDBText
       Left = 1
       Top = 1
@@ -122,7 +123,7 @@ inherited FrmPaiCadastro: TFrmPaiCadastro
     Left = 0
     Top = 41
     Width = 126
-    Height = 268
+    Height = 310
     Align = alLeft
     BevelEdges = []
     BevelInner = bvLowered
@@ -131,6 +132,7 @@ inherited FrmPaiCadastro: TFrmPaiCadastro
     DoubleBuffered = False
     ParentDoubleBuffered = False
     TabOrder = 2
+    ExplicitHeight = 268
     object btnRelatorio: TSpeedButton
       Left = 1
       Top = 221
@@ -186,17 +188,29 @@ inherited FrmPaiCadastro: TFrmPaiCadastro
       Align = alTop
       Caption = '&Pesquisar'
     end
+    object btnOutros: TSpeedButton
+      Left = 1
+      Top = 265
+      Width = 124
+      Height = 44
+      Align = alTop
+      Caption = '&Outros'
+      ExplicitLeft = 0
+      ExplicitTop = 315
+    end
   end
   object pgctrlCadastro: TPageControl
     Left = 126
     Top = 41
     Width = 374
-    Height = 268
-    ActivePage = pgEdit
+    Height = 310
+    ActivePage = tsPrincipal
     Align = alClient
     TabOrder = 3
-    object pgEdit: TTabSheet
-      Caption = 'Edit'
+    ExplicitHeight = 268
+    object tsPrincipal: TTabSheet
+      Caption = 'Principal'
+      ExplicitHeight = 240
     end
   end
   object DSCadastro: TDataSource

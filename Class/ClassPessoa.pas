@@ -8,10 +8,6 @@ uses
   SysUtils,
   ClassPaiCadastro,
   System.MaskUtils,
-  DBClient,
-  Windows,
-  Data.SqlExpr,
-  Data.DBConsts,
   Constantes;
 
 type
@@ -164,5 +160,4 @@ initialization
   //Registra a Classe para ser utilizada posteriormente com a function FindClass('TClassStatus');
   //Pode ser utilizada para criação dinâmica de formulários;
   RegisterClass(TClassPessoa);
-
 end.

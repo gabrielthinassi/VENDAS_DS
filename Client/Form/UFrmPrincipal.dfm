@@ -2,8 +2,8 @@ object FrmPrincipal: TFrmPrincipal
   Left = 560
   Top = 332
   Caption = 'FrmPrincipal'
-  ClientHeight = 400
-  ClientWidth = 800
+  ClientHeight = 600
+  ClientWidth = 900
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -25,6 +25,10 @@ object FrmPrincipal: TFrmPrincipal
       object mmStatus: TMenuItem
         Caption = 'Status'
         OnClick = mmStatusClick
+      end
+      object mmPessoa: TMenuItem
+        Caption = 'Pessoa'
+        OnClick = mmPessoaClick
       end
     end
     object mnUtilitarios: TMenuItem

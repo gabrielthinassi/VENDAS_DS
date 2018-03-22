@@ -46,7 +46,8 @@ type
     btnAnterior: TSpeedButton;
     btnPrimeiro: TSpeedButton;
     pgctrlCadastro: TPageControl;
-    pgEdit: TTabSheet;
+    tsPrincipal: TTabSheet;
+    btnOutros: TSpeedButton;
     procedure FormCreate(Sender: TObject);
     procedure btnIncluirClick(Sender: TObject);
     procedure btnExcluirClick(Sender: TObject);
@@ -203,8 +204,8 @@ begin
 
   if pgctrlCadastro.PageCount = 1 then
   begin
-    pgEdit.TabVisible := False;
-    pgEdit.TabStop := False;
+    tsPrincipal.TabVisible := False;
+    tsPrincipal.TabStop := False;
   end;
   pgctrlCadastro.ActivePageIndex := 0;
 

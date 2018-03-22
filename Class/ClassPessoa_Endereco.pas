@@ -7,11 +7,6 @@ uses
   DB,
   SysUtils,
   ClassPaiCadastro,
-  System.MaskUtils,
-  DBClient,
-  Windows,
-  Data.SqlExpr,
-  Data.DBConsts,
   Constantes;
 
 type

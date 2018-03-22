@@ -108,6 +108,8 @@ begin
   inherited;
   DSPCCadastro.Close;
   DSPCCadastro.SQLConnection := nil;
+  FClasseFilha.Free;
+  CDSCadastro.Close;
 end;
 
 function TDMPaiCadastro.AbreCasdastro(Codigo: Integer): Boolean;

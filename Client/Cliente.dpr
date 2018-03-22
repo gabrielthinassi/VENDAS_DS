@@ -19,7 +19,9 @@ uses
   UDMCadStatus in 'Dm\UDMCadStatus.pas' {DMCadStatus: TDataModule},
   Funcoes in '..\Class\Funcoes.pas',
   ClassPessoa in '..\Class\ClassPessoa.pas',
-  ClassPessoa_Endereco in '..\Class\ClassPessoa_Endereco.pas';
+  ClassPessoa_Endereco in '..\Class\ClassPessoa_Endereco.pas',
+  UFrmCadPessoa in 'Form\UFrmCadPessoa.pas' {FrmCadPessoa},
+  UDMCadPessoa in 'Dm\UDMCadPessoa.pas' {DMCadPessoa: TDataModule};
 
 {$R *.res}
 
@@ -27,5 +29,6 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TFrmPrincipal, FrmPrincipal);
+  Application.CreateForm(TDMCadPessoa, DMCadPessoa);
   Application.Run;
 end.

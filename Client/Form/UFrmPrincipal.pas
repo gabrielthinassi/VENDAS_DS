@@ -13,10 +13,12 @@ type
     mmStatus: TMenuItem;
     mnUtilitarios: TMenuItem;
     mnConfiguracoes: TMenuItem;
+    mmPessoa: TMenuItem;
     procedure mmStatusClick(Sender: TObject);
     procedure mnConfiguracoesClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure mmPessoaClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -30,7 +32,7 @@ implementation
 
 {$R *.dfm}
 
-uses Funcoes, UFrmCadStatus, UFrmConfigServidorAplicacao, UDMConexao;
+uses Funcoes, UFrmCadStatus, UFrmConfigServidorAplicacao, UDMConexao, UFrmCadPessoa;
 
 procedure TFrmPrincipal.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
@@ -43,12 +45,14 @@ begin
   DMConexao := TDMConexao.Create(Self);
 end;
 
+procedure TFrmPrincipal.mmPessoaClick(Sender: TObject);
+begin
+  FrmCadPessoa := TFrmCadPessoa(CriaForm(Self, FrmCadPessoa, TFrmCadPessoa, False, Sender));
+end;
+
 procedure TFrmPrincipal.mmStatusClick(Sender: TObject);
 begin
   FrmCadStatus := TFrmCadStatus(CriaForm(Self, FrmCadStatus, TFrmCadStatus, False, Sender));
-
-  //FrmCadStatus := TFrmCadStatus.Create(Self);
-  //FrmCadStatus.ShowModal;
 end;
 
 procedure TFrmPrincipal.mnConfiguracoesClick(Sender: TObject);
