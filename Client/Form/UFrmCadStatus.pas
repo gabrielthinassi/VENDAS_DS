@@ -22,7 +22,10 @@ uses
   JvExMask,
   JvToolEdit,
   JvBaseEdits,
-  Vcl.ExtCtrls;
+  Vcl.ExtCtrls,
+  //-------------------//
+  UDMCadStatus,
+  ClassStatus;
 
 type
   TFrmCadStatus = class(TFrmPaiCadastro)
@@ -44,8 +47,6 @@ var
 implementation
 
 {$R *.dfm}
-
-uses UDMCadStatus, ClassStatus;
 
 procedure TFrmCadStatus.edtCodigoButtonClick(Sender: TObject);
 begin

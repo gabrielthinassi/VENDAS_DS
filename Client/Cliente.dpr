@@ -21,14 +21,14 @@ uses
   ClassPessoa in '..\Class\ClassPessoa.pas',
   ClassPessoa_Endereco in '..\Class\ClassPessoa_Endereco.pas',
   UFrmCadPessoa in 'Form\UFrmCadPessoa.pas' {FrmCadPessoa},
-  UDMCadPessoa in 'Dm\UDMCadPessoa.pas' {DMCadPessoa: TDataModule};
+  UDMCadPessoa in 'Dm\UDMCadPessoa.pas' {DMCadPessoa: TDataModule},
+  UFrmLogin in 'Form\UFrmLogin.pas' {FrmLogin};
 
 {$R *.res}
 
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  Application.CreateForm(TFrmPrincipal, FrmPrincipal);
-  Application.CreateForm(TDMCadPessoa, DMCadPessoa);
+  Application.CreateForm(TFrmLogin, FrmLogin);
   Application.Run;
 end.

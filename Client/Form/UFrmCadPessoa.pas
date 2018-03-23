@@ -22,7 +22,13 @@ uses
   JvToolEdit,
   JvBaseEdits,
   Vcl.DBCtrls,
-  Vcl.ExtCtrls, Vcl.Grids, Vcl.DBGrids;
+  Vcl.ExtCtrls,
+  Vcl.Grids,
+  Vcl.DBGrids,
+  //---------------------//
+  UDMCadPessoa,
+  ClassPessoa,
+  ClassPessoa_Endereco;
 
 type
   TFrmCadPessoa = class(TFrmPaiCadastro)
@@ -59,6 +65,9 @@ type
     DBGrid1: TDBGrid;
     rdgFisicaJuridica: TDBRadioGroup;
     rdgTipoEndereco: TDBRadioGroup;
+    procedure FormCreate(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure FormDestroy(Sender: TObject);
   private
     { Private declarations }
   public
@@ -71,5 +80,24 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TFrmCadPessoa.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  inherited;
+  FreeAndNil(DMCadPessoa);
+end;
+
+procedure TFrmCadPessoa.FormCreate(Sender: TObject);
+begin
+  DMCadastro := TDMCadPessoa.Create(Self);
+  inherited;
+  //DSPessoa_Endereco.DataSet := DMCadastro.CDSCadastro;
+end;
+
+procedure TFrmCadPessoa.FormDestroy(Sender: TObject);
+begin
+  inherited;
+  FrmCadPessoa := nil;
+end;
 
 end.

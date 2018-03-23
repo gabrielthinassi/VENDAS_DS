@@ -1,13 +1,13 @@
 inherited FrmCadPessoa: TFrmCadPessoa
   Caption = 'Cadastro de Pessoa'
   ClientWidth = 650
+  OnDestroy = FormDestroy
   ExplicitWidth = 656
   PixelsPerInch = 96
   TextHeight = 13
   inherited pnlBot: TPanel
     Width = 650
-    ExplicitTop = 459
-    ExplicitWidth = 800
+    ExplicitWidth = 650
     inherited txtAjuda: TDBText
       Width = 648
       ExplicitWidth = 798
@@ -15,23 +15,18 @@ inherited FrmCadPessoa: TFrmCadPessoa
   end
   inherited pnlTop: TPanel
     Width = 650
-    ExplicitWidth = 800
+    ExplicitWidth = 650
     inherited pnlNavegar: TPanel
       Left = 465
-      ExplicitLeft = 615
+      ExplicitLeft = 465
     end
-  end
-  inherited pnlButtons: TPanel
-    ExplicitHeight = 418
   end
   inherited pgctrlCadastro: TPageControl
     Width = 524
     ActivePage = tsPessoa_Endereco
-    ExplicitWidth = 674
-    ExplicitHeight = 418
+    ExplicitWidth = 524
     inherited tsPrincipal: TTabSheet
-      ExplicitWidth = 666
-      ExplicitHeight = 390
+      ExplicitWidth = 516
       object lblRazaoSocial: TLabel
         Left = 15
         Top = 16
@@ -150,9 +145,6 @@ inherited FrmCadPessoa: TFrmCadPessoa
     object tsPessoa_Endereco: TTabSheet
       Caption = 'Pessoa_Endereco'
       ImageIndex = 1
-      ExplicitLeft = 5
-      ExplicitTop = 23
-      ExplicitHeight = 240
       object lblRua: TLabel
         Left = 13
         Top = 99

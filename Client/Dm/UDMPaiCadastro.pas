@@ -108,7 +108,7 @@ begin
   inherited;
   DSPCCadastro.Close;
   DSPCCadastro.SQLConnection := nil;
-  FClasseFilha.Free;
+  //FClasseFilha.Free;    Da Erro
   CDSCadastro.Close;
 end;
 

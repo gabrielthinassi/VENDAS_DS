@@ -3,19 +3,8 @@ inherited FrmCadStatus: TFrmCadStatus
   OnDestroy = FormDestroy
   PixelsPerInch = 96
   TextHeight = 13
-  inherited pnlBot: TPanel
-    ExplicitTop = 351
-  end
-  inherited pnlButtons: TPanel
-    ExplicitHeight = 310
-  end
   inherited pgctrlCadastro: TPageControl
-    ExplicitHeight = 310
     inherited tsPrincipal: TTabSheet
-      ExplicitLeft = 4
-      ExplicitTop = 24
-      ExplicitWidth = 366
-      ExplicitHeight = 282
       object lblDescricaoStatus: TLabel
         Left = 15
         Top = 16

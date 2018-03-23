@@ -21,7 +21,6 @@ inherited FrmPaiCadastro: TFrmPaiCadastro
     DoubleBuffered = False
     ParentDoubleBuffered = False
     TabOrder = 0
-    ExplicitTop = 309
     object txtAjuda: TDBText
       Left = 1
       Top = 1
@@ -132,7 +131,6 @@ inherited FrmPaiCadastro: TFrmPaiCadastro
     DoubleBuffered = False
     ParentDoubleBuffered = False
     TabOrder = 2
-    ExplicitHeight = 268
     object btnRelatorio: TSpeedButton
       Left = 1
       Top = 221
@@ -207,10 +205,8 @@ inherited FrmPaiCadastro: TFrmPaiCadastro
     ActivePage = tsPrincipal
     Align = alClient
     TabOrder = 3
-    ExplicitHeight = 268
     object tsPrincipal: TTabSheet
       Caption = 'Principal'
-      ExplicitHeight = 240
     end
   end
   object DSCadastro: TDataSource
