@@ -3,6 +3,11 @@ inherited FrmCadStatus: TFrmCadStatus
   OnDestroy = FormDestroy
   PixelsPerInch = 96
   TextHeight = 13
+  inherited pnlButtons: TPanel
+    inherited btnPesquisar: TSpeedButton
+      OnClick = btnPesquisarClick
+    end
+  end
   inherited pgctrlCadastro: TPageControl
     inherited tsPrincipal: TTabSheet
       object lblDescricaoStatus: TLabel

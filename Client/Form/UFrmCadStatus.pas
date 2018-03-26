@@ -25,7 +25,8 @@ uses
   Vcl.ExtCtrls,
   //-------------------//
   UDMCadStatus,
-  ClassStatus;
+  ClassStatus,
+  UFrmPaiConsulta;
 
 type
   TFrmCadStatus = class(TFrmPaiCadastro)
@@ -34,7 +35,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure edtCodigoButtonClick(Sender: TObject);
+    procedure btnPesquisarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -48,10 +49,15 @@ implementation
 
 {$R *.dfm}
 
-procedure TFrmCadStatus.edtCodigoButtonClick(Sender: TObject);
+procedure TFrmCadStatus.btnPesquisarClick(Sender: TObject);
 begin
-  //Deixar o Inherited no final;
   inherited;
+  FrmPaiConsulta := TFrmPaiConsulta.Create(Self);
+  FrmPaiConsulta.FClasse := TClassStatus;
+  FrmPaiConsulta.ShowModal;
+  DMCadStatus.AbreCasdastro(FrmPaiConsulta.Codigo);
+  edtCodigo.AsInteger := FrmPaiConsulta.Codigo;
+  FreeAndNil(FrmPaiConsulta);
 end;
 
 procedure TFrmCadStatus.FormClose(Sender: TObject; var Action: TCloseAction);

@@ -193,6 +193,8 @@ inherited FrmPaiCadastro: TFrmPaiCadastro
       Height = 44
       Align = alTop
       Caption = '&Outros'
+      PopupMenu = pmOutros
+      OnClick = btnOutrosClick
       ExplicitLeft = 0
       ExplicitTop = 315
     end
@@ -213,5 +215,16 @@ inherited FrmPaiCadastro: TFrmPaiCadastro
     OnStateChange = DSCadastroStateChange
     Left = 160
     Top = 75
+  end
+  object pmOutros: TPopupMenu
+    Left = 160
+    Top = 136
+    object pmOutrosImportar: TMenuItem
+      Caption = 'Importar'
+    end
+    object pmOutrosExportar: TMenuItem
+      Caption = 'Exportar'
+      OnClick = pmOutrosExportarClick
+    end
   end
 end

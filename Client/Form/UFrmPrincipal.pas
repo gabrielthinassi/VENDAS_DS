@@ -17,8 +17,8 @@ type
     mmLancamentos: TMenuItem;
     mmPedidoVenda: TMenuItem;
     mmPedidoAssistencia: TMenuItem;
-    stbar: TStatusBar;
     pnlFundo: TPanel;
+    pnlBot: TPanel;
     procedure mmStatusClick(Sender: TObject);
     procedure mnConfiguracoesClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);

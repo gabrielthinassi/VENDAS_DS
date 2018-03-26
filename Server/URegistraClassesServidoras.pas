@@ -23,6 +23,7 @@ uses
   ClassExpositorDeClasses,
   USMPai,
   USMPaiCadastro,
+  USMPaiConsulta,
   USMConexao,
   //--------------------//
   USMCadStatus,
@@ -37,9 +38,10 @@ begin
   Assert(AServer.Started = false, 'Não é possível adicionar classes com o servidor ativo');
 
   //Lista de Classes que Serão Exportadas para a Aplicação Cliente
-  TExpositorDeClasses.Create(AOwner, AServer, TSMConexao,   True, TDSLifeCycle.Session);
-  TExpositorDeClasses.Create(AOwner, AServer, TSMCadStatus, True, TDSLifeCycle.Session);
-  TExpositorDeClasses.Create(AOwner, AServer, TSMCadPessoa, True, TDSLifeCycle.Session);
+  TExpositorDeClasses.Create(AOwner, AServer, TSMConexao,     True, TDSLifeCycle.Session);
+  TExpositorDeClasses.Create(AOwner, AServer, TSMPaiConsulta, True, TDSLifeCycle.Session);
+  TExpositorDeClasses.Create(AOwner, AServer, TSMCadStatus,   True, TDSLifeCycle.Session);
+  TExpositorDeClasses.Create(AOwner, AServer, TSMCadPessoa,   True, TDSLifeCycle.Session);
 end;
 
 {

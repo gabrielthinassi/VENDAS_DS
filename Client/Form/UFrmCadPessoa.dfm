@@ -21,12 +21,20 @@ inherited FrmCadPessoa: TFrmCadPessoa
       ExplicitLeft = 465
     end
   end
+  inherited pnlButtons: TPanel
+    inherited btnPesquisar: TSpeedButton
+      OnClick = btnPesquisarClick
+    end
+  end
   inherited pgctrlCadastro: TPageControl
     Width = 524
     ActivePage = tsPessoa_Endereco
     ExplicitWidth = 524
     inherited tsPrincipal: TTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 24
       ExplicitWidth = 516
+      ExplicitHeight = 282
       object lblRazaoSocial: TLabel
         Left = 15
         Top = 16

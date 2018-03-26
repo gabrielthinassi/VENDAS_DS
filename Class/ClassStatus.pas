@@ -2,7 +2,12 @@ unit ClassStatus;
 
 interface
 
-uses Classes, DB, SysUtils, ClassPaiCadastro;
+uses
+  Classes,
+  DB,
+  SysUtils,
+  ClassPaiCadastro,
+  Constantes;
 
 type
   TClassStatus = class(TClassPaiCadastro)
@@ -17,13 +22,14 @@ type
     class function SQLBaseRelatorio: string; override;
     class function SQLBaseConsulta: string; override;
 
+    class function CamposConsulta(Lista, Campos: TStrings): TStrings; override;
+
     class function ParametrosSql: TListaDeParametrosSql; override;
     class procedure ConfigurarPropriedadesDoCampo(DataSet: TDataSet); override;
   end;
 
 implementation
-
-uses Constantes;
+  { TClassStatus }
 
 class function TClassStatus.Descricao: string;
 begin
@@ -50,6 +56,17 @@ begin
   Result :=
     '  STATUS.CODIGO_STATUS,   ' +
     '  STATUS.DESCRICAO_STATUS ' ;
+end;
+
+class function TClassStatus.CamposConsulta(Lista, Campos: TStrings): TStrings;
+begin
+  {0} Lista.Add('Código');
+  {1} Lista.Add('Descrição');
+
+  {0} Campos.Add('CODIGO_STATUS');
+  {1} Campos.Add('DESCRICAO_STATUS');
+
+  Result := Lista;
 end;
 
 class function TClassStatus.SQLBaseCadastro: string;

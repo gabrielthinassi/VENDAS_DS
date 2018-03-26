@@ -1,6 +1,7 @@
 inherited DMPaiCadastro: TDMPaiCadastro
   OldCreateOrder = True
   OnCreate = DataModuleCreate
+  Height = 217
   Width = 136
   object CDSCadastro: TClientDataSet
     Aggregates = <>

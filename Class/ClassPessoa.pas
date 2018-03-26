@@ -22,6 +22,8 @@ type
     class function SQLBaseRelatorio: string; override;
     class function SQLBaseConsulta: string; override;
 
+    class function CamposConsulta(Lista, Campos: TStrings): TStrings; override;
+
     class function ParametrosSql: TListaDeParametrosSql; override;
     class procedure ConfigurarPropriedadesDoCampo(DataSet: TDataSet); override;
   end;
@@ -52,6 +54,25 @@ begin
             'PESSOA.CLIENTE_PESSOA,      ' + #13 +
             'PESSOA.OUTROS_PESSOA        ';
 
+end;
+
+class function TClassPessoa.CamposConsulta(Lista, Campos: TStrings): TStrings;
+begin
+  {0} Lista.Add('Código');
+  {1} Lista.Add('Nome/Razão Social');
+  {2} Lista.Add('Apelido/Nome Fantasia');
+  {3} Lista.Add('CNPJ');
+  {4} Lista.Add('CPF');
+  {5} Lista.Add('E-Mail');
+
+  {0} Campos.Add('CODIGO_PESSOA');
+  {1} Campos.Add('RAZAOSOCIAL_PESSOA');
+  {2} Campos.Add('NOMEFANTASIA_PESSOA');
+  {3} Campos.Add('CNPJ_PESSOA');
+  {4} Campos.Add('CPF_PESSOA');
+  {5} Campos.Add('EMAIL_PESSOA');
+
+  Result := Lista;
 end;
 
 class procedure TClassPessoa.ConfigurarPropriedadesDoCampo(DataSet: TDataSet);

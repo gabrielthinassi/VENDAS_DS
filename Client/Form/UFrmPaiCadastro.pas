@@ -24,7 +24,8 @@ uses
   Vcl.Buttons,
   Data.DB,
   Vcl.DBCtrls,
-  UDMPaiCadastro;
+  UDMPaiCadastro,
+  UFrmPaiConsulta, Vcl.Menus;
 
 type
   TFrmPaiCadastro = class(TFrmPai)
@@ -48,6 +49,9 @@ type
     pgctrlCadastro: TPageControl;
     tsPrincipal: TTabSheet;
     btnOutros: TSpeedButton;
+    pmOutros: TPopupMenu;
+    pmOutrosImportar: TMenuItem;
+    pmOutrosExportar: TMenuItem;
     procedure FormCreate(Sender: TObject);
     procedure btnIncluirClick(Sender: TObject);
     procedure btnExcluirClick(Sender: TObject);
@@ -63,6 +67,8 @@ type
     procedure FormShow(Sender: TObject);
     procedure pnlTopExit(Sender: TObject);
     procedure FormKeyPress(Sender: TObject; var Key: Char);
+    procedure btnOutrosClick(Sender: TObject);
+    procedure pmOutrosExportarClick(Sender: TObject);
   private
     { Private declarations }
     FDMCadastro: TDMPaiCadastro;
@@ -134,6 +140,12 @@ begin
   FDMCadastro.IncluirRegistro;
 end;
 
+procedure TFrmPaiCadastro.btnOutrosClick(Sender: TObject);
+begin
+  inherited;
+  pmOutros.Popup(Mouse.CursorPos.X, Mouse.CursorPos.Y);
+end;
+
 procedure TFrmPaiCadastro.btnPrimeiroClick(Sender: TObject);
 begin
   inherited;
@@ -181,6 +193,7 @@ end;
 procedure TFrmPaiCadastro.edtCodigoButtonClick(Sender: TObject);
 begin
   inherited;
+  btnPesquisar.OnClick(btnPesquisar);
   Abort;
 end;
 
@@ -227,6 +240,12 @@ procedure TFrmPaiCadastro.FormShow(Sender: TObject);
 begin
   inherited;
   edtCodigo.SetFocus;
+end;
+
+procedure TFrmPaiCadastro.pmOutrosExportarClick(Sender: TObject);
+begin
+  inherited;
+  FDMCadastro.ExportarArquivo;
 end;
 
 procedure TFrmPaiCadastro.pnlTopExit(Sender: TObject);

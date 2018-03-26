@@ -68,6 +68,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormDestroy(Sender: TObject);
+    procedure btnPesquisarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -79,7 +80,21 @@ var
 
 implementation
 
+uses
+  UFrmPaiConsulta;
+
 {$R *.dfm}
+
+procedure TFrmCadPessoa.btnPesquisarClick(Sender: TObject);
+begin
+  inherited;
+  FrmPaiConsulta := TFrmPaiConsulta.Create(Self);
+  FrmPaiConsulta.FClasse := TClassPessoa;
+  FrmPaiConsulta.ShowModal;
+  DMCadPessoa.AbreCasdastro(FrmPaiConsulta.Codigo);
+  edtCodigo.AsInteger := FrmPaiConsulta.Codigo;
+  FreeAndNil(FrmPaiConsulta);
+end;
 
 procedure TFrmCadPessoa.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
@@ -90,8 +105,8 @@ end;
 procedure TFrmCadPessoa.FormCreate(Sender: TObject);
 begin
   DMCadastro := TDMCadPessoa.Create(Self);
+  DSPessoa_Endereco.DataSet := TDMCadPessoa(DMCadastro).CDSPessoa_Endereco;
   inherited;
-  //DSPessoa_Endereco.DataSet := DMCadastro.CDSCadastro;
 end;
 
 procedure TFrmCadPessoa.FormDestroy(Sender: TObject);

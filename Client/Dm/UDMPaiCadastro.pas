@@ -70,6 +70,10 @@ type
 
     function AbreCasdastro(Codigo: Integer): Boolean;
     //procedure AtribuiAutoIncDetalhe(DataSet: TDataSet; Classe: TClassPaiCadastro; CampoChaveEstrangeira: String);
+
+    //Exportar & Importar
+    procedure ExportarArquivo;
+
   end;
 
 var
@@ -110,6 +114,49 @@ begin
   DSPCCadastro.SQLConnection := nil;
   //FClasseFilha.Free;    Da Erro
   CDSCadastro.Close;
+end;
+
+procedure TDMPaiCadastro.ExportarArquivo;
+var
+  NomeDoArquivo: String;
+  SaveDialog: TSaveDialog;
+begin
+  NomeDoArquivo := FClasseFilha.Descricao + '_' + IntToStr(FCodigoAtual) + '.XML';
+
+  {$REGION 'SaveDialog'}
+  SaveDialog := TSaveDialog.Create(nil);
+  try
+    SaveDialog.InitialDir := ExtractFilePath(Application.ExeName);
+    SaveDialog.FileName   := NomeDoArquivo;
+    SaveDialog.Title      := 'Exportando ' + FClasseFilha.Descricao;
+    SaveDialog.Options    := SaveDialog.Options + [TOpenOption.ofFileMustExist];
+
+    if SaveDialog.Execute then
+      NomeDoArquivo := SaveDialog.FileName
+    else
+      NomeDoArquivo := '';
+  finally
+    SaveDialog.Free;
+  end;
+  {$ENDREGION}
+
+  if NomeDoArquivo = '' then
+    Exit;
+
+  if (not CDSCadastro.Active) or (CDSCadastro.IsEmpty) then
+  begin
+    ShowMessage('Não há o que Exportar!');
+    Exit;
+  end;
+
+  if CDSCadastro.State in [dsEdit, dsInsert] then
+  begin
+    ShowMessage('Grave o Registro antes de tentar Exportá-lo!');
+    Exit;
+  end;
+
+  //Salvando o Arquivo XML
+  CDSCadastro.SaveToFile(NomeDoArquivo, dfXMLUTF8);
 end;
 
 function TDMPaiCadastro.AbreCasdastro(Codigo: Integer): Boolean;

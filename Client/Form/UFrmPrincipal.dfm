@@ -2,7 +2,7 @@ object FrmPrincipal: TFrmPrincipal
   Left = 560
   Top = 332
   Caption = 'FrmPrincipal'
-  ClientHeight = 600
+  ClientHeight = 692
   ClientWidth = 900
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -12,36 +12,27 @@ object FrmPrincipal: TFrmPrincipal
   Font.Style = []
   Menu = MainMenu1
   OldCreateOrder = False
-  Position = poDesigned
+  Position = poScreenCenter
   OnClose = FormClose
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
-  object stbar: TStatusBar
-    Left = 0
-    Top = 544
-    Width = 900
-    Height = 56
-    Panels = <
-      item
-        Text = 'Menu'
-        Width = 50
-      end
-      item
-        Text = 'Usuario'
-        Width = 50
-      end
-      item
-        Text = 'Data/Hora'
-        Width = 50
-      end>
-  end
   object pnlFundo: TPanel
     Left = 0
     Top = 0
     Width = 900
-    Height = 544
+    Height = 640
     Align = alClient
+    BevelKind = bkFlat
+    BevelOuter = bvNone
+    TabOrder = 0
+  end
+  object pnlBot: TPanel
+    Left = 0
+    Top = 640
+    Width = 900
+    Height = 52
+    Align = alBottom
     BevelKind = bkFlat
     BevelOuter = bvNone
     TabOrder = 1

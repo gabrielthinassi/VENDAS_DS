@@ -15,3 +15,39 @@ Como fazer diferente ???
 
 3)
 Explicar a function TELA para abrir Forms;
+
+4)
+FrmCadPessoa.FormCreate
+//DSPessoa_Endereco.DataSet := DMCadastro.CDSPessoa_Endereco;
+Porque não consigo fazer isso direto ?
+Porque é necessário fazer o Cast TDMCadPessoa(DMCadastro).CDSPessoa_Endereco; ???
+
+5) 
+Como finalizar o FrmLogin ao abrir o FrmPrincipal?
+
+6)
+
+procedure TfrmPaiConsulta.FormCreate(Sender: TObject);
+begin
+    CamposSQL := TStringList.Create;
+    dspConsulta.SQLConnection := dmConexaoPai.conConexao;
+    dspConsulta.ServerClassName := 'TSDMPaiConsulta';
+    cdsConsulta.ProviderName := 'dspConsulta';
+end;
+
+Porque se coloca TSDM e não SDM ? Porque o T antes? Como o compilador entende isso ?
+
+7)
+
+class function TClassStatus.CamposConsulta(Lista, Campos: TStrings): TStrings;
+begin
+  Lista.Add('Código');
+  Lista.Add('Descrição');
+
+  Campos.Add('CODIGO_STATUS');
+  Campos.Add('DESCRICAO_STATUS');
+
+  Result := Lista;
+end;
+
+Porque passa Lista e Campos, se o Return apenas devolve a Lista ????

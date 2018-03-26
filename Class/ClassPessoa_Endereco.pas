@@ -7,12 +7,15 @@ uses
   DB,
   SysUtils,
   ClassPaiCadastro,
-  Constantes;
+  Constantes,
+  ClassDataSet;
 
 type
   TClassPessoa_Endereco = class(TClassPaiCadastro)
+  public
     class function Descricao: string; override;
     class function TabelaPrincipal: string; override;
+    class function ClassRelacional: string; override;
     class function CampoChave: string; override;
     class function CampoDescricao: string; override;
 
@@ -27,7 +30,7 @@ type
 
 implementation
 
-{ TClassPessoa }
+{ TClassPessoa_Endereco }
 
 class function TClassPessoa_Endereco.CampoChave: string;
 begin
@@ -53,6 +56,11 @@ begin
             'PESSOA_ENDERECO.TELEFONE_ENDERECOPESSOA, ' + #13 +
             'PESSOA_ENDERECO.CODIGO_PESSOA            ';
 
+end;
+
+class function TClassPessoa_Endereco.ClassRelacional: string;
+begin
+  Result := 'ClassPessoa';
 end;
 
 class procedure TClassPessoa_Endereco.ConfigurarPropriedadesDoCampo(DataSet: TDataSet);

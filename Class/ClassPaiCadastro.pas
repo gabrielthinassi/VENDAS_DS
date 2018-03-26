@@ -31,6 +31,7 @@ type
   public
     class function Descricao: string; virtual;
     class function TabelaPrincipal: string; virtual;
+    class function ClassRelacional: string; virtual;
 
     class function CampoChave: string; virtual;
     class function CampoDescricao: string; virtual;
@@ -39,6 +40,8 @@ type
     class function SQLBaseCadastro: string; virtual; abstract;
     class function SQLBaseConsulta: string; virtual;
     class function SQLBaseRelatorio: string; overload; virtual; abstract;
+
+    class function CamposConsulta(Lista, Campos: TStrings): TStrings; virtual;
 
     class function ParametrosSql: TListaDeParametrosSql; virtual;
 
@@ -50,7 +53,6 @@ type
     //Não utilizados ainda
     class function CamposFechamento: string; virtual;
     class function ClassOriginal: string; virtual;
-    class function ClassRelacional: string; virtual;
     class function CampoRegistroSecundario: string; virtual;
     class function FiltroSql: string; virtual;
   end;
@@ -77,6 +79,12 @@ end;
 class function TClassPaiCadastro.CamposCadastro: string;
 begin
   Result := '';
+end;
+
+class function TClassPaiCadastro.CamposConsulta(Lista,
+  Campos: TStrings): TStrings;
+begin
+  //Implementar nos Filhos
 end;
 
 class function TClassPaiCadastro.CampoChave: string;

@@ -43,6 +43,14 @@ begin
 
   DSPCCadastro.ServerClassName := 'TSMCadPessoa';
   CDSCadastro.ProviderName := 'DSPCCadastro';
+  //CDSPessoa_Endereco.ProviderName := 'DSPCCadastro';
+
+  CDSPessoa_Endereco.DataSetField := TDataSetField(CDSCadastro.FieldByName('SQLDSPessoa_Endereco'));
+  with TClassPessoa_Endereco do
+  begin
+    //CDSPessoa_Endereco.AdicionaCampos;
+  end;
+
 
   inherited;
 end;
