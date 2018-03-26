@@ -51,3 +51,10 @@ begin
 end;
 
 Porque passa Lista e Campos, se o Return apenas devolve a Lista ????
+
+
+8)
+
+NomeDoArquivo := FClasseFilha.Descricao + '_' + IntToStr(FCodigoAtual) + '.XML';
+
+Não estou conseguindo capturar o FCodigoAtual; 
