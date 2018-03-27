@@ -17,7 +17,6 @@ inherited FrmPaiConsulta: TFrmPaiConsulta
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 0
-    ExplicitWidth = 588
     object lblCampo: TLabel
       Left = 16
       Top = 55
@@ -60,8 +59,8 @@ inherited FrmPaiConsulta: TFrmPaiConsulta
     object lblFechar: TLabel
       Left = 562
       Top = 12
-      Width = 25
-      Height = 30
+      Width = 30
+      Height = 29
       Caption = ' X '
       Font.Charset = DEFAULT_CHARSET
       Font.Color = 14741189
@@ -289,6 +288,7 @@ inherited FrmPaiConsulta: TFrmPaiConsulta
     Align = alClient
     BorderStyle = bsNone
     Color = 11840396
+    DataSource = DSConsulta
     DrawingStyle = gdsGradient
     FixedColor = 11840140
     GradientEndColor = 11840140

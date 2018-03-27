@@ -26,7 +26,7 @@ uses
   //-------------------//
   UDMCadStatus,
   ClassStatus,
-  UFrmPaiConsulta;
+  UFrmPaiConsulta, Vcl.Menus;
 
 type
   TFrmCadStatus = class(TFrmPaiCadastro)

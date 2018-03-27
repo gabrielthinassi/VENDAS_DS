@@ -106,7 +106,7 @@ begin
   CamposSQL := TStringList.Create;
   DSPCConsulta.SQLConnection := DMConexao.ConexaoDS;
   DSPCConsulta.ServerClassName := 'TSMPaiConsulta';
-  CDSConsulta.ProviderName := 'DSPCConsulta';
+  CDSConsulta.ProviderName := 'DSPConsulta';
   //CDSConsulta.SetProvider(DSPCConsulta.Name);
 
   cbxOperadores.Items.Add('Igual a');
@@ -154,7 +154,7 @@ procedure TFrmPaiConsulta.imgConfirmarClick(Sender: TObject);
 begin
   inherited;
   Codigo := DSConsulta.DataSet.Fields[0].AsInteger;
-  Close;
+  Hide;
 end;
 
 procedure TFrmPaiConsulta.imgConsultarClick(Sender: TObject);
