@@ -154,7 +154,6 @@ procedure TFrmPaiConsulta.imgConfirmarClick(Sender: TObject);
 begin
   inherited;
   Codigo := DSConsulta.DataSet.Fields[0].AsInteger;
-  Hide;
 end;
 
 procedure TFrmPaiConsulta.imgConsultarClick(Sender: TObject);

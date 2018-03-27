@@ -59,8 +59,8 @@ inherited FrmPaiConsulta: TFrmPaiConsulta
     object lblFechar: TLabel
       Left = 562
       Top = 12
-      Width = 30
-      Height = 29
+      Width = 25
+      Height = 30
       Caption = ' X '
       Font.Charset = DEFAULT_CHARSET
       Font.Color = 14741189
@@ -270,6 +270,7 @@ inherited FrmPaiConsulta: TFrmPaiConsulta
       BevelInner = bvNone
       BevelOuter = bvNone
       BorderStyle = bsNone
+      CharCase = ecUpperCase
       Color = 11840140
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite

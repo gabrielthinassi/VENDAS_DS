@@ -54,10 +54,13 @@ begin
   inherited;
   FrmPaiConsulta := TFrmPaiConsulta.Create(Self);
   FrmPaiConsulta.FClasse := TClassStatus;
-  FrmPaiConsulta.ShowModal;
-  DMCadStatus.AbreCasdastro(FrmPaiConsulta.Codigo);
-  edtCodigo.AsInteger := FrmPaiConsulta.Codigo;
-  FreeAndNil(FrmPaiConsulta);
+  try
+    FrmPaiConsulta.ShowModal;
+    DMCadStatus.AbreCasdastro(FrmPaiConsulta.Codigo);
+    edtCodigo.AsInteger := FrmPaiConsulta.Codigo;
+  finally
+    FreeAndNil(FrmPaiConsulta);
+  end;
 end;
 
 procedure TFrmCadStatus.FormClose(Sender: TObject; var Action: TCloseAction);
