@@ -28,7 +28,6 @@ inherited FrmCadPessoa: TFrmCadPessoa
   end
   inherited pgctrlCadastro: TPageControl
     Width = 524
-    ActivePage = tsPessoa_Endereco
     ExplicitWidth = 524
     inherited tsPrincipal: TTabSheet
       ExplicitLeft = 4
@@ -106,6 +105,8 @@ inherited FrmCadPessoa: TFrmCadPessoa
           DataField = 'CLIENTE_PESSOA'
           DataSource = DSCadastro
           TabOrder = 0
+          ValueChecked = 'S'
+          ValueUnchecked = 'N'
         end
         object cbxTipoOutros: TDBCheckBox
           Left = 16
@@ -116,6 +117,8 @@ inherited FrmCadPessoa: TFrmCadPessoa
           DataField = 'OUTROS_PESSOA'
           DataSource = DSCadastro
           TabOrder = 1
+          ValueChecked = 'S'
+          ValueUnchecked = 'N'
         end
       end
       object edtCpf: TDBEdit
@@ -148,6 +151,10 @@ inherited FrmCadPessoa: TFrmCadPessoa
           'F'#237'sica'
           'Jur'#237'dica')
         TabOrder = 6
+        Values.Strings = (
+          'F'
+          'J')
+        OnChange = rdgFisicaJuridicaChange
       end
     end
     object tsPessoa_Endereco: TTabSheet
@@ -306,12 +313,19 @@ inherited FrmCadPessoa: TFrmCadPessoa
           'Residencial'
           'Comercial')
         TabOrder = 9
+        Values.Strings = (
+          '0'
+          '1')
       end
     end
   end
   inherited DSCadastro: TDataSource
     Left = 312
     Top = 3
+  end
+  inherited pmOutros: TPopupMenu
+    Left = 56
+    Top = 312
   end
   object DSPessoa_Endereco: TDataSource
     Left = 400

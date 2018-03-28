@@ -245,7 +245,7 @@ end;
 procedure TFrmPaiCadastro.pmOutrosExportarClick(Sender: TObject);
 begin
   inherited;
-  FDMCadastro.ExportarArquivo;
+  FDMCadastro.ExportarArquivo(edtCodigo.AsInteger);
 end;
 
 procedure TFrmPaiCadastro.pnlTopExit(Sender: TObject);
@@ -261,8 +261,8 @@ begin
     Abort;
   end
   else
-    Perform(WM_NEXTDLGCTL, 0, 0);
-
+    //Perform(WM_NEXTDLGCTL, 0, 0);
+    //Estava causando alternação entre os Dialogs
 end;
 
 end.

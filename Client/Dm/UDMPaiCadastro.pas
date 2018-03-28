@@ -72,7 +72,7 @@ type
     //procedure AtribuiAutoIncDetalhe(DataSet: TDataSet; Classe: TClassPaiCadastro; CampoChaveEstrangeira: String);
 
     //Exportar & Importar
-    procedure ExportarArquivo;
+    procedure ExportarArquivo(ACodigo: Integer);
 
   end;
 
@@ -116,12 +116,12 @@ begin
   CDSCadastro.Close;
 end;
 
-procedure TDMPaiCadastro.ExportarArquivo;
+procedure TDMPaiCadastro.ExportarArquivo(ACodigo: Integer);
 var
   NomeDoArquivo: String;
   SaveDialog: TSaveDialog;
 begin
-  NomeDoArquivo := FClasseFilha.Descricao + '_' + IntToStr(FCodigoAtual) + '.XML';
+  NomeDoArquivo := FClasseFilha.Descricao + '_' + IntToStr(ACodigo) + '.XML';
 
   {$REGION 'SaveDialog'}
   SaveDialog := TSaveDialog.Create(nil);

@@ -28,7 +28,7 @@ uses
   //---------------------//
   UDMCadPessoa,
   ClassPessoa,
-  ClassPessoa_Endereco;
+  ClassPessoa_Endereco, Vcl.Menus;
 
 type
   TFrmCadPessoa = class(TFrmPaiCadastro)
@@ -69,6 +69,7 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormDestroy(Sender: TObject);
     procedure btnPesquisarClick(Sender: TObject);
+    procedure rdgFisicaJuridicaChange(Sender: TObject);
   private
     { Private declarations }
   public
@@ -113,6 +114,20 @@ procedure TFrmCadPessoa.FormDestroy(Sender: TObject);
 begin
   inherited;
   FrmCadPessoa := nil;
+end;
+
+procedure TFrmCadPessoa.rdgFisicaJuridicaChange(Sender: TObject);
+begin
+  inherited;
+  if rdgFisicaJuridica.ItemIndex = 0 then
+  begin
+    edtCpf.Visible := True;
+    lblCpfCnpj.Caption := 'CPF';
+  end else
+  begin
+    edtCnpj.Visible := True;
+    lblCpfCnpj.Caption := 'CNPJ';
+  end;
 end;
 
 end.
