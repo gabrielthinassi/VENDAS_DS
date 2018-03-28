@@ -52,15 +52,20 @@ type
     procedure CDSConsultaAfterOpen(DataSet: TDataSet);
     procedure gridConsultaDblClick(Sender: TObject);
     procedure gridConsultaTitleClick(Column: TColumn);
+
+    //---Confirma Consulta---//
+    //procedure FormCreate(Sender: TObject; edtCodigo: Integer);
+
   private
     { Private declarations }
     CamposSQL: TStrings;
+    FCodigo: Integer;
     function SQLOperador: string;
     function SQLCampos: string;
   public
     { Public declarations }
     FClasse: TFClassPaiCadastro;
-    Codigo: Integer;
+    property Codigo: Integer read FCodigo write FCodigo;
   end;
 
     FClasse = class of TClassPaiCadastro;
@@ -135,7 +140,7 @@ begin
   end;
 
   cbxCampos.ItemIndex := 0;
-  cbxOperadores.ItemIndex := 7;
+  cbxOperadores.ItemIndex := 8;
 end;
 
 procedure TFrmPaiConsulta.gridConsultaDblClick(Sender: TObject);
@@ -153,7 +158,8 @@ end;
 procedure TFrmPaiConsulta.imgConfirmarClick(Sender: TObject);
 begin
   inherited;
-  Codigo := DSConsulta.DataSet.Fields[0].AsInteger;
+  FCodigo := DSConsulta.DataSet.Fields[0].AsInteger;
+  Self.Close;
 end;
 
 procedure TFrmPaiConsulta.imgConsultarClick(Sender: TObject);

@@ -56,8 +56,8 @@ begin
   FrmPaiConsulta.FClasse := TClassStatus;
   try
     FrmPaiConsulta.ShowModal;
-    DMCadStatus.AbreCasdastro(FrmPaiConsulta.Codigo);
     edtCodigo.AsInteger := FrmPaiConsulta.Codigo;
+    DMCadastro.AbreCasdastro(edtCodigo.AsInteger);
   finally
     FreeAndNil(FrmPaiConsulta);
   end;

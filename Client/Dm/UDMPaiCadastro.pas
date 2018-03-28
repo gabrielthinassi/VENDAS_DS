@@ -68,7 +68,7 @@ type
     procedure IncluirRegistro;
     procedure GravarRegistro;
 
-    function AbreCasdastro(Codigo: Integer): Boolean;
+    function AbreCasdastro(ACodigo: Integer): Boolean;
     //procedure AtribuiAutoIncDetalhe(DataSet: TDataSet; Classe: TClassPaiCadastro; CampoChaveEstrangeira: String);
 
     //Exportar & Importar
@@ -159,13 +159,13 @@ begin
   CDSCadastro.SaveToFile(NomeDoArquivo, dfXMLUTF8);
 end;
 
-function TDMPaiCadastro.AbreCasdastro(Codigo: Integer): Boolean;
+function TDMPaiCadastro.AbreCasdastro(ACodigo: Integer): Boolean;
 begin
   Result := False;
 
   CDSCadastro.Close;
   CDSCadastro.FetchParams;
-  CDSCadastro.ParamByName('COD').AsInteger := Codigo;
+  CDSCadastro.ParamByName('COD').AsInteger := ACodigo;
   CDSCadastro.Open;
 
   if not CDSCadastro.IsEmpty then
