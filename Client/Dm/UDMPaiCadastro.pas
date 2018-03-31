@@ -73,6 +73,7 @@ type
 
     //Exportar & Importar
     procedure ExportarArquivo(ACodigo: Integer);
+    procedure ImportarArquivo(ACodigo: Integer; EventoIncluir, EventoGravar: TNotifyEvent);
 
   end;
 
@@ -116,14 +117,94 @@ begin
   CDSCadastro.Close;
 end;
 
-procedure TDMPaiCadastro.ExportarArquivo(ACodigo: Integer);
+procedure TDMPaiCadastro.ImportarArquivo(ACodigo: Integer;
+                                         EventoIncluir, EventoGravar: TNotifyEvent);
 var
-  NomeDoArquivo: String;
-  SaveDialog: TSaveDialog;
+  I             : Integer;
+  NomeDoArquivo : String;
+  OpenDialog    : TOpenDialog;
+  CDSTemp       : TClientDataSet;
 begin
   NomeDoArquivo := FClasseFilha.Descricao + '_' + IntToStr(ACodigo) + '.XML';
 
-  {$REGION 'SaveDialog'}
+  {$REGION 'OpenDialog [criar function posteriormente]'}
+  OpenDialog := TSaveDialog.Create(nil);
+  try
+    OpenDialog.InitialDir := ExtractFilePath(Application.ExeName);
+    OpenDialog.FileName   := NomeDoArquivo;
+    OpenDialog.Title      := 'Exportando ' + FClasseFilha.Descricao;
+    OpenDialog.Options    := OpenDialog.Options + [TOpenOption.ofFileMustExist, TOpenOption.ofPathMustExist];
+
+    if OpenDialog.Execute then
+      NomeDoArquivo := Trim(OpenDialog.Files.Text)
+    else
+      NomeDoArquivo := '';
+  finally
+    OpenDialog.Free;
+  end;
+  {$ENDREGION}
+
+  if NomeDoArquivo = '' then
+    Exit;
+
+  if CDSCadastro.State in [dsEdit, dsInsert] then
+  begin
+    ShowMessage('Grave o Registro atual antes de tentar Importar!');
+    Exit;
+  end;
+
+  CDSTemp := TClientDataSet.Create(nil);
+  try
+    CDSTemp.LoadFromFile(NomeDoArquivo);
+    {
+    if (FClasseFilha.TabelaPrincipal <> CDSTemp.GetOptionalParam('Tabela')) then
+    begin
+      ShowMessage('Arquivo incompatível com o cadastro "' + FClasseFilha.Descricao + '"');
+      Exit;
+    end;
+    }
+    CDSTemp.First;
+    while not CDSTemp.Eof do
+    begin
+      if Assigned(EventoIncluir) then
+        EventoIncluir(CDSCadastro);
+
+      CDSCadastro.DisableControls;
+      try
+        if not (CDSTemp.State in [dsInsert, dsEdit]) then
+          Exit;
+
+        for I := 0 to CDSTemp.RecordCount-1 do
+        begin
+          CDSCadastro.Fields[I].Assign(CDSTemp.Fields[i]);
+        end;
+
+        if Assigned(EventoGravar) then
+          EventoGravar(CDSCadastro)
+        else
+          CDSCadastroBeforePost(CDSCadastro);
+
+      finally
+        CDSCadastro.EnableControls;
+      end;
+
+      CDSTemp.Next;
+    end;
+
+  finally
+    FreeAndNil(CDSTemp);
+  end;
+
+end;
+
+procedure TDMPaiCadastro.ExportarArquivo(ACodigo: Integer);
+var
+  NomeDoArquivo : String;
+  SaveDialog    : TSaveDialog;
+begin
+  NomeDoArquivo := FClasseFilha.Descricao + '_' + IntToStr(ACodigo) + '.XML';
+
+  {$REGION 'SaveDialog [criar function posteriormente]'}
   SaveDialog := TSaveDialog.Create(nil);
   try
     SaveDialog.InitialDir := ExtractFilePath(Application.ExeName);
@@ -275,8 +356,8 @@ begin
     CDSCadastro.Post;
   end;
 
-  if not CDSCadastro.ChangeCount <> 0 then
-    CDSCadastro.Edit;
+  //if not CDSCadastro.ChangeCount <> 0 then
+  //  CDSCadastro.Edit;
 end;
 
 procedure TDMPaiCadastro.IncluirRegistro;

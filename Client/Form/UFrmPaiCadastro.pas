@@ -69,6 +69,7 @@ type
     procedure FormKeyPress(Sender: TObject; var Key: Char);
     procedure btnOutrosClick(Sender: TObject);
     procedure pmOutrosExportarClick(Sender: TObject);
+    procedure pmOutrosImportarClick(Sender: TObject);
   private
     { Private declarations }
     FDMCadastro: TDMPaiCadastro;
@@ -126,9 +127,9 @@ begin
   try
     FDMCadastro.GravarRegistro;
   finally
-    edtCodigo.AsInteger := FDMCadastro.CodigoAtual;
     pnlTop.Enabled := True;
     edtCodigo.Enabled := True;
+    edtCodigo.AsInteger := FDMCadastro.CodigoAtual;
     edtCodigo.SetFocus;
   end;
 end;
@@ -246,6 +247,12 @@ procedure TFrmPaiCadastro.pmOutrosExportarClick(Sender: TObject);
 begin
   inherited;
   FDMCadastro.ExportarArquivo(edtCodigo.AsInteger);
+end;
+
+procedure TFrmPaiCadastro.pmOutrosImportarClick(Sender: TObject);
+begin
+  inherited;
+  FDMCadastro.ImportarArquivo(edtCodigo.AsInteger, btnIncluirClick, btnGravarClick);
 end;
 
 procedure TFrmPaiCadastro.pnlTopExit(Sender: TObject);

@@ -221,6 +221,7 @@ inherited FrmPaiCadastro: TFrmPaiCadastro
     Top = 136
     object pmOutrosImportar: TMenuItem
       Caption = 'Importar'
+      OnClick = pmOutrosImportarClick
     end
     object pmOutrosExportar: TMenuItem
       Caption = 'Exportar'
