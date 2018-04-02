@@ -171,6 +171,14 @@
             <Form>FrmPaiConsulta</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="Form\UFrmCadPedido.pas">
+            <Form>FrmCadPedido</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="Form\UFrmPaiRelatorio.pas">
+            <Form>FrmPaiRelatorio</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

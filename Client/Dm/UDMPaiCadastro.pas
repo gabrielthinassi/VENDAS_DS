@@ -166,13 +166,14 @@ begin
     CDSTemp.First;
     while not CDSTemp.Eof do
     begin
+
       if Assigned(EventoIncluir) then
         EventoIncluir(CDSCadastro);
 
       CDSCadastro.DisableControls;
       try
-        if not (CDSTemp.State in [dsInsert, dsEdit]) then
-          Exit;
+        //if not (CDSTemp.State in [dsInsert, dsEdit]) then
+        //  Exit;
 
         for I := 0 to CDSTemp.RecordCount-1 do
         begin

@@ -55,6 +55,7 @@ object FrmPrincipal: TFrmPrincipal
       Caption = 'Lan'#231'amentos'
       object mmPedidoVenda: TMenuItem
         Caption = 'Pedido de Venda'
+        OnClick = mmPedidoVendaClick
       end
       object mmPedidoAssistencia: TMenuItem
         Caption = 'Pedido de Assist'#234'ncia'

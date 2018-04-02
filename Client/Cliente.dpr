@@ -23,7 +23,9 @@ uses
   UFrmCadPessoa in 'Form\UFrmCadPessoa.pas' {FrmCadPessoa},
   UDMCadPessoa in 'Dm\UDMCadPessoa.pas' {DMCadPessoa: TDataModule},
   UFrmLogin in 'Form\UFrmLogin.pas' {FrmLogin},
-  UFrmPaiConsulta in 'Form\UFrmPaiConsulta.pas' {FrmPaiConsulta};
+  UFrmPaiConsulta in 'Form\UFrmPaiConsulta.pas' {FrmPaiConsulta},
+  UFrmCadPedido in 'Form\UFrmCadPedido.pas' {FrmCadPedido},
+  UFrmPaiRelatorio in 'Form\UFrmPaiRelatorio.pas' {FrmPaiRelatorio};
 
 {$R *.res}
 

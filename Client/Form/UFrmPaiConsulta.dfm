@@ -63,7 +63,7 @@ inherited FrmPaiConsulta: TFrmPaiConsulta
       Height = 30
       Caption = ' X '
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = 14741189
+      Font.Color = clWhite
       Font.Height = -24
       Font.Name = 'Myriad Pro'
       Font.Style = [fsBold]

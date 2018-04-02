@@ -24,6 +24,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure mmPessoaClick(Sender: TObject);
+    procedure mmPedidoVendaClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -37,7 +38,7 @@ implementation
 
 {$R *.dfm}
 
-uses Funcoes, UFrmCadStatus, UFrmConfigServidorAplicacao, UDMConexao, UFrmCadPessoa;
+uses Funcoes, UFrmCadStatus, UFrmConfigServidorAplicacao, UDMConexao, UFrmCadPessoa, UFrmCadPedido;
 
 procedure TFrmPrincipal.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
@@ -48,6 +49,11 @@ end;
 procedure TFrmPrincipal.FormCreate(Sender: TObject);
 begin
   DMConexao := TDMConexao.Create(Self);
+end;
+
+procedure TFrmPrincipal.mmPedidoVendaClick(Sender: TObject);
+begin
+  FrmCadPedido := TFrmCadPedido(CriaForm(Self, FrmCadPedido, TFrmCadPedido, False, Sender));
 end;
 
 procedure TFrmPrincipal.mmPessoaClick(Sender: TObject);
