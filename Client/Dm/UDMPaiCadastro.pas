@@ -454,8 +454,6 @@ begin
       if AnsiUpperCase(Params.Items[X].Name) = 'COD' then
         Params.ParamByName('COD').AsInteger := FCodigoAtual;
     end;
-
-
 end;
 
 procedure TDMPaiCadastro.CDSCadastroBeforePost(DataSet: TDataSet);

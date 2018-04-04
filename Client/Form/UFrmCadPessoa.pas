@@ -107,6 +107,7 @@ procedure TFrmCadPessoa.FormCreate(Sender: TObject);
 begin
   DMCadastro := TDMCadPessoa.Create(Self);
   DSPessoa_Endereco.DataSet := TDMCadPessoa(DMCadastro).CDSPessoa_Endereco;
+
   inherited;
 end;
 
@@ -121,11 +122,13 @@ begin
   inherited;
   if rdgFisicaJuridica.ItemIndex = 0 then
   begin
-    edtCpf.Visible := True;
+    edtCpf.Visible  := True;
+    edtCnpj.Visible := False;
     lblCpfCnpj.Caption := 'CPF';
   end else
   begin
     edtCnpj.Visible := True;
+    edtCpf.Visible  := False;
     lblCpfCnpj.Caption := 'CNPJ';
   end;
 end;

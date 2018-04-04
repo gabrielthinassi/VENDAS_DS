@@ -20,7 +20,7 @@ inherited FrmPaiRelatorio: TFrmPaiRelatorio
     object lblTituloRelatorio: TLabel
       Left = 4
       Top = 11
-      Width = 454
+      Width = 154
       Height = 19
       Alignment = taCenter
       Caption = 'T'#237'tulo do Relat'#243'rio'
@@ -51,9 +51,9 @@ inherited FrmPaiRelatorio: TFrmPaiRelatorio
   end
   object pnlBot: TPanel
     Left = 0
-    Top = 224
+    Top = 240
     Width = 500
-    Height = 76
+    Height = 60
     Align = alBottom
     BevelOuter = bvNone
     Color = 7232050
@@ -61,10 +61,10 @@ inherited FrmPaiRelatorio: TFrmPaiRelatorio
     TabOrder = 1
     object imgImprimir: TImage
       AlignWithMargins = True
-      Left = 424
-      Top = 5
-      Width = 65
-      Height = 68
+      Left = 440
+      Top = 6
+      Width = 49
+      Height = 49
       Center = True
       Picture.Data = {
         0954506E67496D61676589504E470D0A1A0A0000000D49484452000001000000
@@ -134,10 +134,10 @@ inherited FrmPaiRelatorio: TFrmPaiRelatorio
     end
     object imgCancelar: TImage
       AlignWithMargins = True
-      Left = 353
-      Top = 5
-      Width = 65
-      Height = 68
+      Left = 376
+      Top = 6
+      Width = 50
+      Height = 49
       Center = True
       Picture.Data = {
         0954506E67496D61676589504E470D0A1A0A0000000D49484452000001000000
@@ -220,22 +220,22 @@ inherited FrmPaiRelatorio: TFrmPaiRelatorio
         00C60800608C0000C60800608C0000C6FE03D74F4F3DC61A3C4E000000004945
         4E44AE426082}
       Proportional = True
+      OnClick = imgCancelarClick
     end
   end
   object pgctrlPrincipal: TPageControl
     Left = 0
     Top = 41
     Width = 500
-    Height = 183
+    Height = 199
     ActivePage = pgPrincipal
     Align = alClient
     Style = tsFlatButtons
     TabOrder = 2
-    ExplicitHeight = 199
+    ExplicitHeight = 183
     object pgPrincipal: TTabSheet
       Caption = 'Principal'
-      ExplicitTop = 25
-      ExplicitHeight = 168
+      ExplicitHeight = 152
     end
   end
 end

@@ -18,6 +18,7 @@ type
     lblFechar: TLabel;
     imgCancelar: TImage;
     procedure lblFecharClick(Sender: TObject);
+    procedure imgCancelarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -30,6 +31,12 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TFrmPaiRelatorio.imgCancelarClick(Sender: TObject);
+begin
+  inherited;
+  Close;
+end;
 
 procedure TFrmPaiRelatorio.lblFecharClick(Sender: TObject);
 begin

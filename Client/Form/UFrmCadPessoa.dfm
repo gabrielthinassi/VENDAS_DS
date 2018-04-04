@@ -19,6 +19,11 @@ inherited FrmCadPessoa: TFrmCadPessoa
     inherited pnlNavegar: TPanel
       Left = 465
       ExplicitLeft = 465
+      inherited btnProximo: TSpeedButton
+        ExplicitLeft = 87
+        ExplicitTop = -3
+        ExplicitHeight = 37
+      end
     end
   end
   inherited pnlButtons: TPanel

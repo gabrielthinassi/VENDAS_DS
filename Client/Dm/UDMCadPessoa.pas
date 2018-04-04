@@ -11,13 +11,15 @@ uses
   Datasnap.DSConnect,
   //------//
   ClassPessoa,
-  ClassPessoa_Endereco;
+  ClassPessoa_Endereco,
+  ClassDataSet;
 
 type
   TDMCadPessoa = class(TDMPaiCadastro)
     CDSPessoa_Endereco: TClientDataSet;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
+    procedure CDSCadastroAfterOpen(DataSet: TDataSet);
   private
     { Private declarations }
     FCodigoAtualPessoa_Endereco: Integer;
@@ -35,6 +37,25 @@ implementation
 
 {$R *.dfm}
 
+procedure TDMCadPessoa.CDSCadastroAfterOpen(DataSet: TDataSet);
+begin
+  inherited;
+  CDSPessoa_Endereco.DataSetField := TDataSetField(CDSCadastro.FieldByName('SQLDSPessoa_Endereco'));
+  FClassPessoa_Endereco.ConfigurarPropriedadesDoCampo(CDSPessoa_Endereco);
+
+  with TClassPessoa_Endereco do
+  begin
+    CDSPessoa_Endereco.AdicionarCampos;
+    CDSPessoa_Endereco.ProviderName := 'DSPCCadastro';
+    //Inicio da viagem
+    CDSPessoa_Endereco.Close;
+    //CDSPessoa_Endereco.FieldByName('CODIGO_PESSOA').AsInteger := CDSCadastro.FieldByName('CODIGO_PESSOA').AsInteger;
+    CDSPessoa_Endereco.FetchParams;
+    CDSPessoa_Endereco.Open;
+    //Fim da viagem
+  end;
+end;
+
 procedure TDMCadPessoa.DataModuleCreate(Sender: TObject);
 begin
   FClasseFilha := TClassPessoa;
@@ -43,14 +64,6 @@ begin
 
   DSPCCadastro.ServerClassName := 'TSMCadPessoa';
   CDSCadastro.ProviderName := 'DSPCCadastro';
-  //CDSPessoa_Endereco.ProviderName := 'DSPCCadastro';
-
-  CDSPessoa_Endereco.DataSetField := TDataSetField(CDSCadastro.FieldByName('SQLDSPessoa_Endereco'));
-  with TClassPessoa_Endereco do
-  begin
-    //CDSPessoa_Endereco.AdicionaCampos;
-  end;
-
 
   inherited;
 end;

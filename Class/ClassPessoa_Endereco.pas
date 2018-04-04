@@ -78,7 +78,7 @@ begin
       begin
         DisplayLabel := 'Código Endereço';
         Visible := False;
-        CustomConstraint := sCC_ValueIsNotNullAndNotVazio;
+        //CustomConstraint := sCC_ValueIsNotNullAndNotVazio;
       end
       else if (Campo = 'TIPO_ENDERECOPESSOA') then
       begin
@@ -126,7 +126,7 @@ begin
       begin
         DisplayLabel := 'Código da Pessoa';
         Visible := False;
-        CustomConstraint := sCC_ValueIsNotNullAndNotVazio;
+        //CustomConstraint := sCC_ValueIsNotNullAndNotVazio;
       end;
   end;
 end;

@@ -21,7 +21,8 @@ uses
   ClassPessoa in '..\Class\ClassPessoa.pas',
   ClassPessoa_Endereco in '..\Class\ClassPessoa_Endereco.pas',
   USMCadPessoa in 'USMCadPessoa.pas' {SMCadPessoa: TDSServerModule},
-  USMPaiConsulta in 'USMPaiConsulta.pas' {SMPaiConsulta: TDSServerModule};
+  USMPaiConsulta in 'USMPaiConsulta.pas' {SMPaiConsulta: TDSServerModule},
+  ClassPaiRelatorio in '..\Class\ClassPaiRelatorio.pas';
 
 {$R *.res}
 

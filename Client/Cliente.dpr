@@ -25,7 +25,8 @@ uses
   UFrmLogin in 'Form\UFrmLogin.pas' {FrmLogin},
   UFrmPaiConsulta in 'Form\UFrmPaiConsulta.pas' {FrmPaiConsulta},
   UFrmCadPedido in 'Form\UFrmCadPedido.pas' {FrmCadPedido},
-  UFrmPaiRelatorio in 'Form\UFrmPaiRelatorio.pas' {FrmPaiRelatorio};
+  UFrmPaiRelatorio in 'Form\UFrmPaiRelatorio.pas' {FrmPaiRelatorio},
+  ClassPaiRelatorio in '..\Class\ClassPaiRelatorio.pas';
 
 {$R *.res}
 

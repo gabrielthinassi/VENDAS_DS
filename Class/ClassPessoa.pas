@@ -89,7 +89,7 @@ begin
       if (Campo = 'CODIGO_PESSOA') then
       begin
         DisplayLabel := 'Código';
-        CustomConstraint := sCC_ValueIsNotNullAndNotVazio;
+        //CustomConstraint := sCC_ValueIsNotNullAndNotVazio;
       end
       else if (Campo = 'RAZAOSOCIAL_PESSOA') then
       begin
