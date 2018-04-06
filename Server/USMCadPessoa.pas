@@ -18,6 +18,7 @@ uses
   Data.SqlExpr,
   USMPaiCadastro,
   //-------------------//
+  ClassDataSet,
   ClassPessoa,
   ClassPessoa_Endereco;
 
@@ -25,6 +26,7 @@ type
   TSMCadPessoa = class(TSMPaiCadastro)
     dsLink: TDataSource;
     SQLDSPessoa_Endereco: TSQLDataSet;
+    procedure SQLDSPessoa_EnderecoAfterOpen(DataSet: TDataSet);
   private
     { Private declarations }
   protected
@@ -50,6 +52,19 @@ begin
   SQLDSPessoa_Endereco.CommandText := TClassPessoa_Endereco.SQLBaseCadastro;
   TClassPessoa_Endereco.CriarParametros(SQLDSPessoa_Endereco);
   SQLDSPessoa_Endereco.DataSource := dsLink;
+end;
+
+procedure TSMCadPessoa.SQLDSPessoa_EnderecoAfterOpen(DataSet: TDataSet);
+begin
+  inherited;
+
+  SQLDSPessoa_Endereco.ConfigurarProviderFlags([TClassPessoa_Endereco.CampoChave]);
+
+  {with FClasseFilha, DataSet do
+    begin
+      ConfigurarProviderFlags([CampoChave]);
+    end;
+  }
 end;
 
 end.

@@ -5,6 +5,7 @@ inherited SMCadPessoa: TSMCadPessoa
     Top = 88
   end
   object SQLDSPessoa_Endereco: TSQLDataSet
+    AfterOpen = SQLDSPessoa_EnderecoAfterOpen
     DataSource = dsLink
     Params = <>
     Left = 80

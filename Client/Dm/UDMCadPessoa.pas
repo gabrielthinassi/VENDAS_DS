@@ -43,17 +43,12 @@ begin
   CDSPessoa_Endereco.DataSetField := TDataSetField(CDSCadastro.FieldByName('SQLDSPessoa_Endereco'));
   FClassPessoa_Endereco.ConfigurarPropriedadesDoCampo(CDSPessoa_Endereco);
 
-  with TClassPessoa_Endereco do
-  begin
-    CDSPessoa_Endereco.AdicionarCampos;
-    CDSPessoa_Endereco.ProviderName := 'DSPCCadastro';
-    //Inicio da viagem
-    CDSPessoa_Endereco.Close;
-    //CDSPessoa_Endereco.FieldByName('CODIGO_PESSOA').AsInteger := CDSCadastro.FieldByName('CODIGO_PESSOA').AsInteger;
-    CDSPessoa_Endereco.FetchParams;
-    CDSPessoa_Endereco.Open;
-    //Fim da viagem
-  end;
+  //Setando o CDSPessoa_Endereco para aparecer
+  CDSPessoa_Endereco.Close;
+  CDSPessoa_Endereco.AdicionarCampos;
+  CDSPessoa_Endereco.ProviderName := 'DSPCCadastro';
+  CDSPessoa_Endereco.Open;
+
 end;
 
 procedure TDMCadPessoa.DataModuleCreate(Sender: TObject);

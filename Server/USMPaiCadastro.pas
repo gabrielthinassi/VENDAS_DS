@@ -104,13 +104,11 @@ end;
 
 procedure TSMPaiCadastro.SQLDSCadastroAfterOpen(DataSet: TDataSet);
 begin
-
   //SetaProviderFlag(sqlCadastro, FClassFilha.CampoChave);
   //Usando da forma abaixo, pode-se utilizar na Classe pai, pois só executará quando houver FClasseFilha setada.
   with FClasseFilha, DataSet do
     begin
       ConfigurarProviderFlags([CampoChave]);
-      //ConfigurarPropriedadesDosCampos(DataSet);
     end;
 
   AposAbrirSQLDSCadastro(DataSet);

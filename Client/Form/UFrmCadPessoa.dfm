@@ -35,10 +35,7 @@ inherited FrmCadPessoa: TFrmCadPessoa
     Width = 524
     ExplicitWidth = 524
     inherited tsPrincipal: TTabSheet
-      ExplicitLeft = 4
-      ExplicitTop = 24
       ExplicitWidth = 516
-      ExplicitHeight = 282
       object lblRazaoSocial: TLabel
         Left = 15
         Top = 16
