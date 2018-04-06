@@ -69,6 +69,7 @@ type
     procedure GravarRegistro;
 
     function AbreCasdastro(ACodigo: Integer): Boolean;
+    procedure AbreFilhos;
     //procedure AtribuiAutoIncDetalhe(DataSet: TDataSet; Classe: TClassPaiCadastro; CampoChaveEstrangeira: String);
 
     //Exportar & Importar
@@ -289,6 +290,23 @@ begin
   Result := DMConexao.ExecuteScalar(SQL);
   if Result = 0 then
     Result := Atual;
+end;
+
+procedure TDMPaiCadastro.AbreFilhos;
+var
+  X: Integer;
+begin
+  with Self do
+  for X := 0 to ComponentCount - 1 do
+  begin
+    if (Components[X] is TClientDataSet) then
+    begin
+      (Components[X] as TClientDataSet).Close;
+      (Components[X] as TClientDataSet).AdicionarCampos();
+      (Components[X] as TClientDataSet).ProviderName := 'DSPCCadastro';
+      (Components[X] as TClientDataSet).Open;
+    end;
+  end;
 end;
 
 function TDMPaiCadastro.Anterior(Atual: integer): integer;

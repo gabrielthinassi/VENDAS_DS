@@ -74,3 +74,6 @@ if (FClasseFilha.TabelaPrincipal <> CDSTemp.GetOptionalParam('Tabela')) then
 
 Como funciona e o que faz esse GetOptionalParam ????
 
+11)
+
+Porque o AbreFilhos; não funciona ? Tem como fazer ?

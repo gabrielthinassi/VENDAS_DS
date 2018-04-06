@@ -42,7 +42,7 @@ begin
   inherited;
   CDSPessoa_Endereco.DataSetField := TDataSetField(CDSCadastro.FieldByName('SQLDSPessoa_Endereco'));
   FClassPessoa_Endereco.ConfigurarPropriedadesDoCampo(CDSPessoa_Endereco);
-
+  //AbreFilhos;
   //Setando o CDSPessoa_Endereco para aparecer
   CDSPessoa_Endereco.Close;
   CDSPessoa_Endereco.AdicionarCampos;
