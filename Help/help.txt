@@ -24,6 +24,10 @@ Porque é necessário fazer o Cast TDMCadPessoa(DMCadastro).CDSPessoa_Endereco; ??
 
 5) 
 Como finalizar o FrmLogin ao abrir o FrmPrincipal?
+R-> Coloca o DMConexao para iniciar primeiro.
+    No Create do DM, criar o FrmLogin.
+    Depois pela chamada do FrmPrincipal ao dar Close no Login, o Principal será mantido.
+
 
 6)
 
@@ -65,15 +69,5 @@ Não estou conseguindo capturar o FCodigoAtual;
 Não estou conseguindo controlar o Codigo/FCodigo do DMPaiCadastro;
 
 10)
-
-if (FClasseFilha.TabelaPrincipal <> CDSTemp.GetOptionalParam('Tabela')) then
-    begin
-      ShowMessage('Arquivo incompatível com o cadastro "' + FClasseFilha.Descricao + '"');
-      Exit;
-    end;
-
-Como funciona e o que faz esse GetOptionalParam ????
-
-11)
 
 Porque o AbreFilhos; não funciona ? Tem como fazer ?

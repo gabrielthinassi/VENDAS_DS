@@ -49,21 +49,23 @@ type
     procedure CDSCadastroBeforePost(DataSet: TDataSet);
 
   private
-    function GetIdDetalhe: integer;
+    function GetIdDetalhe: Integer;
   protected
     FClasseFilha: TFClassPaiCadastro;
     FCodigoAtual: Integer;
   public
-    property CodigoAtual: integer read FCodigoAtual write FCodigoAtual;
-    property IdDetalhe: integer read GetIdDetalhe;
+    property CodigoAtual: Integer read FCodigoAtual write FCodigoAtual;
+    property IdDetalhe: Integer read GetIdDetalhe;
 
     function GetClassNameClasseFilha: string;
 
-    function Primeiro: integer; virtual;
-    function Anterior(Atual: integer): integer; virtual;
-    function Proximo(Atual: integer): integer; virtual;
-    function Ultimo: integer; virtual;
-    function NovoCodigo: integer; virtual;
+    function Primeiro: Integer; virtual;
+    function Anterior(Atual: Integer): Integer; virtual;
+    function Proximo(Atual: Integer): Integer; virtual;
+    function Ultimo: Integer; virtual;
+    function NovoCodigo: Integer; virtual;
+    procedure AtribuiAutoIncDetalhe(DataSet: TDataSet;
+      Classe: TFClassPaiCadastro; CampoChaveEstrangeira: String);
 
     procedure IncluirRegistro;
     procedure GravarRegistro;
@@ -118,10 +120,12 @@ begin
   CDSCadastro.Close;
 end;
 
+{$REGION 'Importar/Exportar [criar function posteriormente]'}
+
 procedure TDMPaiCadastro.ImportarArquivo(ACodigo: Integer;
                                          EventoIncluir, EventoGravar: TNotifyEvent);
 var
-  I             : Integer;
+  Field: TField;
   NomeDoArquivo : String;
   OpenDialog    : TOpenDialog;
   CDSTemp       : TClientDataSet;
@@ -157,13 +161,13 @@ begin
   CDSTemp := TClientDataSet.Create(nil);
   try
     CDSTemp.LoadFromFile(NomeDoArquivo);
-    {
-    if (FClasseFilha.TabelaPrincipal <> CDSTemp.GetOptionalParam('Tabela')) then
+
+    if CDSTemp.FindField(FClasseFilha.CampoChave) = nil then
     begin
       ShowMessage('Arquivo incompatível com o cadastro "' + FClasseFilha.Descricao + '"');
       Exit;
     end;
-    }
+
     CDSTemp.First;
     while not CDSTemp.Eof do
     begin
@@ -176,9 +180,18 @@ begin
         //if not (CDSTemp.State in [dsInsert, dsEdit]) then
         //  Exit;
 
-        for I := 0 to CDSTemp.RecordCount-1 do
+        for Field in CDSTemp.Fields do
         begin
-          CDSCadastro.Fields[I].Assign(CDSTemp.Fields[i]);
+          if FClasseFilha.CampoDescricao = Field.FieldName then
+          begin
+            CDSTemp.Edit;
+            Field.Value := Field.Value + '_COPIA';
+            CDSTemp.Post;
+          end;
+
+          //Este IF irá saltar o Campo chave, deixando-o Null para pegar o AutoInc
+          if FClasseFilha.CampoChave <> Field.FieldName then
+            CDSCadastro.FieldByName(Field.FieldName).Assign(Field);
         end;
 
         if Assigned(EventoGravar) then
@@ -242,6 +255,8 @@ begin
   CDSCadastro.SaveToFile(NomeDoArquivo, dfXMLUTF8);
 end;
 
+{$ENDREGION}
+
 function TDMPaiCadastro.AbreCasdastro(ACodigo: Integer): Boolean;
 begin
   Result := False;
@@ -256,7 +271,7 @@ begin
 end;
 
 
-function TDMPaiCadastro.Primeiro: integer;
+function TDMPaiCadastro.Primeiro: Integer;
 var
   SQL: string;
   Classe: TFClassPaiCadastro;
@@ -272,7 +287,7 @@ begin
   Result := DMConexao.ExecuteScalar(SQL);
 end;
 
-function TDMPaiCadastro.Proximo(Atual: integer): integer;
+function TDMPaiCadastro.Proximo(Atual: Integer): Integer;
 var
   SQL: string;
   Classe: TFClassPaiCadastro;
@@ -299,7 +314,7 @@ begin
   with Self do
   for X := 0 to ComponentCount - 1 do
   begin
-    if (Components[X] is TClientDataSet) then
+    if (Components[X] is TClientDataSet) and not (Components[X].Name = 'CDSCadastro') then
     begin
       (Components[X] as TClientDataSet).Close;
       (Components[X] as TClientDataSet).AdicionarCampos();
@@ -309,7 +324,7 @@ begin
   end;
 end;
 
-function TDMPaiCadastro.Anterior(Atual: integer): integer;
+function TDMPaiCadastro.Anterior(Atual: Integer): Integer;
 var
   SQL: string;
   Classe: TFClassPaiCadastro;
@@ -328,7 +343,7 @@ begin
     Result := Atual;
 end;
 
-function TDMPaiCadastro.Ultimo: integer;
+function TDMPaiCadastro.Ultimo: Integer;
 var
   SQL: string;
   Classe: TFClassPaiCadastro;
@@ -344,7 +359,7 @@ begin
   Result := DMConexao.ExecuteScalar(SQL);
 end;
 
-function TDMPaiCadastro.NovoCodigo: integer;
+function TDMPaiCadastro.NovoCodigo: Integer;
 begin
   // Retorna o novo código a ser usado na inserção
   with FClasseFilha do
@@ -361,7 +376,7 @@ begin
     Result := '';
 end;
 
-function TDMPaiCadastro.GetIdDetalhe: integer;
+function TDMPaiCadastro.GetIdDetalhe: Integer;
 begin
   //FIdDetalhe := FIdDetalhe - 1;
   //Result := FIdDetalhe;
@@ -373,6 +388,8 @@ begin
   begin
     CDSCadastro.BeforePost(CDSCadastro);
     CDSCadastro.Post;
+    //Atribuindo o CodigoAtual para o Registro Gravado
+    CodigoAtual := CDSCadastro.Fields[0].AsInteger;
   end;
 
   //if not CDSCadastro.ChangeCount <> 0 then
@@ -393,49 +410,55 @@ begin
   end;
 end;
 
-{procedure TDMPaiCadastro.AtribuiAutoIncDetalhe(DataSet: TDataSet; Classe: TFClassPaiCadastro; CampoChaveEstrangeira: String);
+procedure TDMPaiCadastro.AtribuiAutoIncDetalhe(DataSet: TDataSet; Classe: TFClassPaiCadastro; CampoChaveEstrangeira: String);
 var
-  QtdeAutoIncNegativos: Integer;
   AutoIncDetalhe: Integer;
 begin
+  DataSet.DisableControls;
+  try
+    AutoIncDetalhe := DMConexao.ProximoCodigo(Classe.TabelaPrincipal);
+    DataSet.First;
+    while not DataSet.Eof do
+    begin
+      if DataSet.FieldByName(Classe.CampoChave).AsInteger <= 0 then
+      begin
+        DataSet.Edit;
+        DataSet.FieldByName(Classe.CampoChave).AsInteger := AutoIncDetalhe;
+        DataSet.FieldByName(CampoChaveEstrangeira).AsInteger := CDSCadastro.FieldByName(FClasseFilha.CampoChave).AsInteger;
+        DataSet.Post;
+        Inc(AutoIncDetalhe);
+      end;
+      DataSet.Next;
+    end;
+  finally
+    DataSet.EnableControls;
+  end;
+
+  {-----------> Utilizando WITH
   with DataSet, Classe do
   begin
-    QtdeAutoIncNegativos := 0;
     DisableControls;
-
     try
+      AutoIncDetalhe := DMConexao.ProximoCodigo(TabelaPrincipal);
       First;
-      while not EOF do
+      while not Eof do
       begin
         if FieldByName(CampoChave).AsInteger <= 0 then
-          inc(QtdeAutoIncNegativos);
-        Next;
-      end;
-
-      if QtdeAutoIncNegativos > 0 then
-      begin
-        AutoIncDetalhe := DMConexao.ProximoCodigo(TabelaPrincipal, 0, QtdeAutoIncNegativos);
-        AutoIncDetalhe := AutoIncDetalhe - QtdeAutoIncNegativos;
-
-        First;
-        while not Eof do
         begin
-          if FieldByName(CampoChave).AsInteger <= 0 then
-          begin
-            Edit;
-            FieldByName(CampoChave).AsInteger := AutoIncDetalhe;
-            FieldByName(CampoChaveEstrangeira).AsInteger := CDSCadastro.FieldByName(FClasseFilha.CampoChave).AsInteger;
-            Post;
-            inc(AutoIncDetalhe);
-          end;
-          Next;
+          Edit;
+          FieldByName(CampoChave).AsInteger := AutoIncDetalhe;
+          FieldByName(CampoChaveEstrangeira).AsInteger := CDSCadastro.FieldByName(FClasseFilha.CampoChave).AsInteger;
+          Post;
+          Inc(AutoIncDetalhe);
         end;
+        Next;
       end;
     finally
       EnableControls;
     end;
   end;
-end;}
+  }
+end;
 
 procedure TDMPaiCadastro.CDSCadastroAfterDelete(DataSet: TDataSet);
 begin
@@ -480,8 +503,7 @@ begin
   with CDSCadastro, FClasseFilha do
   begin
     if (UpdateStatus = usInserted) and
-        ((FieldByName(CampoChave).IsNull) or
-         (FieldByName(CampoChave).AsInteger <= 0)) then
+        ((FieldByName(CampoChave).IsNull)) then
     begin
       FCodigoAtual := NovoCodigo;
       FieldByName(CampoChave).AsInteger := FCodigoAtual;
