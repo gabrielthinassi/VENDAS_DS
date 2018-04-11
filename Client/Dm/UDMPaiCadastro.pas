@@ -64,8 +64,6 @@ type
     function Proximo(Atual: Integer): Integer; virtual;
     function Ultimo: Integer; virtual;
     function NovoCodigo: Integer; virtual;
-    procedure AtribuiAutoIncDetalhe(DataSet: TDataSet;
-      Classe: TFClassPaiCadastro; CampoChaveEstrangeira: String);
 
     procedure IncluirRegistro;
     procedure GravarRegistro;
@@ -408,56 +406,6 @@ begin
     Open;
     Append;
   end;
-end;
-
-procedure TDMPaiCadastro.AtribuiAutoIncDetalhe(DataSet: TDataSet; Classe: TFClassPaiCadastro; CampoChaveEstrangeira: String);
-var
-  AutoIncDetalhe: Integer;
-begin
-  DataSet.DisableControls;
-  try
-    AutoIncDetalhe := DMConexao.ProximoCodigo(Classe.TabelaPrincipal);
-    DataSet.First;
-    while not DataSet.Eof do
-    begin
-      if DataSet.FieldByName(Classe.CampoChave).AsInteger <= 0 then
-      begin
-        DataSet.Edit;
-        DataSet.FieldByName(Classe.CampoChave).AsInteger := AutoIncDetalhe;
-        DataSet.FieldByName(CampoChaveEstrangeira).AsInteger := CDSCadastro.FieldByName(FClasseFilha.CampoChave).AsInteger;
-        DataSet.Post;
-        Inc(AutoIncDetalhe);
-      end;
-      DataSet.Next;
-    end;
-  finally
-    DataSet.EnableControls;
-  end;
-
-  {-----------> Utilizando WITH
-  with DataSet, Classe do
-  begin
-    DisableControls;
-    try
-      AutoIncDetalhe := DMConexao.ProximoCodigo(TabelaPrincipal);
-      First;
-      while not Eof do
-      begin
-        if FieldByName(CampoChave).AsInteger <= 0 then
-        begin
-          Edit;
-          FieldByName(CampoChave).AsInteger := AutoIncDetalhe;
-          FieldByName(CampoChaveEstrangeira).AsInteger := CDSCadastro.FieldByName(FClasseFilha.CampoChave).AsInteger;
-          Post;
-          Inc(AutoIncDetalhe);
-        end;
-        Next;
-      end;
-    finally
-      EnableControls;
-    end;
-  end;
-  }
 end;
 
 procedure TDMPaiCadastro.CDSCadastroAfterDelete(DataSet: TDataSet);

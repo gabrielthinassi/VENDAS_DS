@@ -24,7 +24,8 @@ uses
   Datasnap.DSConnect,
   //--------------------//
   UDMConexao,
-  ClassPaiCadastro;
+  ClassPaiCadastro,
+  Constantes;
 
 type
   TFrmPaiConsulta = class(TFrmPai)
@@ -94,7 +95,7 @@ begin
   for I := 0 to DataSet.FieldCount - 1 do
   begin
     if DataSet.Fields[I] is TDateTimeField then
-      TDateTimeField(DataSet.Fields[I]).DisplayFormat := 'dd/mm/yyyy';
+      TDateTimeField(DataSet.Fields[I]).DisplayFormat := sDisplayFormatData;
   end;
 end;
 
@@ -198,28 +199,16 @@ begin
   end;
 
   case cbxOperadores.ItemIndex of
-    0: Result := SQLCampos + ' = ' + QuotedStr(Trim(edtValorConsulta.Text));
-    1: Result := SQLCampos + ' > ' + QuotedStr(Trim(edtValorConsulta.Text));
-    2: Result := SQLCampos + ' < ' + QuotedStr(Trim(edtValorConsulta.Text));
-    3: Result := SQLCampos + ' >= ' + QuotedStr(Trim(edtValorConsulta.Text));
-    4: Result := SQLCampos + ' <= ' + QuotedStr(Trim(edtValorConsulta.Text));
-    5: Result := SQLCampos + ' like ' + QuotedStr(Trim(edtValorConsulta.Text) + '%');
-    6: Result := SQLCampos + ' like ' + QuotedStr('%' + Trim(edtValorConsulta.Text));
-    7: Result := SQLCampos + ' like ' + QuotedStr('%' + Trim(edtValorConsulta.Text) + '%');
-    8: Result := '';
+    0: Result := SQLCampos + ' = ' + QuotedStr(Trim(edtValorConsulta.Text));                //0 - Igual
+    1: Result := SQLCampos + ' > ' + QuotedStr(Trim(edtValorConsulta.Text));                //1 - Maior que
+    2: Result := SQLCampos + ' < ' + QuotedStr(Trim(edtValorConsulta.Text));                //2 - Menor que
+    3: Result := SQLCampos + ' >= ' + QuotedStr(Trim(edtValorConsulta.Text));               //3 - Maior ou igual a
+    4: Result := SQLCampos + ' <= ' + QuotedStr(Trim(edtValorConsulta.Text));               //4 - Menor ou igual a
+    5: Result := SQLCampos + ' like ' + QuotedStr(Trim(edtValorConsulta.Text) + '%');       //5 - Começa com
+    6: Result := SQLCampos + ' like ' + QuotedStr('%' + Trim(edtValorConsulta.Text));       //6 - Termina com
+    7: Result := SQLCampos + ' like ' + QuotedStr('%' + Trim(edtValorConsulta.Text) + '%'); //7 - Contém
+    8: Result := '';                                                                        //8 - Preenchido
   end;
 end;
-
-{
-0 - Igual
-1 - Maior que
-2 - Menor que
-3 - Maior ou igual a
-4 - Menor ou igual a
-5 - Começa com
-6 - Termina com
-7 - Contém
-8 - Preenchido
-}
 
 end.

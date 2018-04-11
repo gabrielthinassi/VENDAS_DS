@@ -5,6 +5,7 @@ inherited DMCadPessoa: TDMCadPessoa
     Aggregates = <>
     Params = <>
     ProviderName = 'DSPCadastro'
+    BeforePost = CDSPessoa_EnderecoBeforePost
     Left = 48
     Top = 120
   end

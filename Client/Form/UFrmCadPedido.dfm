@@ -9,7 +9,7 @@ inherited FrmCadPedido: TFrmCadPedido
   inherited pnlBot: TPanel
     Top = 559
     Width = 800
-    ExplicitTop = 459
+    ExplicitTop = 559
     ExplicitWidth = 800
     inherited txtAjuda: TDBText
       Width = 798
@@ -26,18 +26,18 @@ inherited FrmCadPedido: TFrmCadPedido
   end
   inherited pnlButtons: TPanel
     Height = 518
-    ExplicitHeight = 418
+    ExplicitHeight = 518
   end
   inherited pgctrlCadastro: TPageControl
     Width = 674
     Height = 518
     ExplicitWidth = 674
-    ExplicitHeight = 418
+    ExplicitHeight = 518
     inherited tsPrincipal: TTabSheet
       ExplicitLeft = 4
       ExplicitTop = 24
       ExplicitWidth = 666
-      ExplicitHeight = 390
+      ExplicitHeight = 490
       object groupCliente: TGroupBox
         Left = 3
         Top = 3
@@ -243,26 +243,15 @@ inherited FrmCadPedido: TFrmCadPedido
           Height = 13
           Caption = 'Desconto ( $ )'
         end
-        object ctrlPedidoConsultor: TDBCtrlGrid
-          Left = 166
-          Top = 43
-          Width = 134
-          Height = 25
-          ColCount = 2
-          PanelHeight = 25
-          PanelWidth = 58
-          TabOrder = 0
-          RowCount = 1
-        end
         object DBCtrlGrid2: TDBCtrlGrid
           Left = 166
           Top = 93
-          Width = 253
+          Width = 252
           Height = 25
           ColCount = 5
           PanelHeight = 25
           PanelWidth = 47
-          TabOrder = 1
+          TabOrder = 0
           RowCount = 1
         end
         object rdgrpCondicaoPagamento: TDBRadioGroup
@@ -275,22 +264,11 @@ inherited FrmCadPedido: TFrmCadPedido
             #192' Vista'
             #192' Prazo'
             'Outros')
-          TabOrder = 2
+          TabOrder = 1
           Values.Strings = (
             '0'
             '1'
             '2')
-        end
-        object DBCtrlGrid1: TDBCtrlGrid
-          Left = 464
-          Top = 43
-          Width = 133
-          Height = 25
-          ColCount = 2
-          PanelHeight = 25
-          PanelWidth = 58
-          TabOrder = 3
-          RowCount = 1
         end
         object edtDescontoValor: TDBEdit
           Left = 464
@@ -298,6 +276,20 @@ inherited FrmCadPedido: TFrmCadPedido
           Width = 116
           Height = 25
           TabOrder = 4
+        end
+        object edtPedidoConsultor: TDBEdit
+          Left = 166
+          Top = 43
+          Width = 116
+          Height = 25
+          TabOrder = 2
+        end
+        object edtDescontoPercentual: TDBEdit
+          Left = 464
+          Top = 43
+          Width = 116
+          Height = 25
+          TabOrder = 3
         end
       end
     end

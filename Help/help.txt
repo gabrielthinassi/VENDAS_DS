@@ -71,3 +71,7 @@ Não estou conseguindo controlar o Codigo/FCodigo do DMPaiCadastro;
 10)
 
 Porque o AbreFilhos; não funciona ? Tem como fazer ?
+
+11)
+
+Como funciona o AutoIncDetalhe do ERP ??

@@ -89,12 +89,16 @@ uses
 procedure TFrmCadPessoa.btnPesquisarClick(Sender: TObject);
 begin
   inherited;
+inherited;
   FrmPaiConsulta := TFrmPaiConsulta.Create(Self);
   FrmPaiConsulta.FClasse := TClassPessoa;
-  FrmPaiConsulta.ShowModal;
-  DMCadPessoa.AbreCasdastro(FrmPaiConsulta.Codigo);
-  edtCodigo.AsInteger := FrmPaiConsulta.Codigo;
-  FreeAndNil(FrmPaiConsulta);
+  try
+    FrmPaiConsulta.ShowModal;
+    edtCodigo.AsInteger := FrmPaiConsulta.Codigo;
+    DMCadastro.AbreCasdastro(edtCodigo.AsInteger);
+  finally
+    FreeAndNil(FrmPaiConsulta);
+  end;
 end;
 
 procedure TFrmCadPessoa.FormClose(Sender: TObject; var Action: TCloseAction);

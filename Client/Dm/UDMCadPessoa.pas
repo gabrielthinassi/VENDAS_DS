@@ -20,6 +20,7 @@ type
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
     procedure CDSCadastroAfterOpen(DataSet: TDataSet);
+    procedure CDSPessoa_EnderecoBeforePost(DataSet: TDataSet);
   private
     { Private declarations }
     FCodigoAtualPessoa_Endereco: Integer;
@@ -33,6 +34,9 @@ var
 
 implementation
 
+uses
+  UDMConexao;
+
 {%CLASSGROUP 'Vcl.Controls.TControl'}
 
 {$R *.dfm}
@@ -44,6 +48,17 @@ begin
   FClassPessoa_Endereco.ConfigurarPropriedadesDoCampo(CDSPessoa_Endereco);
   //Abre os DataSetsDetalhe
   AbreFilhos;
+end;
+
+procedure TDMCadPessoa.CDSPessoa_EnderecoBeforePost(DataSet: TDataSet);
+begin
+  inherited;
+  with DataSet, TClassPessoa_Endereco do
+  begin
+    if (UpdateStatus = usInserted) and
+        ((FieldByName(CampoChave).IsNull)) then
+      FieldByName(CampoChave).AsInteger := DMConexao.ProximoCodigo(TabelaPrincipal);
+  end;
 end;
 
 procedure TDMCadPessoa.DataModuleCreate(Sender: TObject);

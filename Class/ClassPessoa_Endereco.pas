@@ -171,7 +171,7 @@ end;
 
 class function TClassPessoa_Endereco.TabelaPrincipal: string;
 begin
-  Result := 'PESSOA';
+  Result := 'PESSOA_ENDERECO';
 end;
 
 
