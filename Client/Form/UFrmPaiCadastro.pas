@@ -258,18 +258,22 @@ end;
 procedure TFrmPaiCadastro.pnlTopExit(Sender: TObject);
 begin
   inherited;
-
-  if not FDMCadastro.AbreCasdastro(edtCodigo.AsInteger) then
+  if ((edtCodigo.Text <> '') and (edtCodigo.Text <> '0')) then
   begin
-    ShowMessage('Código ' + edtCodigo.Text + ' não encontrado!');
-    if edtCodigo.CanFocus then
-      edtCodigo.SetFocus;
+    if not FDMCadastro.AbreCasdastro(edtCodigo.AsInteger) then
+    begin
+      ShowMessage('Código ' + edtCodigo.Text + ' não encontrado!');
+      if edtCodigo.CanFocus then
+        edtCodigo.SetFocus;
 
-    Abort;
-  end
-  else
-    //Perform(WM_NEXTDLGCTL, 0, 0);
-    //Estava causando alternação entre os Dialogs
+      Abort;
+    end
+    else
+      //Perform(WM_NEXTDLGCTL, 0, 0);
+      //Estava causando alternação entre os Dialogs
+  end;
+
+    
 end;
 
 end.

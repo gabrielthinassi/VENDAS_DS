@@ -10,6 +10,10 @@ inherited FrmCadStatus: TFrmCadStatus
   end
   inherited pgctrlCadastro: TPageControl
     inherited tsPrincipal: TTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 24
+      ExplicitWidth = 366
+      ExplicitHeight = 282
       object lblDescricaoStatus: TLabel
         Left = 15
         Top = 16
