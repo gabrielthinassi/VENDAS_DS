@@ -26,7 +26,10 @@ uses
   UFrmPaiConsulta in 'Form\UFrmPaiConsulta.pas' {FrmPaiConsulta},
   UFrmCadPedido in 'Form\UFrmCadPedido.pas' {FrmCadPedido},
   UFrmPaiRelatorio in 'Form\UFrmPaiRelatorio.pas' {FrmPaiRelatorio},
-  ClassPaiRelatorio in '..\Class\ClassPaiRelatorio.pas';
+  ClassPaiRelatorio in '..\Class\ClassPaiRelatorio.pas',
+  ClassItem in '..\Class\ClassItem.pas',
+  UFrmCadItem in 'Form\UFrmCadItem.pas' {FrmCadItem},
+  UDMCadItem in 'Dm\UDMCadItem.pas' {DMCadItem: TDataModule};
 
 {$R *.res}
 

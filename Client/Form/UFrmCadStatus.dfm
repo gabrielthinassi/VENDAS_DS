@@ -10,10 +10,6 @@ inherited FrmCadStatus: TFrmCadStatus
   end
   inherited pgctrlCadastro: TPageControl
     inherited tsPrincipal: TTabSheet
-      ExplicitLeft = 4
-      ExplicitTop = 24
-      ExplicitWidth = 366
-      ExplicitHeight = 282
       object lblDescricaoStatus: TLabel
         Left = 15
         Top = 16
@@ -33,7 +29,10 @@ inherited FrmCadStatus: TFrmCadStatus
     end
   end
   inherited DSCadastro: TDataSource
-    Left = 455
-    Top = 45
+    Left = 231
+    Top = 289
+  end
+  inherited pmOutros: TPopupMenu
+    Top = 288
   end
 end

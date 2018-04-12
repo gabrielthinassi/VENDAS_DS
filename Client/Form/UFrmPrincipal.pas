@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Vcl.ExtCtrls, Vcl.ComCtrls;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Vcl.ExtCtrls, Vcl.ComCtrls, UFrmCadItem;
 
 type
   TFrmPrincipal = class(TForm)
@@ -19,12 +19,14 @@ type
     mmPedidoAssistencia: TMenuItem;
     pnlFundo: TPanel;
     pnlBot: TPanel;
+    mmItem: TMenuItem;
     procedure mmStatusClick(Sender: TObject);
     procedure mnConfiguracoesClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure mmPessoaClick(Sender: TObject);
     procedure mmPedidoVendaClick(Sender: TObject);
+    procedure mmItemClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -49,6 +51,11 @@ end;
 procedure TFrmPrincipal.FormCreate(Sender: TObject);
 begin
   DMConexao := TDMConexao.Create(Self);
+end;
+
+procedure TFrmPrincipal.mmItemClick(Sender: TObject);
+begin
+  FrmCadItem := TFrmCadItem(CriaForm(Self, FrmCadItem, TFrmCadItem, False, Sender));
 end;
 
 procedure TFrmPrincipal.mmPedidoVendaClick(Sender: TObject);

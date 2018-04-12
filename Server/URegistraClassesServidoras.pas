@@ -27,6 +27,7 @@ uses
   USMConexao,
   //--------------------//
   USMCadStatus,
+  USMCadItem,
   USMCadPessoa;
 
 
@@ -41,6 +42,7 @@ begin
   TExpositorDeClasses.Create(AOwner, AServer, TSMConexao,     True, TDSLifeCycle.Session);
   TExpositorDeClasses.Create(AOwner, AServer, TSMPaiConsulta, True, TDSLifeCycle.Session);
   TExpositorDeClasses.Create(AOwner, AServer, TSMCadStatus,   True, TDSLifeCycle.Session);
+  TExpositorDeClasses.Create(AOwner, AServer, TSMCadItem,     True, TDSLifeCycle.Session);
   TExpositorDeClasses.Create(AOwner, AServer, TSMCadPessoa,   True, TDSLifeCycle.Session);
 end;
 

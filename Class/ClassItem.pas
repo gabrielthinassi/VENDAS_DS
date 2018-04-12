@@ -1,4 +1,4 @@
-unit ClassStatus;
+unit ClassItem;
 
 interface
 
@@ -10,7 +10,7 @@ uses
   Constantes;
 
 type
-  TClassStatus = class(TClassPaiCadastro)
+  TClassItem = class(TClassPaiCadastro)
   public
     class function Descricao: string; override;
     class function TabelaPrincipal: string; override;
@@ -29,35 +29,37 @@ type
   end;
 
 implementation
-  { TClassStatus }
+  { TClassItem }
 
-class function TClassStatus.Descricao: string;
+class function TClassItem.Descricao: string;
 begin
-  Result := 'Status';
+  Result := 'Item';
 end;
 
-class function TClassStatus.TabelaPrincipal: string;
+class function TClassItem.TabelaPrincipal: string;
 begin
-  Result := 'STATUS';
+  Result := 'ITEM';
 end;
 
-class function TClassStatus.CampoChave: string;
+class function TClassItem.CampoChave: string;
 begin
-  Result := 'CODIGO_STATUS';
+  Result := 'CODIGO_ITEM';
 end;
 
-class function TClassStatus.CampoDescricao: string;
+class function TClassItem.CampoDescricao: string;
 begin
-  Result := 'DESCRICAO_STATUS';
+  Result := 'DESCRICAO_ITEM';
 end;
 
-class function TClassStatus.CamposCadastro: string;
+class function TClassItem.CamposCadastro: string;
 begin
-  Result := '  STATUS.CODIGO_STATUS,   ' +
-            '  STATUS.DESCRICAO_STATUS ' ;
+  Result := ' ITEM.CODIGO_ITEM,     ' +
+            ' ITEM.REFERENCIA_ITEM, ' +
+            ' ITEM.UNIDADE_ITEM,    ' +
+            ' ITEM.DESCRICAO_ITEM   ' ;
 end;
 
-class function TClassStatus.CamposConsulta(Lista, Campos: TStrings): TStrings;
+class function TClassItem.CamposConsulta(Lista, Campos: TStrings): TStrings;
 begin
   {0} Lista.Add('Código');
   {1} Lista.Add('Descrição');
@@ -68,29 +70,29 @@ begin
   Result := Lista;
 end;
 
-class function TClassStatus.SQLBaseCadastro: string;
+class function TClassItem.SQLBaseCadastro: string;
 begin
   Result := ' SELECT       ' + #13 +
             CamposCadastro   + #13 +
-            ' FROM STATUS  ' + #13 +
-            ' WHERE (STATUS.CODIGO_STATUS = :COD)';
+            ' FROM ITEM    ' + #13 +
+            ' WHERE (ITEM.CODIGO_ITEM = :COD)';
 end;
 
-class function TClassStatus.SQLBaseConsulta: string;
+class function TClassItem.SQLBaseConsulta: string;
 begin
   Result := ' SELECT       ' + #13 +
             CamposCadastro   + #13 +
-            ' FROM STATUS  ' ;
+            ' FROM ITEM    ' ;
 end;
 
-class function TClassStatus.SQLBaseRelatorio: string;
+class function TClassItem.SQLBaseRelatorio: string;
 begin
   Result := ' SELECT       ' + #13 +
             CamposCadastro   + #13 +
-            ' FROM STATUS  ' ;
+            ' FROM ITEM    ' ;
 end;
 
-class procedure TClassStatus.ConfigurarPropriedadesDoCampo(DataSet: TDataSet);
+class procedure TClassItem.ConfigurarPropriedadesDoCampo(DataSet: TDataSet);
 var
   Campo : String;
   I     : Integer;
@@ -101,20 +103,30 @@ begin
     Campo := DataSet.Fields[I].FieldName;
 
     with DataSet.FieldByName(Campo) do
-      if (Campo = 'CODIGO_STATUS') then
+      if (Campo = 'CODIGO_ITEM') then
       begin
         DisplayLabel := 'Código'
       end
-      else if (Campo = 'DESCRICAO_STATUS') then
+      else if (Campo = 'REFERENCIA_ITEM') then
       begin
-        DisplayLabel := 'Descrição do Status';
+        DisplayLabel := 'Referência do Item';
+      end
+      else if (Campo = 'DESCRICAO_ITEM') then
+      begin
+        DisplayLabel := 'Descrição do Item';
+        CustomConstraint := sCC_ValueIsNotNullAndNotVazio;
+        ConstraintErrorMessage := DisplayLabel + sCC_ErrorMessage;
+      end
+      else if (Campo = 'UNIDADE_ITEM') then
+      begin
+        DisplayLabel := 'Unidade do Item';
         CustomConstraint := sCC_ValueIsNotNullAndNotVazio;
         ConstraintErrorMessage := DisplayLabel + sCC_ErrorMessage;
       end
   end;
 end;
 
-class function TClassStatus.ParametrosSql: TListaDeParametrosSql;
+class function TClassItem.ParametrosSql: TListaDeParametrosSql;
 var
   Parametros: TListaDeParametrosSql;
 begin
@@ -126,9 +138,9 @@ begin
 end;
 
 initialization
-  //Registra a Classe para ser utilizada posteriormente com a function FindClass('TClassStatus');
+  //Registra a Classe para ser utilizada posteriormente com a function FindClass('TClassItem');
   //Pode ser utilizada para criação dinâmica de formulários;
-  RegisterClass(TClassStatus);
+  RegisterClass(TClassItem);
 
 end.
 

@@ -1,0 +1,2 @@
+inherited SMCadItem: TSMCadItem
+end

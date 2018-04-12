@@ -22,7 +22,9 @@ uses
   ClassPessoa_Endereco in '..\Class\ClassPessoa_Endereco.pas',
   USMCadPessoa in 'USMCadPessoa.pas' {SMCadPessoa: TDSServerModule},
   USMPaiConsulta in 'USMPaiConsulta.pas' {SMPaiConsulta: TDSServerModule},
-  ClassPaiRelatorio in '..\Class\ClassPaiRelatorio.pas';
+  ClassPaiRelatorio in '..\Class\ClassPaiRelatorio.pas',
+  ClassItem in '..\Class\ClassItem.pas',
+  USMCadItem in 'USMCadItem.pas' {SMCadItem: TDSServerModule};
 
 {$R *.res}
 
@@ -34,6 +36,7 @@ begin
   Application.CreateForm(TFrmServidor, FrmServidor);
   Application.CreateForm(TSMCadPessoa, SMCadPessoa);
   Application.CreateForm(TSMPaiConsulta, SMPaiConsulta);
+  Application.CreateForm(TSMCadItem, SMCadItem);
   Application.Run;
 end.
 

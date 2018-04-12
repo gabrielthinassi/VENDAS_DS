@@ -50,6 +50,10 @@ object FrmPrincipal: TFrmPrincipal
         Caption = 'Pessoa'
         OnClick = mmPessoaClick
       end
+      object mmItem: TMenuItem
+        Caption = 'Item'
+        OnClick = mmItemClick
+      end
     end
     object mmLancamentos: TMenuItem
       Caption = 'Lan'#231'amentos'

@@ -1,4 +1,4 @@
-unit UFrmCadStatus;
+unit UFrmCadItem;
 
 interface
 
@@ -13,29 +13,33 @@ uses
   Vcl.Forms,
   Vcl.Dialogs,
   UFrmPaiCadastro,
-  Vcl.DBCtrls,
-  Vcl.StdCtrls,
+  Vcl.Menus,
   Data.DB,
   Vcl.ComCtrls,
   Vcl.Buttons,
+  Vcl.StdCtrls,
   Vcl.Mask,
-  Vcl.Menus,
   JvExMask,
   JvToolEdit,
   JvBaseEdits,
+  Vcl.DBCtrls,
   Vcl.ExtCtrls,
-  //-------------------//
-  UDMCadStatus,
-  ClassStatus,
-  UFrmPaiConsulta;
+  //----//
+  UFrmPaiConsulta,
+  ClassItem,
+  UDMCadItem;
 
 type
-  TFrmCadStatus = class(TFrmPaiCadastro)
-    lblDescricaoStatus: TLabel;
-    edtDescricao: TDBEdit;
+  TFrmCadItem = class(TFrmPaiCadastro)
+    lblReferenciaItem: TLabel;
+    edtReferenciaItem: TDBEdit;
+    lblUnidade: TLabel;
+    edtUnidadeItem: TDBEdit;
+    lblDescricaoItem: TLabel;
+    edtDescricaoItem: TDBEdit;
     procedure FormCreate(Sender: TObject);
-    procedure FormDestroy(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure FormDestroy(Sender: TObject);
     procedure btnPesquisarClick(Sender: TObject);
   private
     { Private declarations }
@@ -44,17 +48,17 @@ type
   end;
 
 var
-  FrmCadStatus: TFrmCadStatus;
+  FrmCadItem: TFrmCadItem;
 
 implementation
 
 {$R *.dfm}
 
-procedure TFrmCadStatus.btnPesquisarClick(Sender: TObject);
+procedure TFrmCadItem.btnPesquisarClick(Sender: TObject);
 begin
   inherited;
   FrmPaiConsulta := TFrmPaiConsulta.Create(Self);
-  FrmPaiConsulta.FClasse := TClassStatus;
+  FrmPaiConsulta.FClasse := TClassItem;
   try
     FrmPaiConsulta.ShowModal;
     edtCodigo.AsInteger := FrmPaiConsulta.Codigo;
@@ -64,26 +68,26 @@ begin
   end;
 end;
 
-procedure TFrmCadStatus.FormClose(Sender: TObject; var Action: TCloseAction);
+procedure TFrmCadItem.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   inherited;
-  FreeAndNil(DMCadStatus);
+  FreeAndNil(DMCadItem);
 end;
 
-procedure TFrmCadStatus.FormCreate(Sender: TObject);
+procedure TFrmCadItem.FormCreate(Sender: TObject);
 begin
-  DMCadastro := TDMCadStatus.Create(Self);
+  DMCadastro := TDMCadItem.Create(Self);
   inherited;
 end;
 
-procedure TFrmCadStatus.FormDestroy(Sender: TObject);
+procedure TFrmCadItem.FormDestroy(Sender: TObject);
 begin
   inherited;
-  FrmCadStatus := nil;
+  FrmCadItem := nil;
 end;
 
 initialization
 
-  RegisterClass(TFrmCadStatus);
+  RegisterClass(TFrmCadItem);
 
 end.

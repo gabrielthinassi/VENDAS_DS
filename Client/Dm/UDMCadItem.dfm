@@ -1,0 +1,2 @@
+inherited DMCadItem: TDMCadItem
+end

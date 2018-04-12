@@ -1,4 +1,4 @@
-unit UDMCadStatus;
+unit UDMCadItem;
 
 interface
 
@@ -10,10 +10,10 @@ uses
   Datasnap.DBClient,
   Datasnap.DSConnect,
   //---//
-  ClassStatus;
+  ClassItem;
 
 type
-  TDMCadStatus = class(TDMPaiCadastro)
+  TDMCadItem = class(TDMPaiCadastro)
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }
@@ -22,7 +22,7 @@ type
   end;
 
 var
-  DMCadStatus: TDMCadStatus;
+  DMCadItem: TDMCadItem;
 
 implementation
 
@@ -30,10 +30,10 @@ implementation
 
 {$R *.dfm}
 
-procedure TDMCadStatus.DataModuleCreate(Sender: TObject);
+procedure TDMCadItem.DataModuleCreate(Sender: TObject);
 begin
-  FClasseFilha := TClassStatus;
-  DSPCCadastro.ServerClassName := 'TSMCadStatus';
+  FClasseFilha := TClassItem;
+  DSPCCadastro.ServerClassName := 'TSMCadItem';
   CDSCadastro.ProviderName := 'DSPCCadastro';
   inherited;
 end;
