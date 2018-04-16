@@ -52,7 +52,7 @@ begin
             'PESSOA.CPF_PESSOA,          ' + #13 +
             'PESSOA.EMAIL_PESSOA,        ' + #13 +
             'PESSOA.CLIENTE_PESSOA,      ' + #13 +
-            'PESSOA.OUTROS_PESSOA        ';
+            'PESSOA.OUTROS_PESSOA        ' ;
 
 end;
 
@@ -151,24 +151,24 @@ end;
 
 class function TClassPessoa.SQLBaseCadastro: string;
 begin
-  Result := 'SELECT'        + #13 +
-            CamposCadastro  + #13 +
-            'FROM PESSOA'   + #13 +
+  Result := 'SELECT        ' + #13 +
+            CamposCadastro   + #13 +
+            'FROM PESSOA   ' + #13 +
             'WHERE (PESSOA.CODIGO_PESSOA = :COD)';
 end;
 
 class function TClassPessoa.SQLBaseConsulta: string;
 begin
-  Result := 'SELECT'        + #13 +
-            CamposCadastro  + #13 +
-            'FROM PESSOA'   ;
+  Result := 'SELECT        ' + #13 +
+            CamposCadastro   + #13 +
+            'FROM PESSOA   ' ;
 end;
 
 class function TClassPessoa.SQLBaseRelatorio: string;
 begin
-  Result := 'SELECT'        + #13 +
-            CamposCadastro  + #13 +
-            'FROM PESSOA'   ;
+  Result := 'SELECT        ' + #13 +
+            CamposCadastro   + #13 +
+            'FROM PESSOA   ' ;
 end;
 
 class function TClassPessoa.TabelaPrincipal: string;

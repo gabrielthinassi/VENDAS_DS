@@ -50,7 +50,7 @@ const
   sCC_Categoria = '(VALUE = 0) OR ((VALUE >= 1)  AND (VALUE <= 99))';
   sCC_DP_ResutadoEvento = 'VALUE >= 0 AND VALUE <=2';
 
-  sCC_ErrorMessage = ' Deve ser preenchido!';
+  sCC_ErrorMessage = ' deve ser preenchido!';
 
 ResourceString
   {
