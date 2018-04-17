@@ -166,6 +166,14 @@
             <FormType>dfm</FormType>
             <DesignClass>TDSServerModule</DesignClass>
         </DCCReference>
+        <DCCReference Include="..\Class\ClassPedido.pas"/>
+        <DCCReference Include="..\Class\ClassPedido_Prazos.pas"/>
+        <DCCReference Include="..\Class\ClassPedido_Item.pas"/>
+        <DCCReference Include="USMCadPedido.pas">
+            <Form>SMCadPedido</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDSServerModule</DesignClass>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

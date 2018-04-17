@@ -34,7 +34,7 @@ type
     lblUfEndereco: TLabel;
     DBGrid1: TDBGrid;
     groupNegociacao: TGroupBox;
-    DBCtrlGrid2: TDBCtrlGrid;
+    ctrlgrdPrazos: TDBCtrlGrid;
     rdgrpCondicaoPagamento: TDBRadioGroup;
     lblPedidoConsultor: TLabel;
     lblPrazoPedido: TLabel;
@@ -43,6 +43,7 @@ type
     edtDescontoValor: TDBEdit;
     edtPedidoConsultor: TDBEdit;
     edtDescontoPercentual: TDBEdit;
+    edtPrazo: TDBEdit;
   private
     { Private declarations }
   public

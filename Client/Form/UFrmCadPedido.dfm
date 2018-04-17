@@ -243,7 +243,7 @@ inherited FrmCadPedido: TFrmCadPedido
           Height = 13
           Caption = 'Desconto ( $ )'
         end
-        object DBCtrlGrid2: TDBCtrlGrid
+        object ctrlgrdPrazos: TDBCtrlGrid
           Left = 166
           Top = 93
           Width = 252
@@ -253,6 +253,21 @@ inherited FrmCadPedido: TFrmCadPedido
           PanelWidth = 47
           TabOrder = 0
           RowCount = 1
+          object edtPrazo: TDBEdit
+            Left = 0
+            Top = 0
+            Width = 47
+            Height = 25
+            Align = alClient
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Tahoma'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 0
+            ExplicitHeight = 24
+          end
         end
         object rdgrpCondicaoPagamento: TDBRadioGroup
           Left = 20
@@ -274,21 +289,21 @@ inherited FrmCadPedido: TFrmCadPedido
           Left = 464
           Top = 93
           Width = 116
-          Height = 25
+          Height = 21
           TabOrder = 4
         end
         object edtPedidoConsultor: TDBEdit
           Left = 166
           Top = 43
           Width = 116
-          Height = 25
+          Height = 21
           TabOrder = 2
         end
         object edtDescontoPercentual: TDBEdit
           Left = 464
           Top = 43
           Width = 116
-          Height = 25
+          Height = 21
           TabOrder = 3
         end
       end

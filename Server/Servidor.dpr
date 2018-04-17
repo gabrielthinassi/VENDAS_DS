@@ -24,7 +24,11 @@ uses
   USMPaiConsulta in 'USMPaiConsulta.pas' {SMPaiConsulta: TDSServerModule},
   ClassPaiRelatorio in '..\Class\ClassPaiRelatorio.pas',
   ClassItem in '..\Class\ClassItem.pas',
-  USMCadItem in 'USMCadItem.pas' {SMCadItem: TDSServerModule};
+  USMCadItem in 'USMCadItem.pas' {SMCadItem: TDSServerModule},
+  ClassPedido in '..\Class\ClassPedido.pas',
+  ClassPedido_Prazos in '..\Class\ClassPedido_Prazos.pas',
+  ClassPedido_Item in '..\Class\ClassPedido_Item.pas',
+  USMCadPedido in 'USMCadPedido.pas' {SMCadPedido: TDSServerModule};
 
 {$R *.res}
 
@@ -37,6 +41,7 @@ begin
   Application.CreateForm(TSMCadPessoa, SMCadPessoa);
   Application.CreateForm(TSMPaiConsulta, SMPaiConsulta);
   Application.CreateForm(TSMCadItem, SMCadItem);
+  Application.CreateForm(TSMCadPedido, SMCadPedido);
   Application.Run;
 end.
 

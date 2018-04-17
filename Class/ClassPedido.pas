@@ -179,9 +179,11 @@ end;
 
 class function TClassPedido.SQLBaseCadastro: string;
 begin
-  Result := 'SELECT        ' + #13 +
-            CamposCadastro   + #13 +
-            'FROM PEDIDO   ' + #13 +
+  Result := 'SELECT                       ' + #13 +
+            CamposCadastro           + ', ' + #13 +
+            '  PESSOA.RAZAOSOCIAL_PESSOA  ' + #13 +
+            'FROM PEDIDO                  ' + #13 +
+            'LEFT JOIN PESSOA ON (PEDIDO.CODIGO_PESSOA = PESSOA.CODIGO_PESSOA) ' + #13 +
             'WHERE (PEDIDO.CODIGO_PEDIDO = :COD)';
 end;
 

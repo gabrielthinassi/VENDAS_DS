@@ -28,7 +28,8 @@ uses
   //--------------------//
   USMCadStatus,
   USMCadItem,
-  USMCadPessoa;
+  USMCadPessoa,
+  USMCadPedido;
 
 
 
@@ -44,6 +45,7 @@ begin
   TExpositorDeClasses.Create(AOwner, AServer, TSMCadStatus,   True, TDSLifeCycle.Session);
   TExpositorDeClasses.Create(AOwner, AServer, TSMCadItem,     True, TDSLifeCycle.Session);
   TExpositorDeClasses.Create(AOwner, AServer, TSMCadPessoa,   True, TDSLifeCycle.Session);
+  TExpositorDeClasses.Create(AOwner, AServer, TSMCadPedido,   True, TDSLifeCycle.Session);
 end;
 
 {
