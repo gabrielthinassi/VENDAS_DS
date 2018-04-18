@@ -47,7 +47,7 @@ begin
   CDSPedido_Prazos.DataSetField := TDataSetField(CDSCadastro.FieldByName('SQLDSPedido_Prazos'));
   FClassPedido_Prazos.ConfigurarPropriedadesDoCampo(CDSPedido_Prazos);
 
-  CDSPedido_Item.DataSetField := TDataSetField(CDSCadastro.FieldByName('SQLDSPedido_Prazos'));
+  CDSPedido_Item.DataSetField := TDataSetField(CDSCadastro.FieldByName('SQLDSPedido_Item'));
   FClassPedido_Item.ConfigurarPropriedadesDoCampo(CDSPedido_Item);
   //Abre os DataSetsDetalhe
   AbreFilhos;
