@@ -23,7 +23,7 @@ type
     procedure CDSPessoa_EnderecoBeforePost(DataSet: TDataSet);
   private
     { Private declarations }
-    FCodigoAtualPessoa_Endereco: Integer;
+    //FCodigoAtualPessoa_Endereco: Integer;
     FClassPessoa_Endereco: TClassPessoa_Endereco;
   public
     { Public declarations }

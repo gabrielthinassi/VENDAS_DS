@@ -4,7 +4,6 @@ inherited DMCadPessoa: TDMCadPessoa
   object CDSPessoa_Endereco: TClientDataSet
     Aggregates = <>
     Params = <>
-    ProviderName = 'DSPCadastro'
     BeforePost = CDSPessoa_EnderecoBeforePost
     Left = 48
     Top = 120

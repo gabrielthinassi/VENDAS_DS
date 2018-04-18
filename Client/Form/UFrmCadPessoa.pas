@@ -89,9 +89,8 @@ uses
 procedure TFrmCadPessoa.btnPesquisarClick(Sender: TObject);
 begin
   inherited;
-inherited;
   FrmPaiConsulta := TFrmPaiConsulta.Create(Self);
-  FrmPaiConsulta.FClasse := TClassPessoa;
+  FrmPaiConsulta.Classe := TClassPessoa;
   try
     FrmPaiConsulta.ShowModal;
     edtCodigo.AsInteger := FrmPaiConsulta.Codigo;

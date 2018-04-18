@@ -29,7 +29,11 @@ uses
   ClassPaiRelatorio in '..\Class\ClassPaiRelatorio.pas',
   ClassItem in '..\Class\ClassItem.pas',
   UFrmCadItem in 'Form\UFrmCadItem.pas' {FrmCadItem},
-  UDMCadItem in 'Dm\UDMCadItem.pas' {DMCadItem: TDataModule};
+  UDMCadItem in 'Dm\UDMCadItem.pas' {DMCadItem: TDataModule},
+  ClassPedido in '..\Class\ClassPedido.pas',
+  ClassPedido_Item in '..\Class\ClassPedido_Item.pas',
+  ClassPedido_Prazos in '..\Class\ClassPedido_Prazos.pas',
+  UDMCadPedido in 'Dm\UDMCadPedido.pas' {DMCadPedido: TDataModule};
 
 {$R *.res}
 

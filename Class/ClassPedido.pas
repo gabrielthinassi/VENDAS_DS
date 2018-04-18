@@ -114,14 +114,18 @@ begin
       else if (Campo = 'CODIGO_PESSOA') then
       begin
         DisplayLabel := 'Pessoa';
-        CustomConstraint := sCC_ValueIsNotNullAndNotVazio;
-        ConstraintErrorMessage := DisplayLabel + sCC_ErrorMessage;
+      end
+      else if (Campo = 'RAZAOSOCIAL_PESSOA') then
+      begin
+        DisplayLabel := 'Razão Social';
+      end
+      else if (Campo = 'CODIGO_ENDERECOPESSOA') then
+      begin
+        DisplayLabel := 'Endereco';
       end
       else if (Campo = 'CODIGO_ENDERECO') then
       begin
         DisplayLabel := 'Endereço';
-        CustomConstraint := sCC_ValueIsNotNullAndNotVazio;
-        ConstraintErrorMessage := DisplayLabel + sCC_ErrorMessage;
       end
       else if (Campo = 'DTEMISSAO_PEDIDO') then
       begin
@@ -179,11 +183,13 @@ end;
 
 class function TClassPedido.SQLBaseCadastro: string;
 begin
-  Result := 'SELECT                       ' + #13 +
-            CamposCadastro           + ', ' + #13 +
-            '  PESSOA.RAZAOSOCIAL_PESSOA  ' + #13 +
+  Result := 'SELECT                                  ' + #13 +
+            CamposCadastro                      + ', ' + #13 +
+            '  PESSOA.RAZAOSOCIAL_PESSOA,            ' + #13 +
+            '  PESSOA_ENDERECO.CODIGO_ENDERECOPESSOA ' + #13 +
             'FROM PEDIDO                  ' + #13 +
             'LEFT JOIN PESSOA ON (PEDIDO.CODIGO_PESSOA = PESSOA.CODIGO_PESSOA) ' + #13 +
+            'LEFT JOIN PESSOA_ENDERECO ON (PESSOA.CODIGO_PESSOA = PESSOA_ENDERECO.CODIGO_PESSOA) ' + #13 +
             'WHERE (PEDIDO.CODIGO_PEDIDO = :COD)';
 end;
 

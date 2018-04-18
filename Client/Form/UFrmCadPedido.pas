@@ -3,17 +3,44 @@ unit UFrmCadPedido;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, UFrmPaiCadastro, Vcl.Menus, Data.DB,
-  Vcl.ComCtrls, Vcl.Buttons, Vcl.StdCtrls, Vcl.Mask, JvExMask, JvToolEdit,
-  JvBaseEdits, Vcl.DBCtrls, Vcl.ExtCtrls, JvDBControls, JvExControls, JvDBLookup,
-  Vcl.DBCGrids, Vcl.Grids, Vcl.DBGrids;
+  Winapi.Windows,
+  Winapi.Messages,
+  System.SysUtils,
+  System.Variants,
+  System.Classes,
+  Vcl.Graphics,
+  Vcl.Controls,
+  Vcl.Forms,
+  Vcl.Dialogs,
+  UFrmPaiCadastro,
+  Vcl.Menus,
+  Data.DB,
+  Vcl.ComCtrls,
+  Vcl.Buttons,
+  Vcl.StdCtrls,
+  Vcl.Mask,
+  JvExMask,
+  JvToolEdit,
+  JvBaseEdits,
+  Vcl.DBCtrls,
+  Vcl.ExtCtrls,
+  JvDBControls,
+  JvExControls,
+  JvDBLookup,
+  Vcl.DBCGrids,
+  Vcl.Grids,
+  Vcl.DBGrids,
+  //---//
+  UFrmPaiConsulta,
+  ClassPedido,
+  ClassPedido_Item,
+  ClassPedido_Prazos,
+  UDMCadPedido;
 
 type
   TFrmCadPedido = class(TFrmPaiCadastro)
     groupCliente: TGroupBox;
     lblClienteCodigo: TLabel;
-    edtClienteCodigo: TJvCalcEdit;
     edtClienteRazao: TDBEdit;
     edtEmissao: TJvDBDateEdit;
     lblEmissao: TLabel;
@@ -32,7 +59,7 @@ type
     edtTipoEndereco: TDBEdit;
     edtUfEndereco: TDBEdit;
     lblUfEndereco: TLabel;
-    DBGrid1: TDBGrid;
+    gridPedido_Item: TDBGrid;
     groupNegociacao: TGroupBox;
     ctrlgrdPrazos: TDBCtrlGrid;
     rdgrpCondicaoPagamento: TDBRadioGroup;
@@ -44,6 +71,15 @@ type
     edtPedidoConsultor: TDBEdit;
     edtDescontoPercentual: TDBEdit;
     edtPrazo: TDBEdit;
+    rdgrpTipoPedido: TDBRadioGroup;
+    DSPedido_Prazos: TDataSource;
+    DSPedido_Item: TDataSource;
+    DSPessoa_Endereco: TDataSource;
+    edtClienteCodigo: TJvDBCalcEdit;
+    procedure btnPesquisarClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
@@ -56,5 +92,40 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TFrmCadPedido.btnPesquisarClick(Sender: TObject);
+begin
+  inherited;
+  FrmPaiConsulta := TFrmPaiConsulta.Create(Self);
+  FrmPaiConsulta.Classe := TClassPedido;
+  try
+    FrmPaiConsulta.ShowModal;
+    edtCodigo.AsInteger := FrmPaiConsulta.Codigo;
+    DMCadastro.AbreCasdastro(edtCodigo.AsInteger);
+  finally
+    FreeAndNil(FrmPaiConsulta);
+  end;
+end;
+
+procedure TFrmCadPedido.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  inherited;
+  FreeAndNil(DMCadPedido);
+end;
+
+procedure TFrmCadPedido.FormCreate(Sender: TObject);
+begin
+  DMCadastro := TDMCadPedido.Create(Self);
+  DSPedido_Prazos.DataSet := TDMCadPedido(DMCadastro).CDSPedido_Prazos;
+  DSPedido_Item.DataSet   := TDMCadPedido(DMCadastro).CDSPedido_Item;
+
+  inherited;
+end;
+
+procedure TFrmCadPedido.FormDestroy(Sender: TObject);
+begin
+  inherited;
+  FrmCadPedido := nil;
+end;
 
 end.

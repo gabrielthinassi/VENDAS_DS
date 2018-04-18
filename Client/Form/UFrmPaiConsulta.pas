@@ -61,11 +61,12 @@ type
     { Private declarations }
     CamposSQL: TStrings;
     FCodigo: Integer;
+    FClasse: TFClassPaiCadastro;
     function SQLOperador: string;
     function SQLCampos: string;
   public
     { Public declarations }
-    FClasse: TFClassPaiCadastro;
+    property Classe: TFClassPaiCadastro read FClasse write FClasse;
     property Codigo: Integer read FCodigo write FCodigo;
   end;
 

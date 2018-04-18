@@ -35,7 +35,10 @@ inherited FrmCadPessoa: TFrmCadPessoa
     Width = 524
     ExplicitWidth = 524
     inherited tsPrincipal: TTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 24
       ExplicitWidth = 516
+      ExplicitHeight = 282
       object lblRazaoSocial: TLabel
         Left = 15
         Top = 16
@@ -162,6 +165,10 @@ inherited FrmCadPessoa: TFrmCadPessoa
     object tsPessoa_Endereco: TTabSheet
       Caption = 'Pessoa_Endereco'
       ImageIndex = 1
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object lblRua: TLabel
         Left = 13
         Top = 99

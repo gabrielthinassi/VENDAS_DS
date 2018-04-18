@@ -58,7 +58,7 @@ procedure TFrmCadItem.btnPesquisarClick(Sender: TObject);
 begin
   inherited;
   FrmPaiConsulta := TFrmPaiConsulta.Create(Self);
-  FrmPaiConsulta.FClasse := TClassItem;
+  FrmPaiConsulta.Classe := TClassItem;
   try
     FrmPaiConsulta.ShowModal;
     edtCodigo.AsInteger := FrmPaiConsulta.Codigo;
