@@ -130,8 +130,6 @@ begin
       else if (Campo = 'DTEMISSAO_PEDIDO') then
       begin
         DisplayLabel := 'Emissão';
-        CustomConstraint := sCC_ValueIsNotNullAndNotVazio;
-        ConstraintErrorMessage := DisplayLabel + sCC_ErrorMessage;
         EditMask := sMascaraData;
         //DefaultExpression pra buscar a Data Atual
         //DefaultExpression := DateToStr(Date);
@@ -139,8 +137,6 @@ begin
       else if (Campo = 'CONDICAOPAG_PEDIDO') then
       begin
         DisplayLabel := 'Condição de Pagamento';
-        CustomConstraint := sCC_ValueIsNotNullAndNotVazio;
-        ConstraintErrorMessage := DisplayLabel + sCC_ErrorMessage;
       end
       else if (Campo = 'DESCONTOPERC_PEDIDO') then
       begin

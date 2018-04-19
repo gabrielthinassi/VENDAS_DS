@@ -54,8 +54,6 @@ inherited FrmCadPedido: TFrmCadPedido
     ExplicitWidth = 674
     ExplicitHeight = 518
     inherited tsPrincipal: TTabSheet
-      ExplicitLeft = 4
-      ExplicitTop = 24
       ExplicitWidth = 666
       ExplicitHeight = 490
       object groupCliente: TGroupBox
@@ -108,6 +106,7 @@ inherited FrmCadPedido: TFrmCadPedido
           ButtonWidth = 34
           TabOrder = 2
           DecimalPlacesAlwaysShown = False
+          OnButtonClick = edtClienteCodigoButtonClick
           DataField = 'CODIGO_PESSOA'
           DataSource = DSCadastro
         end
@@ -187,6 +186,7 @@ inherited FrmCadPedido: TFrmCadPedido
           Height = 21
           DataField = 'BAIRRO_ENDERECOPESSOA'
           DataSource = DSPessoa_Endereco
+          Enabled = False
           TabOrder = 1
         end
         object edtCepEndereco: TDBEdit
@@ -196,6 +196,7 @@ inherited FrmCadPedido: TFrmCadPedido
           Height = 21
           DataField = 'CEP_ENDERECOPESSOA'
           DataSource = DSPessoa_Endereco
+          Enabled = False
           TabOrder = 2
         end
         object edtNumeroEndereco: TDBEdit
@@ -205,6 +206,7 @@ inherited FrmCadPedido: TFrmCadPedido
           Height = 21
           DataField = 'NUMERO_ENDERECOPESSOA'
           DataSource = DSPessoa_Endereco
+          Enabled = False
           TabOrder = 3
         end
         object edtCidadeEndereco: TDBEdit
@@ -214,6 +216,7 @@ inherited FrmCadPedido: TFrmCadPedido
           Height = 21
           DataField = 'CIDADE_ENDERECOPESSOA'
           DataSource = DSPessoa_Endereco
+          Enabled = False
           TabOrder = 4
         end
         object edtTipoEndereco: TDBEdit
@@ -223,6 +226,7 @@ inherited FrmCadPedido: TFrmCadPedido
           Height = 21
           DataField = 'TIPO_ENDERECOPESSOA'
           DataSource = DSPessoa_Endereco
+          Enabled = False
           TabOrder = 5
         end
         object edtUfEndereco: TDBEdit
@@ -232,6 +236,7 @@ inherited FrmCadPedido: TFrmCadPedido
           Height = 21
           DataField = 'UF_ENDERECOPESSOA'
           DataSource = DSPessoa_Endereco
+          Enabled = False
           TabOrder = 6
         end
       end

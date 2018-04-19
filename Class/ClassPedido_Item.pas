@@ -66,7 +66,7 @@ begin
       if (Campo = 'AUTOINC_PEDITEM') then
       begin
         DisplayLabel := 'AutoIncremento';
-        //CustomConstraint := sCC_ValueIsNotNullAndNotVazio;
+        Visible := False;
       end
       else if (Campo = 'CODIGO_PEDIDO') then
       begin
@@ -76,26 +76,62 @@ begin
       else if (Campo = 'CODIGO_ITEM') then
       begin
         DisplayLabel := 'Item';
+        Index := 0;
+        DisplayWidth := 5;
+      end
+      else if (Campo = 'REFERENCIA_ITEM') then
+      begin
+        DisplayLabel := 'Referência';
+        ReadOnly := True;
+        Index := 1;
+        DisplayWidth := 10;
+      end
+      else if (Campo = 'DESCRICAO_ITEM') then
+      begin
+        DisplayLabel := 'Descrição';
+        ReadOnly := True;
+        Index := 2;
+        DisplayWidth := 30;
+      end
+      else if (Campo = 'UNIDADE_ITEM') then
+      begin
+        DisplayLabel := 'UN';
+        ReadOnly := True;
+        Index := 3;
+        DisplayWidth := 3;
       end
       else if (Campo = 'QTD_PEDITEM') then
       begin
         DisplayLabel := 'Quantidade';
+        Index := 4;
+        DisplayWidth := 5;
       end
       else if (Campo = 'VLRUNITBRUTO_PEDITEM') then
       begin
         DisplayLabel := 'Vlr.Unit.Bruto';
+        Index := 5;
+        DisplayWidth := 5;
       end
       else if (Campo = 'VLRUNITLIQUIDO_PEDITEM') then
       begin
         DisplayLabel := 'Vlr.Unit.Liquido';
+        ReadOnly := True;
+        Index := 6;
+        DisplayWidth := 5;
       end
       else if (Campo = 'VLRTOTBRUTO_PEDITEM') then
       begin
         DisplayLabel := 'Vlr.Tot.Bruto';
+        ReadOnly := True;
+        Index := 7;
+        DisplayWidth := 5;
       end
       else if (Campo = 'VLRTOTLIQUIDO_PEDITEM') then
       begin
         DisplayLabel := 'Vlr.Tot.Liquido';
+        ReadOnly := True;
+        Index := 8;
+        DisplayWidth := 5;
       end;
   end;
 end;

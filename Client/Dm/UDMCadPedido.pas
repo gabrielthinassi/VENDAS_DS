@@ -83,7 +83,7 @@ begin
   FClassPedido_Prazos := TClassPedido_Prazos.Create;
   FClassPedido_Item := TClassPedido_Item.Create;
 
-  DSPCCadastro.ServerClassName := 'TSMCadPessoa';
+  DSPCCadastro.ServerClassName := 'TSMCadPedido';
   CDSCadastro.ProviderName := 'DSPCCadastro';
 
   inherited;

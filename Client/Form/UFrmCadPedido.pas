@@ -35,7 +35,9 @@ uses
   ClassPedido,
   ClassPedido_Item,
   ClassPedido_Prazos,
-  UDMCadPedido;
+  UDMCadPedido,
+  ClassPessoa,
+  UDMCadPessoa;
 
 type
   TFrmCadPedido = class(TFrmPaiCadastro)
@@ -80,10 +82,13 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure edtClienteCodigoButtonClick(Sender: TObject);
   private
     { Private declarations }
+    FDMPessoa: TDMCadPessoa;
   public
     { Public declarations }
+    property DMPessoa: TDMCadPessoa read FDMPessoa write FDMPessoa;
   end;
 
 var
@@ -107,6 +112,21 @@ begin
   end;
 end;
 
+procedure TFrmCadPedido.edtClienteCodigoButtonClick(Sender: TObject);
+begin
+  inherited;
+  FrmPaiConsulta := TFrmPaiConsulta.Create(Self);
+  FrmPaiConsulta.Classe := TClassPessoa;
+  try
+    FrmPaiConsulta.ShowModal;
+    edtClienteCodigo.AsInteger := FrmPaiConsulta.Codigo;
+    DMCadastro.AbreCasdastro(edtClienteCodigo.AsInteger);
+  finally
+    Abort;
+    FreeAndNil(FrmPaiConsulta);
+  end;
+end;
+
 procedure TFrmCadPedido.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   inherited;
@@ -116,8 +136,10 @@ end;
 procedure TFrmCadPedido.FormCreate(Sender: TObject);
 begin
   DMCadastro := TDMCadPedido.Create(Self);
-  DSPedido_Prazos.DataSet := TDMCadPedido(DMCadastro).CDSPedido_Prazos;
-  DSPedido_Item.DataSet   := TDMCadPedido(DMCadastro).CDSPedido_Item;
+  DMPessoa   := TDMCadPessoa.Create(Self);
+  DSPedido_Prazos.DataSet   := TDMCadPedido(DMCadastro).CDSPedido_Prazos;
+  DSPedido_Item.DataSet     := TDMCadPedido(DMCadastro).CDSPedido_Item;
+  DSPessoa_Endereco.DataSet := TDMCadPessoa(DMPessoa).CDSPessoa_Endereco;
 
   inherited;
 end;
