@@ -37,7 +37,7 @@ uses
   ClassPedido_Prazos,
   UDMCadPedido,
   ClassPessoa,
-  UDMCadPessoa;
+  UDMCadPessoa, Constantes;
 
 type
   TFrmCadPedido = class(TFrmPaiCadastro)
@@ -83,6 +83,8 @@ type
     procedure FormDestroy(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure edtClienteCodigoButtonClick(Sender: TObject);
+    procedure gridPedido_ItemDrawColumnCell(Sender: TObject; const Rect: TRect;
+      DataCol: Integer; Column: TColumn; State: TGridDrawState);
   private
     { Private declarations }
     FDMPessoa: TDMCadPessoa;
@@ -120,7 +122,7 @@ begin
   try
     FrmPaiConsulta.ShowModal;
     edtClienteCodigo.AsInteger := FrmPaiConsulta.Codigo;
-    DMCadastro.AbreCasdastro(edtClienteCodigo.AsInteger);
+    //DMCadastro.AbreCasdastro(edtClienteCodigo.AsInteger);
   finally
     Abort;
     FreeAndNil(FrmPaiConsulta);
@@ -137,9 +139,12 @@ procedure TFrmCadPedido.FormCreate(Sender: TObject);
 begin
   DMCadastro := TDMCadPedido.Create(Self);
   DMPessoa   := TDMCadPessoa.Create(Self);
+
   DSPedido_Prazos.DataSet   := TDMCadPedido(DMCadastro).CDSPedido_Prazos;
   DSPedido_Item.DataSet     := TDMCadPedido(DMCadastro).CDSPedido_Item;
   DSPessoa_Endereco.DataSet := TDMCadPessoa(DMPessoa).CDSPessoa_Endereco;
+
+  DSPessoa_Endereco.DataSet.Open;
 
   inherited;
 end;
@@ -148,6 +153,19 @@ procedure TFrmCadPedido.FormDestroy(Sender: TObject);
 begin
   inherited;
   FrmCadPedido := nil;
+end;
+
+procedure TFrmCadPedido.gridPedido_ItemDrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
+begin
+  inherited;
+  if Column.Field.ReadOnly then
+  begin
+    gridPedido_Item.Canvas.Brush.Color := clGradeSomenteLeitura;
+    gridPedido_Item.Canvas.FillRect(rect);
+
+    gridPedido_Item.DefaultDrawColumnCell(Rect, DataCol, Column, State);
+  end;
 end;
 
 end.

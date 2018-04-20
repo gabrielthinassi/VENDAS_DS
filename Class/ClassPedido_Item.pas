@@ -85,13 +85,14 @@ begin
         ReadOnly := True;
         Index := 1;
         DisplayWidth := 10;
+        Visible := False;
       end
       else if (Campo = 'DESCRICAO_ITEM') then
       begin
         DisplayLabel := 'Descrição';
         ReadOnly := True;
         Index := 2;
-        DisplayWidth := 30;
+        DisplayWidth := 20;
       end
       else if (Campo = 'UNIDADE_ITEM') then
       begin
@@ -109,7 +110,7 @@ begin
       else if (Campo = 'VLRUNITBRUTO_PEDITEM') then
       begin
         DisplayLabel := 'Vlr.Unit.Bruto';
-        Index := 5;
+        Index := 4;
         DisplayWidth := 5;
       end
       else if (Campo = 'VLRUNITLIQUIDO_PEDITEM') then

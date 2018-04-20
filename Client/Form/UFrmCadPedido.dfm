@@ -252,6 +252,7 @@ inherited FrmCadPedido: TFrmCadPedido
         TitleFont.Height = -11
         TitleFont.Name = 'Tahoma'
         TitleFont.Style = []
+        OnDrawColumnCell = gridPedido_ItemDrawColumnCell
       end
       object groupNegociacao: TGroupBox
         Left = 3

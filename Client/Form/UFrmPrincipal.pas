@@ -15,8 +15,7 @@ type
     mnConfiguracoes: TMenuItem;
     mmPessoa: TMenuItem;
     mmLancamentos: TMenuItem;
-    mmPedidoVenda: TMenuItem;
-    mmPedidoAssistencia: TMenuItem;
+    mmPedido: TMenuItem;
     pnlFundo: TPanel;
     pnlBot: TPanel;
     mmItem: TMenuItem;
@@ -25,7 +24,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure mmPessoaClick(Sender: TObject);
-    procedure mmPedidoVendaClick(Sender: TObject);
+    procedure mmPedidoClick(Sender: TObject);
     procedure mmItemClick(Sender: TObject);
   private
     { Private declarations }
@@ -58,7 +57,7 @@ begin
   FrmCadItem := TFrmCadItem(CriaForm(Self, FrmCadItem, TFrmCadItem, False, Sender));
 end;
 
-procedure TFrmPrincipal.mmPedidoVendaClick(Sender: TObject);
+procedure TFrmPrincipal.mmPedidoClick(Sender: TObject);
 begin
   FrmCadPedido := TFrmCadPedido(CriaForm(Self, FrmCadPedido, TFrmCadPedido, False, Sender));
 end;
