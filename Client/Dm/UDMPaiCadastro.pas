@@ -389,9 +389,6 @@ begin
     //Atribuindo o CodigoAtual para o Registro Gravado
     CodigoAtual := CDSCadastro.Fields[0].AsInteger;
   end;
-
-  //if not CDSCadastro.ChangeCount <> 0 then
-  //  CDSCadastro.Edit;
 end;
 
 procedure TDMPaiCadastro.IncluirRegistro;

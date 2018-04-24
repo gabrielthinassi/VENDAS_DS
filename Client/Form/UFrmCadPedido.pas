@@ -78,6 +78,9 @@ type
     DSPedido_Item: TDataSource;
     DSPessoa_Endereco: TDataSource;
     edtClienteCodigo: TJvDBCalcEdit;
+    edtEnderecoCodigo: TDBEdit;
+    edtEnderecoCodigoPessoa: TDBEdit;
+    DBGrid1: TDBGrid;
     procedure btnPesquisarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -142,9 +145,8 @@ begin
 
   DSPedido_Prazos.DataSet   := TDMCadPedido(DMCadastro).CDSPedido_Prazos;
   DSPedido_Item.DataSet     := TDMCadPedido(DMCadastro).CDSPedido_Item;
-  DSPessoa_Endereco.DataSet := TDMCadPessoa(DMPessoa).CDSPessoa_Endereco;
 
-  DSPessoa_Endereco.DataSet.Open;
+  DSPessoa_Endereco.DataSet := TDMCadPedido(DMCadastro).CDSPedido_PessoaEndereco;
 
   inherited;
 end;

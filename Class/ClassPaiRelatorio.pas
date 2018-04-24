@@ -9,10 +9,7 @@ uses
   DB,
   DBClient,
   SysUtils,
-  //frxDBSet,
   StdCtrls;
-  //frxClass,
-  //UDMConexao;
 
 type
   TClassPaiRelatorio = class(TPersistent)

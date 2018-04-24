@@ -54,6 +54,8 @@ inherited FrmCadPedido: TFrmCadPedido
     ExplicitWidth = 674
     ExplicitHeight = 518
     inherited tsPrincipal: TTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 24
       ExplicitWidth = 666
       ExplicitHeight = 490
       object groupCliente: TGroupBox
@@ -239,6 +241,24 @@ inherited FrmCadPedido: TFrmCadPedido
           Enabled = False
           TabOrder = 6
         end
+        object edtEnderecoCodigo: TDBEdit
+          Left = 559
+          Top = 81
+          Width = 33
+          Height = 21
+          DataField = 'CODIGO_ENDERECO'
+          DataSource = DSCadastro
+          TabOrder = 7
+        end
+        object edtEnderecoCodigoPessoa: TDBEdit
+          Left = 607
+          Top = 81
+          Width = 33
+          Height = 21
+          DataField = 'CODIGO_ENDERECOPESSOA'
+          DataSource = DSPessoa_Endereco
+          TabOrder = 8
+        end
       end
       object gridPedido_Item: TDBGrid
         Left = 2
@@ -360,6 +380,19 @@ inherited FrmCadPedido: TFrmCadPedido
           DataSource = DSCadastro
           TabOrder = 3
         end
+        object DBGrid1: TDBGrid
+          Left = 253
+          Top = 3
+          Width = 232
+          Height = 93
+          DataSource = DSPessoa_Endereco
+          TabOrder = 5
+          TitleFont.Charset = DEFAULT_CHARSET
+          TitleFont.Color = clWindowText
+          TitleFont.Height = -11
+          TitleFont.Name = 'Tahoma'
+          TitleFont.Style = []
+        end
       end
     end
   end
@@ -380,6 +413,7 @@ inherited FrmCadPedido: TFrmCadPedido
     Top = 419
   end
   object DSPessoa_Endereco: TDataSource
+    DataSet = DMCadPedido.CDSPedido_PessoaEndereco
     Left = 670
     Top = 419
   end

@@ -19,6 +19,7 @@ type
   TDMCadPedido = class(TDMPaiCadastro)
     CDSPedido_Prazos: TClientDataSet;
     CDSPedido_Item: TClientDataSet;
+    CDSPedido_PessoaEndereco: TClientDataSet;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
     procedure CDSPedido_ItemBeforePost(DataSet: TDataSet);
@@ -28,6 +29,7 @@ type
     { Private declarations }
     FClassPedido_Prazos: TClassPedido_Prazos;
     FClassPedido_Item: TClassPedido_Item;
+    procedure CDSCadastro_CODIGO_PESSOA_validate(Sender: TField);
   public
     { Public declarations }
   end;
@@ -49,6 +51,8 @@ begin
 
   CDSPedido_Item.DataSetField := TDataSetField(CDSCadastro.FieldByName('SQLDSPedido_Item'));
   FClassPedido_Item.ConfigurarPropriedadesDoCampo(CDSPedido_Item);
+
+  CDSCadastro.FieldByName('CODIGO_PESSOA').OnValidate := CDSCadastro_CODIGO_PESSOA_validate;
   //Abre os DataSetsDetalhe
   AbreFilhos;
 end;
@@ -98,5 +102,25 @@ begin
   FClassPedido_Item.Free;
   CDSPedido_Item.Close;
 end;
+
+procedure TDMCadPedido.CDSCadastro_CODIGO_PESSOA_validate(Sender: TField);
+var
+  NomeCliente: string;
+begin
+
+  NomeCliente:= DMConexao.ExecuteScalar('SELECT RAZAOSOCIAL_PESSOA FROM PESSOA WHERE PESSOA.CODIGO_PESSOA = ' + IntToStr(Sender.AsInteger));
+
+  if (NomeCliente <> '') and CDSCadastro.Active then
+  begin
+    if not (CDSCadastro.State in [dsEdit, dsInsert]) then
+      CDSCadastro.Edit;
+    CDSCadastro.FieldByName('RAZAOSOCIAL_PESSOA').AsString := NomeCliente;
+    CDSPedido_PessoaEndereco.Data := DMConexao.ExecuteReader('SELECT * FROM PESSOA_ENDERECO WHERE PESSOA_ENDERECO.CODIGO_PESSOA = ' + IntToStr(Sender.AsInteger));
+  end;
+
+
+end;
+
+
 
 end.

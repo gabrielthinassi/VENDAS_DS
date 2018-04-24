@@ -21,13 +21,15 @@ uses
   ClassDataSet,
   ClassPedido,
   ClassPedido_Item,
-  ClassPedido_Prazos;
+  ClassPedido_Prazos,
+  ClassPessoa_Endereco;
 
 type
   TSMCadPedido = class(TSMPaiCadastro)
     SQLDSPedido_Prazos: TSQLDataSet;
     SQLDSPedido_Item: TSQLDataSet;
     dsLink: TDataSource;
+    SQLDSPessoa_Endereco: TSQLDataSet;
     procedure SQLDSPedido_PrazosAfterOpen(DataSet: TDataSet);
     procedure SQLDSPedido_ItemAfterOpen(DataSet: TDataSet);
   private
@@ -52,6 +54,10 @@ begin
   inherited;
   FClasseFilha := TClassPedido;
 
+  SQLDSPedido_Prazos.DataSource   := nil;
+  SQLDSPedido_Item.DataSource     := nil;
+  SQLDSPessoa_Endereco.DataSource := nil;
+
   SQLDSPedido_Prazos.CommandText := TClassPedido_Prazos.SQLBaseCadastro;
   TClassPedido_Prazos.CriarParametros(SQLDSPedido_Prazos);
   SQLDSPedido_Prazos.DataSource := dsLink;
@@ -59,6 +65,13 @@ begin
   SQLDSPedido_Item.CommandText := TClassPedido_Item.SQLBaseCadastro;
   TClassPedido_Item.CriarParametros(SQLDSPedido_Item);
   SQLDSPedido_Item.DataSource := dsLink;
+
+  SQLDSPessoa_Endereco.CommandText := TClassPessoa_Endereco.SQLBaseCadastro;
+  TClassPessoa_Endereco.CriarParametros(SQLDSPessoa_Endereco);
+  SQLDSPessoa_Endereco.DataSource := dsLink;
+
+
+
 end;
 
 procedure TSMCadPedido.SQLDSPedido_ItemAfterOpen(DataSet: TDataSet);

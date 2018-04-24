@@ -232,10 +232,8 @@ inherited FrmPaiRelatorio: TFrmPaiRelatorio
     Align = alClient
     Style = tsFlatButtons
     TabOrder = 2
-    ExplicitHeight = 183
     object pgPrincipal: TTabSheet
       Caption = 'Principal'
-      ExplicitHeight = 152
     end
   end
 end

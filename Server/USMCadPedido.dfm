@@ -1,5 +1,6 @@
 inherited SMCadPedido: TSMCadPedido
-  Width = 278
+  Height = 203
+  Width = 478
   inherited SQLDSCadastro: TSQLDataSet
     Left = 41
   end
@@ -21,6 +22,12 @@ inherited SMCadPedido: TSMCadPedido
   object dsLink: TDataSource
     DataSet = SQLDSCadastro
     Left = 208
+    Top = 20
+  end
+  object SQLDSPessoa_Endereco: TSQLDataSet
+    MaxBlobSize = -1
+    Params = <>
+    Left = 304
     Top = 20
   end
 end

@@ -33,6 +33,7 @@ inherited FrmCadPessoa: TFrmCadPessoa
   end
   inherited pgctrlCadastro: TPageControl
     Width = 524
+    ActivePage = tsPessoa_Endereco
     ExplicitWidth = 524
     inherited tsPrincipal: TTabSheet
       ExplicitLeft = 4
@@ -165,10 +166,6 @@ inherited FrmCadPessoa: TFrmCadPessoa
     object tsPessoa_Endereco: TTabSheet
       Caption = 'Pessoa_Endereco'
       ImageIndex = 1
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object lblRua: TLabel
         Left = 13
         Top = 99
