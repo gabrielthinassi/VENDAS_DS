@@ -13,6 +13,7 @@ uses
   ClassPedido,
   ClassPedido_Item,
   ClassPedido_Prazos,
+  ClassPessoa_Endereco,
   UDMConexao;
 
 type
@@ -27,9 +28,10 @@ type
     procedure CDSCadastroAfterOpen(DataSet: TDataSet);
   private
     { Private declarations }
-    FClassPedido_Prazos: TClassPedido_Prazos;
-    FClassPedido_Item: TClassPedido_Item;
-    procedure CDSCadastro_CODIGO_PESSOA_validate(Sender: TField);
+    FClassPedido_Prazos:   TClassPedido_Prazos;
+    FClassPedido_Item:     TClassPedido_Item;
+    FClassPessoa_Endereco: TClassPessoa_Endereco;
+    procedure Validate_PedidoPessoa(Sender: TField);
   public
     { Public declarations }
   end;
@@ -52,7 +54,10 @@ begin
   CDSPedido_Item.DataSetField := TDataSetField(CDSCadastro.FieldByName('SQLDSPedido_Item'));
   FClassPedido_Item.ConfigurarPropriedadesDoCampo(CDSPedido_Item);
 
-  CDSCadastro.FieldByName('CODIGO_PESSOA').OnValidate := CDSCadastro_CODIGO_PESSOA_validate;
+  //CDSPedido_PessoaEndereco.DataSetField := TDataSetField(CDSCadastro.FieldByName('SQLDSPessoa_Endereco'));
+
+  CDSCadastro.FieldByName('CODIGO_PESSOA').OnValidate := Validate_PedidoPessoa;
+  Validate_PedidoPessoa(CDSCadastro.FieldByName('CODIGO_PESSOA'));
   //Abre os DataSetsDetalhe
   AbreFilhos;
 end;
@@ -103,18 +108,20 @@ begin
   CDSPedido_Item.Close;
 end;
 
-procedure TDMCadPedido.CDSCadastro_CODIGO_PESSOA_validate(Sender: TField);
+procedure TDMCadPedido.Validate_PedidoPessoa(Sender: TField);
 var
+  CDSPessoa_Endereco: TClientDataSet;
   NomeCliente: string;
 begin
 
-  NomeCliente:= DMConexao.ExecuteScalar('SELECT RAZAOSOCIAL_PESSOA FROM PESSOA WHERE PESSOA.CODIGO_PESSOA = ' + IntToStr(Sender.AsInteger));
+  NomeCliente := DMConexao.ExecuteScalar('SELECT RAZAOSOCIAL_PESSOA FROM PESSOA WHERE PESSOA.CODIGO_PESSOA = ' + IntToStr(Sender.AsInteger));
 
   if (NomeCliente <> '') and CDSCadastro.Active then
   begin
     if not (CDSCadastro.State in [dsEdit, dsInsert]) then
       CDSCadastro.Edit;
     CDSCadastro.FieldByName('RAZAOSOCIAL_PESSOA').AsString := NomeCliente;
+
     CDSPedido_PessoaEndereco.Data := DMConexao.ExecuteReader('SELECT * FROM PESSOA_ENDERECO WHERE PESSOA_ENDERECO.CODIGO_PESSOA = ' + IntToStr(Sender.AsInteger));
   end;
 
