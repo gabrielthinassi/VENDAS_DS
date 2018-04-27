@@ -14,7 +14,8 @@ uses
   ClassPedido_Item,
   ClassPedido_Prazos,
   ClassPessoa_Endereco,
-  UDMConexao;
+  UDMConexao,
+  ClassPessoa;
 
 type
   TDMCadPedido = class(TDMPaiCadastro)
@@ -54,10 +55,11 @@ begin
   CDSPedido_Item.DataSetField := TDataSetField(CDSCadastro.FieldByName('SQLDSPedido_Item'));
   FClassPedido_Item.ConfigurarPropriedadesDoCampo(CDSPedido_Item);
 
-  //CDSPedido_PessoaEndereco.DataSetField := TDataSetField(CDSCadastro.FieldByName('SQLDSPessoa_Endereco'));
+  CDSPedido_PessoaEndereco.DataSetField := TDataSetField(CDSCadastro.FieldByName('SQLDSPessoa_Endereco'));
 
+  //--Validates--
   CDSCadastro.FieldByName('CODIGO_PESSOA').OnValidate := Validate_PedidoPessoa;
-  Validate_PedidoPessoa(CDSCadastro.FieldByName('CODIGO_PESSOA'));
+
   //Abre os DataSetsDetalhe
   AbreFilhos;
 end;
@@ -109,22 +111,18 @@ begin
 end;
 
 procedure TDMCadPedido.Validate_PedidoPessoa(Sender: TField);
-var
-  CDSPessoa_Endereco: TClientDataSet;
-  NomeCliente: string;
 begin
 
-  NomeCliente := DMConexao.ExecuteScalar('SELECT RAZAOSOCIAL_PESSOA FROM PESSOA WHERE PESSOA.CODIGO_PESSOA = ' + IntToStr(Sender.AsInteger));
+  ValidateDescricao(Sender.AsInteger, TClassPessoa, CDSCadastro);
+  {
+  CDSPedido_PessoaEndereco.Active := False;
+  CDSPedido_PessoaEndereco.ParamByName('CODIGO_PESSOA').AsInteger := CDSCadastro.FieldByName('CODIGO_PESSOA').AsInteger;
+  CDSPedido_PessoaEndereco.Active := True;
+  }
 
-  if (NomeCliente <> '') and CDSCadastro.Active then
-  begin
-    if not (CDSCadastro.State in [dsEdit, dsInsert]) then
-      CDSCadastro.Edit;
-    CDSCadastro.FieldByName('RAZAOSOCIAL_PESSOA').AsString := NomeCliente;
-
-    CDSPedido_PessoaEndereco.Data := DMConexao.ExecuteReader('SELECT * FROM PESSOA_ENDERECO WHERE PESSOA_ENDERECO.CODIGO_PESSOA = ' + IntToStr(Sender.AsInteger));
-  end;
-
+  CDSPedido_PessoaEndereco.Close;
+  CDSPedido_PessoaEndereco.Data := DMConexao.ExecuteReader('SELECT * FROM PESSOA_ENDERECO WHERE PESSOA_ENDERECO.CODIGO_PESSOA = ' + IntToStr(Sender.AsInteger));
+  CDSPedido_PessoaEndereco.Open;
 
 end;
 

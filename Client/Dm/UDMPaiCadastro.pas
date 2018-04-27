@@ -70,6 +70,13 @@ type
 
     function AbreCasdastro(ACodigo: Integer): Boolean;
     procedure AbreFilhos;
+
+    //Validates
+    class procedure ValidateDescricao(Codigo: Integer; Classe: TFClassPaiCadastro; DataSet: TDataSet);
+
+
+
+
     //procedure AtribuiAutoIncDetalhe(DataSet: TDataSet; Classe: TClassPaiCadastro; CampoChaveEstrangeira: String);
 
     //Exportar & Importar
@@ -355,6 +362,34 @@ begin
            ' WHERE ' + TabelaPrincipal + '.' + CampoChave + ' <> 0';
   end;
   Result := DMConexao.ExecuteScalar(SQL);
+end;
+
+class procedure TDMPaiCadastro.ValidateDescricao(Codigo: Integer;
+  Classe: TFClassPaiCadastro; DataSet: TDataSet);
+var
+  SQL, Descricao: String;
+begin
+  with Classe do
+  begin
+    SQL :=  'SELECT ' +
+            CampoDescricao +
+            ' FROM ' +
+            TabelaPrincipal +
+            ' WHERE ' +
+            TabelaPrincipal + '.' +
+            CampoChave + ' = ' +
+            IntToStr(Codigo);
+  end;
+
+  Descricao := DMConexao.ExecuteScalar(SQL);
+
+  if (Descricao <> '') and DataSet.Active then
+  begin
+    if not (DataSet.State in [dsEdit, dsInsert]) then
+      DataSet.Edit;
+    DataSet.FieldByName(Classe.CampoDescricao).AsString := Descricao;
+  end;
+
 end;
 
 function TDMPaiCadastro.NovoCodigo: Integer;
