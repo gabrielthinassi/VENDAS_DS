@@ -315,6 +315,7 @@ inherited FrmCadPedido: TFrmCadPedido
           Width = 252
           Height = 25
           ColCount = 5
+          DataSource = DSPedido_Prazos
           PanelHeight = 25
           PanelWidth = 47
           TabOrder = 0
@@ -325,6 +326,8 @@ inherited FrmCadPedido: TFrmCadPedido
             Width = 47
             Height = 25
             Align = alClient
+            DataField = 'DIAS_PEDPRAZO'
+            DataSource = DSPedido_Prazos
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
             Font.Height = -13
@@ -381,7 +384,7 @@ inherited FrmCadPedido: TFrmCadPedido
           TabOrder = 3
         end
         object DBGrid1: TDBGrid
-          Left = 253
+          Left = 413
           Top = 3
           Width = 232
           Height = 93

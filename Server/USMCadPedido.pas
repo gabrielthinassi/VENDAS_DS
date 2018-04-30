@@ -32,6 +32,7 @@ type
     SQLDSPessoa_Endereco: TSQLDataSet;
     procedure SQLDSPedido_PrazosAfterOpen(DataSet: TDataSet);
     procedure SQLDSPedido_ItemAfterOpen(DataSet: TDataSet);
+    procedure SQLDSPessoa_EnderecoAfterOpen(DataSet: TDataSet);
   private
     { Private declarations }
   protected
@@ -84,6 +85,13 @@ procedure TSMCadPedido.SQLDSPedido_PrazosAfterOpen(DataSet: TDataSet);
 begin
   inherited;
   SQLDSPedido_Prazos.ConfigurarProviderFlags([TClassPedido_Prazos.CampoChave]);
+end;
+
+procedure TSMCadPedido.SQLDSPessoa_EnderecoAfterOpen(DataSet: TDataSet);
+begin
+  inherited;
+  SQLDSPessoa_Endereco.ConfigurarProviderFlags([TClassPessoa_Endereco.CampoChave]);
+
 end;
 
 end.

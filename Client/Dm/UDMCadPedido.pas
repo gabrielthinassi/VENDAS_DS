@@ -116,6 +116,7 @@ begin
   ValidateDescricao(Sender.AsInteger, TClassPessoa, CDSCadastro);
   {
   CDSPedido_PessoaEndereco.Active := False;
+  CDSPedido_PessoaEndereco.FetchParams;
   CDSPedido_PessoaEndereco.ParamByName('CODIGO_PESSOA').AsInteger := CDSCadastro.FieldByName('CODIGO_PESSOA').AsInteger;
   CDSPedido_PessoaEndereco.Active := True;
   }

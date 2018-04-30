@@ -25,6 +25,7 @@ inherited SMCadPedido: TSMCadPedido
     Top = 20
   end
   object SQLDSPessoa_Endereco: TSQLDataSet
+    AfterOpen = SQLDSPessoa_EnderecoAfterOpen
     MaxBlobSize = -1
     Params = <>
     Left = 304
