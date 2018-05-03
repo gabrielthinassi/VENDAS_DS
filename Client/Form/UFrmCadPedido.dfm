@@ -416,7 +416,7 @@ inherited FrmCadPedido: TFrmCadPedido
     Top = 419
   end
   object DSPessoa_Endereco: TDataSource
-    DataSet = DMCadPedido.CDSPedido_PessoaEndereco
+    DataSet = DMCadPedido.ClientDataSet1
     Left = 670
     Top = 419
   end

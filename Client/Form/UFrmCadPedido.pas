@@ -120,6 +120,9 @@ end;
 procedure TFrmCadPedido.edtClienteCodigoButtonClick(Sender: TObject);
 begin
   inherited;
+  if not (DMCadastro.CDSCadastro.State in [dsEdit, dsInsert]) then
+    DMCadastro.CDSCadastro.Edit;
+
   FrmPaiConsulta := TFrmPaiConsulta.Create(Self);
   FrmPaiConsulta.Classe := TClassPessoa;
   try
@@ -146,7 +149,7 @@ begin
   DSPedido_Prazos.DataSet   := TDMCadPedido(DMCadastro).CDSPedido_Prazos;
   DSPedido_Item.DataSet     := TDMCadPedido(DMCadastro).CDSPedido_Item;
 
-  DSPessoa_Endereco.DataSet := TDMCadPedido(DMCadastro).CDSPedido_PessoaEndereco;
+  DSPessoa_Endereco.DataSet := TDMCadPedido(DMCadastro).ClientDataSet1;
 
   inherited;
 end;

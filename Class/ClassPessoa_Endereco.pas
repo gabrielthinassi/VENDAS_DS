@@ -152,7 +152,7 @@ begin
   Result := 'SELECT'                 + #13 +
             CamposCadastro           + #13 +
             'FROM PESSOA_ENDERECO'   + #13 +
-            'WHERE (PESSOA_ENDERECO.CODIGO_PESSOA = :CODIGO_PESSOA)';
+            'WHERE PESSOA_ENDERECO.CODIGO_PESSOA = :CODIGO_PESSOA';
 end;
 
 class function TClassPessoa_Endereco.SQLBaseConsulta: string;

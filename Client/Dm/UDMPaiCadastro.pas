@@ -319,7 +319,7 @@ begin
   with Self do
   for X := 0 to ComponentCount - 1 do
   begin
-    if (Components[X] is TClientDataSet) and not (Components[X].Name = 'CDSCadastro') then
+    if (Components[X] is TClientDataSet) and not (Components[X].Name = 'CDSCadastro') and (TClientDataSet(Components[X]).DataSetField <> nil) then
     begin
       (Components[X] as TClientDataSet).Close;
       (Components[X] as TClientDataSet).AdicionarCampos();
@@ -369,6 +369,9 @@ class procedure TDMPaiCadastro.ValidateDescricao(Codigo: Integer;
 var
   SQL, Descricao: String;
 begin
+  if Codigo = 0 then
+    exit;
+
   with Classe do
   begin
     SQL :=  'SELECT ' +

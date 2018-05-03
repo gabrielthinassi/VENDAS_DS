@@ -21,12 +21,15 @@ type
   TDMCadPedido = class(TDMPaiCadastro)
     CDSPedido_Prazos: TClientDataSet;
     CDSPedido_Item: TClientDataSet;
-    CDSPedido_PessoaEndereco: TClientDataSet;
+    ClientDataSet1: TClientDataSet;
+    CDSPedido_PessoaEndereco__: TClientDataSet;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
     procedure CDSPedido_ItemBeforePost(DataSet: TDataSet);
     procedure CDSPedido_PrazosBeforePost(DataSet: TDataSet);
     procedure CDSCadastroAfterOpen(DataSet: TDataSet);
+    procedure ClientDataSet1AfterOpen(DataSet: TDataSet);
+    procedure CDSCadastroBeforePost(DataSet: TDataSet);
   private
     { Private declarations }
     FClassPedido_Prazos:   TClassPedido_Prazos;
@@ -55,10 +58,11 @@ begin
   CDSPedido_Item.DataSetField := TDataSetField(CDSCadastro.FieldByName('SQLDSPedido_Item'));
   FClassPedido_Item.ConfigurarPropriedadesDoCampo(CDSPedido_Item);
 
-  CDSPedido_PessoaEndereco.DataSetField := TDataSetField(CDSCadastro.FieldByName('SQLDSPessoa_Endereco'));
+  //CDSPedido_PessoaEndereco.DataSetField := TDataSetField(CDSCadastro.FieldByName('SQLDSPessoa_Endereco'));
 
   //--Validates--
   CDSCadastro.FieldByName('CODIGO_PESSOA').OnValidate := Validate_PedidoPessoa;
+  Validate_PedidoPessoa(CDSCadastro.FieldByName('CODIGO_PESSOA'));
 
   //Abre os DataSetsDetalhe
   AbreFilhos;
@@ -87,6 +91,11 @@ begin
   end;
 end;
 
+procedure TDMCadPedido.ClientDataSet1AfterOpen(DataSet: TDataSet);
+begin
+  ClientDataSet1.LogChanges := False;
+end;
+
 procedure TDMCadPedido.DataModuleCreate(Sender: TObject);
 begin
   FClasseFilha := TClassPedido;
@@ -112,18 +121,11 @@ end;
 
 procedure TDMCadPedido.Validate_PedidoPessoa(Sender: TField);
 begin
-
   ValidateDescricao(Sender.AsInteger, TClassPessoa, CDSCadastro);
-  {
-  CDSPedido_PessoaEndereco.Active := False;
-  CDSPedido_PessoaEndereco.FetchParams;
-  CDSPedido_PessoaEndereco.ParamByName('CODIGO_PESSOA').AsInteger := CDSCadastro.FieldByName('CODIGO_PESSOA').AsInteger;
-  CDSPedido_PessoaEndereco.Active := True;
-  }
 
-  CDSPedido_PessoaEndereco.Close;
-  CDSPedido_PessoaEndereco.Data := DMConexao.ExecuteReader('SELECT * FROM PESSOA_ENDERECO WHERE PESSOA_ENDERECO.CODIGO_PESSOA = ' + IntToStr(Sender.AsInteger));
-  CDSPedido_PessoaEndereco.Open;
+  ClientDataSet1.Close;
+  ClientDataSet1.Data := DMConexao.ExecuteReader('SELECT * FROM PESSOA_ENDERECO WHERE PESSOA_ENDERECO.CODIGO_PESSOA = ' + IntToStr(Sender.AsInteger));
+  ClientDataSet1.Open;
 
 end;
 

@@ -90,7 +90,7 @@ end;
 procedure TSMCadPedido.SQLDSPessoa_EnderecoAfterOpen(DataSet: TDataSet);
 begin
   inherited;
-  SQLDSPessoa_Endereco.ConfigurarProviderFlags([TClassPessoa_Endereco.CampoChave]);
+  //SQLDSPessoa_Endereco.ConfigurarProviderFlags([TClassPessoa_Endereco.CampoChave]);
 
 end;
 
