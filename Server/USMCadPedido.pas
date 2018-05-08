@@ -57,7 +57,7 @@ begin
 
   SQLDSPedido_Prazos.DataSource   := nil;
   SQLDSPedido_Item.DataSource     := nil;
-  SQLDSPessoa_Endereco.DataSource := nil;
+  //SQLDSPessoa_Endereco.DataSource := nil;
 
   SQLDSPedido_Prazos.CommandText := TClassPedido_Prazos.SQLBaseCadastro;
   TClassPedido_Prazos.CriarParametros(SQLDSPedido_Prazos);
@@ -67,9 +67,9 @@ begin
   TClassPedido_Item.CriarParametros(SQLDSPedido_Item);
   SQLDSPedido_Item.DataSource := dsLink;
 
-  SQLDSPessoa_Endereco.CommandText := TClassPessoa_Endereco.SQLBaseCadastro;
-  TClassPessoa_Endereco.CriarParametros(SQLDSPessoa_Endereco);
-  SQLDSPessoa_Endereco.DataSource := dsLink;
+  //SQLDSPessoa_Endereco.CommandText := TClassPessoa_Endereco.SQLBaseCadastro;
+  //TClassPessoa_Endereco.CriarParametros(SQLDSPessoa_Endereco);
+  //SQLDSPessoa_Endereco.DataSource := dsLink;
 
 
 

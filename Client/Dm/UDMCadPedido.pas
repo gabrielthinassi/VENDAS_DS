@@ -21,23 +21,22 @@ type
   TDMCadPedido = class(TDMPaiCadastro)
     CDSPedido_Prazos: TClientDataSet;
     CDSPedido_Item: TClientDataSet;
-    ClientDataSet1: TClientDataSet;
-    CDSPedido_PessoaEndereco__: TClientDataSet;
+    CDSPedido_PessoaEndereco: TClientDataSet;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
     procedure CDSPedido_ItemBeforePost(DataSet: TDataSet);
     procedure CDSPedido_PrazosBeforePost(DataSet: TDataSet);
     procedure CDSCadastroAfterOpen(DataSet: TDataSet);
-    procedure ClientDataSet1AfterOpen(DataSet: TDataSet);
-    procedure CDSCadastroBeforePost(DataSet: TDataSet);
   private
     { Private declarations }
     FClassPedido_Prazos:   TClassPedido_Prazos;
     FClassPedido_Item:     TClassPedido_Item;
-    FClassPessoa_Endereco: TClassPessoa_Endereco;
     procedure Validate_PedidoPessoa(Sender: TField);
+    procedure CarregaEndereco(Codigo: Integer);
+
   public
     { Public declarations }
+    procedure TotalizaPedido;
   end;
 
 var
@@ -62,7 +61,7 @@ begin
 
   //--Validates--
   CDSCadastro.FieldByName('CODIGO_PESSOA').OnValidate := Validate_PedidoPessoa;
-  Validate_PedidoPessoa(CDSCadastro.FieldByName('CODIGO_PESSOA'));
+  CarregaEndereco(CDSCadastro.FieldByName('CODIGO_PESSOA').AsInteger);
 
   //Abre os DataSetsDetalhe
   AbreFilhos;
@@ -91,11 +90,6 @@ begin
   end;
 end;
 
-procedure TDMCadPedido.ClientDataSet1AfterOpen(DataSet: TDataSet);
-begin
-  ClientDataSet1.LogChanges := False;
-end;
-
 procedure TDMCadPedido.DataModuleCreate(Sender: TObject);
 begin
   FClasseFilha := TClassPedido;
@@ -122,13 +116,33 @@ end;
 procedure TDMCadPedido.Validate_PedidoPessoa(Sender: TField);
 begin
   ValidateDescricao(Sender.AsInteger, TClassPessoa, CDSCadastro);
+  CarregaEndereco(Sender.AsInteger);
+end;
 
-  ClientDataSet1.Close;
-  ClientDataSet1.Data := DMConexao.ExecuteReader('SELECT * FROM PESSOA_ENDERECO WHERE PESSOA_ENDERECO.CODIGO_PESSOA = ' + IntToStr(Sender.AsInteger));
-  ClientDataSet1.Open;
+procedure TDMCadPedido.CarregaEndereco(Codigo: Integer);
+begin
+  with CDSPedido_PessoaEndereco, TClassPessoa_Endereco do
+  begin
+    Close;
+    Data := DMConexao.ExecuteReader(SQLBaseConsulta + ' WHERE PESSOA_ENDERECO.CODIGO_PESSOA = ' + IntToStr(Codigo));
+    Open;
+  end;
+end;
+
+procedure TDMCadPedido.TotalizaPedido;
+var
+  TotalBruto, TotalLiquido: Currency;
+begin
+  TotalBruto      := 0;
+  TotalLiquido    := 0;
+
+
 
 end;
 
-
-
 end.
+
+
+
+
+

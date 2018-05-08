@@ -384,10 +384,10 @@ inherited FrmCadPedido: TFrmCadPedido
           TabOrder = 3
         end
         object DBGrid1: TDBGrid
-          Left = 413
-          Top = 3
-          Width = 232
-          Height = 93
+          Left = 280
+          Top = 0
+          Width = 161
+          Height = 105
           DataSource = DSPessoa_Endereco
           TabOrder = 5
           TitleFont.Charset = DEFAULT_CHARSET
@@ -416,7 +416,6 @@ inherited FrmCadPedido: TFrmCadPedido
     Top = 419
   end
   object DSPessoa_Endereco: TDataSource
-    DataSet = DMCadPedido.ClientDataSet1
     Left = 670
     Top = 419
   end

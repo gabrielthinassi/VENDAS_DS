@@ -37,7 +37,8 @@ uses
   ClassPedido_Prazos,
   UDMCadPedido,
   ClassPessoa,
-  UDMCadPessoa, Constantes;
+  UDMCadPessoa,
+  Constantes;
 
 type
   TFrmCadPedido = class(TFrmPaiCadastro)
@@ -149,7 +150,7 @@ begin
   DSPedido_Prazos.DataSet   := TDMCadPedido(DMCadastro).CDSPedido_Prazos;
   DSPedido_Item.DataSet     := TDMCadPedido(DMCadastro).CDSPedido_Item;
 
-  DSPessoa_Endereco.DataSet := TDMCadPedido(DMCadastro).ClientDataSet1;
+  DSPessoa_Endereco.DataSet := TDMCadPedido(DMCadastro).CDSPedido_PessoaEndereco;
 
   inherited;
 end;
