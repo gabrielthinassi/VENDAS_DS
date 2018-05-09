@@ -118,6 +118,7 @@ begin
       else if (Campo = 'RAZAOSOCIAL_PESSOA') then
       begin
         DisplayLabel := 'Razão Social';
+        ProviderFlags := [];
       end
       else if (Campo = 'CODIGO_ENDERECOPESSOA') then
       begin
@@ -184,9 +185,10 @@ begin
             '  PESSOA.RAZAOSOCIAL_PESSOA,            ' + #13 +
             '  PESSOA_ENDERECO.CODIGO_ENDERECOPESSOA ' + #13 +
             'FROM PEDIDO                  ' + #13 +
-            'LEFT JOIN PESSOA ON (PEDIDO.CODIGO_PESSOA = PESSOA.CODIGO_PESSOA) ' + #13 +
-            'LEFT JOIN PESSOA_ENDERECO ON (PESSOA.CODIGO_PESSOA = PESSOA_ENDERECO.CODIGO_PESSOA) ' + #13 +
-            'WHERE (PEDIDO.CODIGO_PEDIDO = :COD)';
+            'LEFT JOIN PESSOA ON (PESSOA.CODIGO_PESSOA = PEDIDO.CODIGO_PESSOA) ' + #13 +
+            'LEFT JOIN PESSOA_ENDERECO ON (PESSOA_ENDERECO.CODIGO_ENDERECOPESSOA = PEDIDO.CODIGO_ENDERECO ' + #13 +
+            '                          AND PESSOA_ENDERECO.CODIGO_PESSOA         = PEDIDO.CODIGO_PESSOA) ' + #13 +
+            'WHERE PEDIDO.CODIGO_PEDIDO = :COD';
 end;
 
 class function TClassPedido.SQLBaseConsulta: string;
@@ -218,8 +220,9 @@ begin
             '  PEDIDO.VLRLIQUIDO_PEDIDO,                 ' + #13 +
             '  PEDIDO.PEDCONSULTOR_PEDIDO                ' + #13 +
             'FROM PEDIDO                                 ' + #13 +
-            'LEFT JOIN PESSOA          ON (PEDIDO.CODIGO_PESSOA    = PESSOA.CODIGO_PESSOA)                  ' + #13 +
-            'LEFT JOIN PESSOA_ENDERECO ON (PEDIDO.CODIGO_ENDERECO  = PESSOA_ENDERECO.CODIGO_ENDERECOPESSOA) ' ;
+            'LEFT JOIN PESSOA ON (PESSOA.CODIGO_PESSOA = PEDIDO.CODIGO_PESSOA) ' + #13 +
+            'LEFT JOIN PESSOA_ENDERECO ON (PESSOA_ENDERECO.CODIGO_ENDERECOPESSOA = PEDIDO.ENDERECO_PEDIDO ' + #13 +
+            '                          AND PESSOA_ENDERECO.CODIGO_PESSOA         = PEDIDO.CODIGO_PESSOA) ';
 end;
 
 class function TClassPedido.SQLBaseRelatorio: string;

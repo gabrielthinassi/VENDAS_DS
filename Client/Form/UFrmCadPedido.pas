@@ -81,7 +81,7 @@ type
     edtClienteCodigo: TJvDBCalcEdit;
     edtEnderecoCodigo: TDBEdit;
     edtEnderecoCodigoPessoa: TDBEdit;
-    DBGrid1: TDBGrid;
+    lblFormaPagamento: TLabel;
     procedure btnPesquisarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -129,7 +129,6 @@ begin
   try
     FrmPaiConsulta.ShowModal;
     edtClienteCodigo.AsInteger := FrmPaiConsulta.Codigo;
-    //DMCadastro.AbreCasdastro(edtClienteCodigo.AsInteger);
   finally
     Abort;
     FreeAndNil(FrmPaiConsulta);
@@ -151,7 +150,6 @@ begin
   DSPedido_Item.DataSet     := TDMCadPedido(DMCadastro).CDSPedido_Item;
 
   DSPessoa_Endereco.DataSet := TDMCadPedido(DMCadastro).CDSPedido_PessoaEndereco;
-
   inherited;
 end;
 

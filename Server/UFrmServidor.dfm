@@ -11703,6 +11703,7 @@ object FrmServidor: TFrmServidor
     end
     object pmClose: TMenuItem
       Caption = 'Fechar'
+      OnClick = pmCloseClick
     end
   end
 end

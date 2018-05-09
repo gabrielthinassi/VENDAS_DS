@@ -29,10 +29,8 @@ type
     SQLDSPedido_Prazos: TSQLDataSet;
     SQLDSPedido_Item: TSQLDataSet;
     dsLink: TDataSource;
-    SQLDSPessoa_Endereco: TSQLDataSet;
     procedure SQLDSPedido_PrazosAfterOpen(DataSet: TDataSet);
     procedure SQLDSPedido_ItemAfterOpen(DataSet: TDataSet);
-    procedure SQLDSPessoa_EnderecoAfterOpen(DataSet: TDataSet);
   private
     { Private declarations }
   protected
@@ -57,7 +55,6 @@ begin
 
   SQLDSPedido_Prazos.DataSource   := nil;
   SQLDSPedido_Item.DataSource     := nil;
-  //SQLDSPessoa_Endereco.DataSource := nil;
 
   SQLDSPedido_Prazos.CommandText := TClassPedido_Prazos.SQLBaseCadastro;
   TClassPedido_Prazos.CriarParametros(SQLDSPedido_Prazos);
@@ -66,13 +63,6 @@ begin
   SQLDSPedido_Item.CommandText := TClassPedido_Item.SQLBaseCadastro;
   TClassPedido_Item.CriarParametros(SQLDSPedido_Item);
   SQLDSPedido_Item.DataSource := dsLink;
-
-  //SQLDSPessoa_Endereco.CommandText := TClassPessoa_Endereco.SQLBaseCadastro;
-  //TClassPessoa_Endereco.CriarParametros(SQLDSPessoa_Endereco);
-  //SQLDSPessoa_Endereco.DataSource := dsLink;
-
-
-
 end;
 
 procedure TSMCadPedido.SQLDSPedido_ItemAfterOpen(DataSet: TDataSet);
@@ -85,13 +75,6 @@ procedure TSMCadPedido.SQLDSPedido_PrazosAfterOpen(DataSet: TDataSet);
 begin
   inherited;
   SQLDSPedido_Prazos.ConfigurarProviderFlags([TClassPedido_Prazos.CampoChave]);
-end;
-
-procedure TSMCadPedido.SQLDSPessoa_EnderecoAfterOpen(DataSet: TDataSet);
-begin
-  inherited;
-  //SQLDSPessoa_Endereco.ConfigurarProviderFlags([TClassPessoa_Endereco.CampoChave]);
-
 end;
 
 end.

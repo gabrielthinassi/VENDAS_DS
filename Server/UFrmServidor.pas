@@ -24,6 +24,7 @@ type
     procedure TrayIconDblClick(Sender: TObject);
     procedure AppEventsMinimize(Sender: TObject);
     procedure imgBDClick(Sender: TObject);
+    procedure pmCloseClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -61,6 +62,11 @@ begin
   FrmServerDatabase := TFrmServerDatabase.Create(Self);
   FrmServerDatabase.ShowModal;
   FrmServerDatabase.FreeOnRelease;
+end;
+
+procedure TFrmServidor.pmCloseClick(Sender: TObject);
+begin
+  Application.Terminate;
 end;
 
 procedure TFrmServidor.TrayIconDblClick(Sender: TObject);

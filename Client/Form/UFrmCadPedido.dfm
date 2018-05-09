@@ -174,7 +174,7 @@ inherited FrmCadPedido: TFrmCadPedido
           Top = 35
           Width = 317
           Height = 21
-          DataField = 'CODIGO_ENDERECOPESSOA'
+          DataField = 'CODIGO_ENDERECO'
           DataSource = DSCadastro
           LookupField = 'CODIGO_ENDERECOPESSOA'
           LookupDisplay = 'RUA_ENDERECOPESSOA'
@@ -296,34 +296,41 @@ inherited FrmCadPedido: TFrmCadPedido
           Caption = 'Prazo'
         end
         object lblDescontoPercentual: TLabel
-          Left = 464
+          Left = 568
           Top = 24
           Width = 73
           Height = 13
           Caption = 'Desconto ( % )'
         end
         object lblDescontoValor: TLabel
-          Left = 464
+          Left = 568
           Top = 74
           Width = 68
           Height = 13
           Caption = 'Desconto ( $ )'
         end
+        object lblFormaPagamento: TLabel
+          Left = 286
+          Top = 24
+          Width = 102
+          Height = 13
+          Caption = 'Forma de Pagamento'
+        end
         object ctrlgrdPrazos: TDBCtrlGrid
           Left = 166
           Top = 93
-          Width = 252
+          Width = 331
           Height = 25
-          ColCount = 5
+          ColCount = 6
           DataSource = DSPedido_Prazos
           PanelHeight = 25
-          PanelWidth = 47
+          PanelWidth = 52
           TabOrder = 0
           RowCount = 1
           object edtPrazo: TDBEdit
             Left = 0
             Top = 0
-            Width = 47
+            Width = 52
             Height = 25
             Align = alClient
             DataField = 'DIAS_PEDPRAZO'
@@ -335,6 +342,7 @@ inherited FrmCadPedido: TFrmCadPedido
             Font.Style = []
             ParentFont = False
             TabOrder = 0
+            ExplicitWidth = 47
             ExplicitHeight = 24
           end
         end
@@ -357,9 +365,9 @@ inherited FrmCadPedido: TFrmCadPedido
             '2')
         end
         object edtDescontoValor: TDBEdit
-          Left = 464
+          Left = 568
           Top = 93
-          Width = 116
+          Width = 73
           Height = 21
           DataField = 'DESCONTOVLR_PEDIDO'
           DataSource = DSCadastro
@@ -368,33 +376,20 @@ inherited FrmCadPedido: TFrmCadPedido
         object edtPedidoConsultor: TDBEdit
           Left = 166
           Top = 43
-          Width = 116
+          Width = 99
           Height = 21
           DataField = 'PEDCONSULTOR_PEDIDO'
           DataSource = DSCadastro
           TabOrder = 2
         end
         object edtDescontoPercentual: TDBEdit
-          Left = 464
+          Left = 568
           Top = 43
-          Width = 116
+          Width = 73
           Height = 21
           DataField = 'DESCONTOPERC_PEDIDO'
           DataSource = DSCadastro
           TabOrder = 3
-        end
-        object DBGrid1: TDBGrid
-          Left = 280
-          Top = 0
-          Width = 161
-          Height = 105
-          DataSource = DSPessoa_Endereco
-          TabOrder = 5
-          TitleFont.Charset = DEFAULT_CHARSET
-          TitleFont.Color = clWindowText
-          TitleFont.Height = -11
-          TitleFont.Name = 'Tahoma'
-          TitleFont.Style = []
         end
       end
     end

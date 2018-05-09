@@ -31,8 +31,12 @@ type
     { Private declarations }
     FClassPedido_Prazos:   TClassPedido_Prazos;
     FClassPedido_Item:     TClassPedido_Item;
-    procedure Validate_PedidoPessoa(Sender: TField);
+
     procedure CarregaEndereco(Codigo: Integer);
+
+    //--Validates
+    procedure Validate_PedidoPessoa(Sender: TField);
+    procedure Validate_PedidoTipoEndereco(Sender: TField);
 
   public
     { Public declarations }
@@ -57,11 +61,11 @@ begin
   CDSPedido_Item.DataSetField := TDataSetField(CDSCadastro.FieldByName('SQLDSPedido_Item'));
   FClassPedido_Item.ConfigurarPropriedadesDoCampo(CDSPedido_Item);
 
-  //CDSPedido_PessoaEndereco.DataSetField := TDataSetField(CDSCadastro.FieldByName('SQLDSPessoa_Endereco'));
+  CarregaEndereco(CDSCadastro.FieldByName('CODIGO_PESSOA').AsInteger);
 
   //--Validates--
-  CDSCadastro.FieldByName('CODIGO_PESSOA').OnValidate := Validate_PedidoPessoa;
-  CarregaEndereco(CDSCadastro.FieldByName('CODIGO_PESSOA').AsInteger);
+  CDSCadastro.FieldByName('CODIGO_PESSOA').OnValidate                    := Validate_PedidoPessoa;
+  CDSPedido_PessoaEndereco.FieldByName('TIPO_ENDERECOPESSOA').OnChange := Validate_PedidoTipoEndereco;
 
   //Abre os DataSetsDetalhe
   AbreFilhos;
@@ -117,6 +121,18 @@ procedure TDMCadPedido.Validate_PedidoPessoa(Sender: TField);
 begin
   ValidateDescricao(Sender.AsInteger, TClassPessoa, CDSCadastro);
   CarregaEndereco(Sender.AsInteger);
+end;
+
+procedure TDMCadPedido.Validate_PedidoTipoEndereco(Sender: TField);
+var
+  Desc: String;
+begin
+  if Sender.Value = 0 then
+    Desc := 'TESTTE';
+  Desc := 'TESTE1';
+
+  CDSPedido_PessoaEndereco.FieldByName('TIPO_ENDERECOPESSOA').ReadOnly := False;
+  CDSPedido_PessoaEndereco.FieldByName('TIPO_ENDERECOPESSOA').DisplayText := Desc;
 end;
 
 procedure TDMCadPedido.CarregaEndereco(Codigo: Integer);

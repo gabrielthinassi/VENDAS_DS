@@ -422,7 +422,6 @@ procedure TDMPaiCadastro.GravarRegistro;
 begin
   if CDSCadastro.State in [dsEdit, dsInsert] then
   begin
-    CDSCadastro.BeforePost(CDSCadastro);
     CDSCadastro.Post;
     //Atribuindo o CodigoAtual para o Registro Gravado
     CodigoAtual := CDSCadastro.Fields[0].AsInteger;
