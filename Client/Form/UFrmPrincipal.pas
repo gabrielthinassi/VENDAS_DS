@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Vcl.ExtCtrls, Vcl.ComCtrls, UFrmCadItem;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Vcl.ExtCtrls, Vcl.ComCtrls, UFrmCadItem, UFrmCadPessoa, UFrmCadPedido, UFrmAgendaXML;
 
 type
   TFrmPrincipal = class(TForm)
@@ -19,6 +19,7 @@ type
     pnlFundo: TPanel;
     pnlBot: TPanel;
     mmItem: TMenuItem;
+    mnAgendaXML: TMenuItem;
     procedure mmStatusClick(Sender: TObject);
     procedure mnConfiguracoesClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -26,6 +27,7 @@ type
     procedure mmPessoaClick(Sender: TObject);
     procedure mmPedidoClick(Sender: TObject);
     procedure mmItemClick(Sender: TObject);
+    procedure mnAgendaXMLClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -39,7 +41,7 @@ implementation
 
 {$R *.dfm}
 
-uses Funcoes, UFrmCadStatus, UFrmConfigServidorAplicacao, UDMConexao, UFrmCadPessoa, UFrmCadPedido;
+uses Funcoes, UFrmCadStatus, UFrmConfigServidorAplicacao, UDMConexao;
 
 procedure TFrmPrincipal.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
@@ -70,6 +72,11 @@ end;
 procedure TFrmPrincipal.mmStatusClick(Sender: TObject);
 begin
   FrmCadStatus := TFrmCadStatus(CriaForm(Self, FrmCadStatus, TFrmCadStatus, False, Sender));
+end;
+
+procedure TFrmPrincipal.mnAgendaXMLClick(Sender: TObject);
+begin
+  FrmAgendaXML := TFrmAgendaXML(CriaForm(Self, FrmAgendaXML, TFrmAgendaXML, False, Sender));
 end;
 
 procedure TFrmPrincipal.mnConfiguracoesClick(Sender: TObject);

@@ -68,6 +68,10 @@ object FrmPrincipal: TFrmPrincipal
         Caption = 'Configura'#231#245'es'
         OnClick = mnConfiguracoesClick
       end
+      object mnAgendaXML: TMenuItem
+        Caption = 'AgendaXML'
+        OnClick = mnAgendaXMLClick
+      end
     end
   end
 end

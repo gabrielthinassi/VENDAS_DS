@@ -33,10 +33,12 @@ type
     FClassPedido_Item:     TClassPedido_Item;
 
     procedure CarregaEndereco(Codigo: Integer);
+    procedure CalculaValores;
 
     //--Validates
     procedure Validate_PedidoPessoa(Sender: TField);
     procedure Validate_PedidoTipoEndereco(Sender: TField);
+    procedure Validate_PedidoItemDescontoPerc(Sender: TField);
 
   public
     { Public declarations }
@@ -65,7 +67,9 @@ begin
 
   //--Validates--
   CDSCadastro.FieldByName('CODIGO_PESSOA').OnValidate                    := Validate_PedidoPessoa;
-  CDSPedido_PessoaEndereco.FieldByName('TIPO_ENDERECOPESSOA').OnChange := Validate_PedidoTipoEndereco;
+  CDSCadastro.FieldByName('DESCONTOPERC_PEDIDO').OnValidate              := Validate_PedidoItemDescontoPerc;
+  CDSPedido_PessoaEndereco.FieldByName('TIPO_ENDERECOPESSOA').OnChange   := Validate_PedidoTipoEndereco;
+
 
   //Abre os DataSetsDetalhe
   AbreFilhos;
@@ -117,6 +121,11 @@ begin
   CDSPedido_Item.Close;
 end;
 
+procedure TDMCadPedido.Validate_PedidoItemDescontoPerc(Sender: TField);
+begin
+  CalculaValores;
+end;
+
 procedure TDMCadPedido.Validate_PedidoPessoa(Sender: TField);
 begin
   ValidateDescricao(Sender.AsInteger, TClassPessoa, CDSCadastro);
@@ -128,11 +137,20 @@ var
   Desc: String;
 begin
   if Sender.Value = 0 then
-    Desc := 'TESTTE';
+    Desc := 'TESTTE'
+  else
   Desc := 'TESTE1';
 
-  CDSPedido_PessoaEndereco.FieldByName('TIPO_ENDERECOPESSOA').ReadOnly := False;
-  CDSPedido_PessoaEndereco.FieldByName('TIPO_ENDERECOPESSOA').DisplayText := Desc;
+  //CDSPedido_PessoaEndereco.FieldByName('TIPO_ENDERECOPESSOA').ReadOnly := False;
+  //CDSPedido_PessoaEndereco.FieldByName('TIPO_ENDERECOPESSOA').DisplayText := Desc;
+end;
+
+procedure TDMCadPedido.CalculaValores;
+begin
+  if not (CDSPedido_Item.State in [dsEdit, dsInsert]) then
+    CDSPedido_Item.Edit;
+  CDSPedido_item.FieldByName('VLRTOTBRUTO_PEDITEM').AsCurrency := CDSPedido_item.FieldByName('VLRUNITBRUTO_PEDITEM').AsCurrency *
+                                                                  CDSPedido_item.FieldByName('QTD_PEDITEM').AsCurrency;
 end;
 
 procedure TDMCadPedido.CarregaEndereco(Codigo: Integer);

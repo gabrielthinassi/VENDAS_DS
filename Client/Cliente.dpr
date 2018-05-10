@@ -34,7 +34,8 @@ uses
   ClassPedido_Item in '..\Class\ClassPedido_Item.pas',
   ClassPedido_Prazos in '..\Class\ClassPedido_Prazos.pas',
   UDMCadPedido in 'Dm\UDMCadPedido.pas' {DMCadPedido: TDataModule},
-  UDMPaiRelatorio in 'Dm\UDMPaiRelatorio.pas' {DMPaiRelatorio: TDataModule};
+  UDMPaiRelatorio in 'Dm\UDMPaiRelatorio.pas' {DMPaiRelatorio: TDataModule},
+  UFrmAgendaXML in 'Form\UFrmAgendaXML.pas' {FrmAgendaXML};
 
 {$R *.res}
 
@@ -43,5 +44,6 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TFrmPrincipal, FrmPrincipal);
   Application.CreateForm(TDMPaiRelatorio, DMPaiRelatorio);
+  Application.CreateForm(TFrmAgendaXML, FrmAgendaXML);
   Application.Run;
 end.

@@ -123,7 +123,7 @@ begin
       else if (Campo = 'VLRTOTBRUTO_PEDITEM') then
       begin
         DisplayLabel := 'Vlr.Tot.Bruto';
-        ReadOnly := True;
+        ReadOnly := False;
         Index := 7;
         DisplayWidth := 5;
       end
