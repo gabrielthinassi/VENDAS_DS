@@ -15,7 +15,8 @@ uses
   SqlExpr,
   TypInfo,
   Rtti,
-  ClassPai;
+  ClassPai,
+  Constantes;
 
 //Cria os parametros do DataSet
 type
@@ -65,8 +66,7 @@ function CriarClassePeloNome(const Nome: string): TClassPaiCadastro;
 
 implementation
 
-uses Constantes,
-     ClassDataSet;
+uses ClassDataSet;
 
 class function TClassPaiCadastro.Descricao: string;
 begin
@@ -185,7 +185,7 @@ end;
 
 class procedure TClassPaiCadastro.ConfigurarPropriedadesDoCampo(DataSet: TDataSet);
 begin
-    //
+  //
 end;
 
 function CriarClassePeloNome(const Nome: string): TClassPaiCadastro;

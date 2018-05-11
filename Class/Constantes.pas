@@ -26,6 +26,10 @@ const
   clGradeSaidaElaboracao = $0098FF75; // Verde Claro
   clDestaqueGradeSaida = $0095CAFF; // Alaranjado um pouco mais forte
 
+  // Controle de TAGs
+  CampoNaoAtualizavel = 1;
+  CampoNaoEditavel = 2;
+
   // Usado para limitar digitos nos campos numericos
   MaxDigitos = 14;
 

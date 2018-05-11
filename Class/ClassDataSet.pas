@@ -157,16 +157,27 @@ begin
   for x := 0 to FieldDefList.Count - 1 do
   begin
     // Para todos os campos
-    Fields[x].ProviderFlags := [pfInUpdate];
-    Fields[x].Required := False;
+    if Fields[x].Tag = CampoNaoAtualizavel then
+    begin
+      Fields[x].ProviderFlags := [];
+      Fields[x].CustomConstraint := '';
+      Fields[x].ConstraintErrorMessage := '';
+    end
+    else
+    begin
+      Fields[x].ProviderFlags := [pfInUpdate];
+      Fields[x].Required := False;
+    end;
 
     // Para as Chaves Primárias
     for Y := Low(aChavePrimaria) to High(aChavePrimaria) do
+    begin
       if (AnsiUpperCase(FieldDefList[x].Name) = AnsiUpperCase(aChavePrimaria[Y].{$IFDEF VER185} VPChar {$ELSE} VPWideChar {$endif})) then
       begin
         Fields[x].ProviderFlags := [pfInUpdate, pfInWhere, pfInKey];
         Break;
       end;
+    end;
   end;
 end;
 

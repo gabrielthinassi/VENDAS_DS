@@ -82,6 +82,12 @@ type
     edtEnderecoCodigo: TDBEdit;
     edtEnderecoCodigoPessoa: TDBEdit;
     lblFormaPagamento: TLabel;
+    lblTotalBruto: TStaticText;
+    lblDesconto: TStaticText;
+    lblTotalLiquido: TStaticText;
+    edtTotalBruto: TDBEdit;
+    edtDesconto: TDBEdit;
+    edtTotalLiquido: TDBEdit;
     procedure btnPesquisarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -161,12 +167,15 @@ end;
 
 procedure TFrmCadPedido.gridPedido_ItemDrawColumnCell(Sender: TObject;
   const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
+var
+  X: Integer;
 begin
   inherited;
-  if Column.Field.ReadOnly then
+  if Column.Field.Tag = CampoNaoEditavel then
   begin
     gridPedido_Item.Canvas.Brush.Color := clGradeSomenteLeitura;
     gridPedido_Item.Canvas.FillRect(rect);
+    //Column.Field.ReadOnly := True;
 
     gridPedido_Item.DefaultDrawColumnCell(Rect, DataCol, Column, State);
   end;

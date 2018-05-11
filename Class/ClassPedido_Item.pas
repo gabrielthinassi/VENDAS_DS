@@ -82,7 +82,7 @@ begin
       else if (Campo = 'REFERENCIA_ITEM') then
       begin
         DisplayLabel := 'Referência';
-        ReadOnly := True;
+        Tag := CampoNaoEditavel;
         Index := 1;
         DisplayWidth := 10;
         Visible := False;
@@ -90,14 +90,14 @@ begin
       else if (Campo = 'DESCRICAO_ITEM') then
       begin
         DisplayLabel := 'Descrição';
-        ReadOnly := True;
+        Tag := CampoNaoEditavel;
         Index := 2;
         DisplayWidth := 20;
       end
       else if (Campo = 'UNIDADE_ITEM') then
       begin
         DisplayLabel := 'UN';
-        ReadOnly := True;
+        Tag := CampoNaoEditavel;
         Index := 3;
         DisplayWidth := 3;
       end
@@ -116,21 +116,21 @@ begin
       else if (Campo = 'VLRUNITLIQUIDO_PEDITEM') then
       begin
         DisplayLabel := 'Vlr.Unit.Liquido';
-        ReadOnly := True;
+        Tag := CampoNaoEditavel;
         Index := 6;
         DisplayWidth := 5;
       end
       else if (Campo = 'VLRTOTBRUTO_PEDITEM') then
       begin
         DisplayLabel := 'Vlr.Tot.Bruto';
-        ReadOnly := False;
+        Tag := CampoNaoEditavel;
         Index := 7;
         DisplayWidth := 5;
       end
       else if (Campo = 'VLRTOTLIQUIDO_PEDITEM') then
       begin
         DisplayLabel := 'Vlr.Tot.Liquido';
-        ReadOnly := True;
+        Tag := CampoNaoEditavel;
         Index := 8;
         DisplayWidth := 5;
       end;

@@ -38,11 +38,10 @@ type
     //--Validates
     procedure Validate_PedidoPessoa(Sender: TField);
     procedure Validate_PedidoTipoEndereco(Sender: TField);
-    procedure Validate_PedidoItemDescontoPerc(Sender: TField);
+    procedure Validate_PedidoValores(Sender: TField);
 
   public
     { Public declarations }
-    procedure TotalizaPedido;
   end;
 
 var
@@ -67,7 +66,10 @@ begin
 
   //--Validates--
   CDSCadastro.FieldByName('CODIGO_PESSOA').OnValidate                    := Validate_PedidoPessoa;
-  CDSCadastro.FieldByName('DESCONTOPERC_PEDIDO').OnValidate              := Validate_PedidoItemDescontoPerc;
+  CDSCadastro.FieldByName('DESCONTOPERC_PEDIDO').OnValidate              := Validate_PedidoValores;
+  CDSCadastro.FieldByName('DESCONTOVLR_PEDIDO').OnValidate               := Validate_PedidoValores;
+  CDSPedido_Item.FieldByName('QTD_PEDITEM').OnValidate                   := Validate_PedidoValores;
+  CDSPedido_Item.FieldByName('VLRUNITBRUTO_PEDITEM').OnValidate          := Validate_PedidoValores;
   CDSPedido_PessoaEndereco.FieldByName('TIPO_ENDERECOPESSOA').OnChange   := Validate_PedidoTipoEndereco;
 
 
@@ -121,7 +123,7 @@ begin
   CDSPedido_Item.Close;
 end;
 
-procedure TDMCadPedido.Validate_PedidoItemDescontoPerc(Sender: TField);
+procedure TDMCadPedido.Validate_PedidoValores(Sender: TField);
 begin
   CalculaValores;
 end;
@@ -146,11 +148,40 @@ begin
 end;
 
 procedure TDMCadPedido.CalculaValores;
+var
+  TotalBruto, TotalDesconto, TotalLiquido: Currency;
 begin
-  if not (CDSPedido_Item.State in [dsEdit, dsInsert]) then
-    CDSPedido_Item.Edit;
-  CDSPedido_item.FieldByName('VLRTOTBRUTO_PEDITEM').AsCurrency := CDSPedido_item.FieldByName('VLRUNITBRUTO_PEDITEM').AsCurrency *
-                                                                  CDSPedido_item.FieldByName('QTD_PEDITEM').AsCurrency;
+  TotalBruto    := 0;
+  TotalDesconto := 0;
+  TotalLiquido  := 0;
+
+  CDSPedido_Item.First;
+  while not CDSPedido_Item.Eof do
+  begin
+    if not (CDSPedido_Item.State in [dsEdit, dsInsert]) then
+      CDSPedido_Item.Edit;
+    // Calculando Valores Pedido_Item
+    CDSPedido_item.FieldByName('VLRTOTBRUTO_PEDITEM').AsCurrency   := CDSPedido_item.FieldByName('VLRUNITBRUTO_PEDITEM').AsCurrency *
+                                                                      CDSPedido_item.FieldByName('QTD_PEDITEM').AsCurrency;
+    CDSPedido_Item.FieldByName('VLRTOTLIQUIDO_PEDITEM').AsCurrency := (CDSPedido_item.FieldByName('VLRTOTBRUTO_PEDITEM').AsCurrency -
+                                                                      ((CDSPedido_item.FieldByName('VLRTOTBRUTO_PEDITEM').AsCurrency *
+                                                                        CDSCadastro.FieldByName('DESCONTOPERC_PEDIDO').AsCurrency) / 100));
+    CDSPedido_Item.FieldByName('VLRUNITLIQUIDO_PEDITEM').AsCurrency := (CDSPedido_Item.FieldByName('VLRUNITBRUTO_PEDITEM').AsCurrency -
+                                                                       ((CDSPedido_Item.FieldByName('VLRUNITBRUTO_PEDITEM').AsCurrency *
+                                                                         CDSCadastro.FieldByName('DESCONTOPERC_PEDIDO').AsCurrency) / 100));
+    // Calculando Valores Pedido
+    TotalBruto    := TotalBruto + CDSPedido_item.FieldByName('VLRTOTBRUTO_PEDITEM').AsCurrency;
+    TotalDesconto := TotalDesconto + ((CDSPedido_item.FieldByName('VLRTOTBRUTO_PEDITEM').AsCurrency *
+                                       CDSCadastro.FieldByName('DESCONTOPERC_PEDIDO').AsCurrency) / 100);
+    TotalLiquido  := TotalLiquido + CDSPedido_item.FieldByName('VLRUNITLIQUIDO_PEDITEM').AsCurrency;
+
+    CDSPedido_Item.Next;
+  end;
+
+  // Atribuindo Totalização do Pedido para os DBEdit
+  CDSCadastro.FieldByName('VLRBRUTO_PEDIDO').AsCurrency    := TotalBruto;
+  CDSCadastro.FieldByName('VLRDESCONTO_PEDIDO').AsCurrency := TotalDesconto;
+  CDSCadastro.FieldByName('VLRLIQUIDO_PEDIDO').AsCurrency  := TotalLiquido;
 end;
 
 procedure TDMCadPedido.CarregaEndereco(Codigo: Integer);
@@ -163,20 +194,4 @@ begin
   end;
 end;
 
-procedure TDMCadPedido.TotalizaPedido;
-var
-  TotalBruto, TotalLiquido: Currency;
-begin
-  TotalBruto      := 0;
-  TotalLiquido    := 0;
-
-
-
-end;
-
 end.
-
-
-
-
-

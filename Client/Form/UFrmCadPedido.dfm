@@ -16,6 +16,93 @@ inherited FrmCadPedido: TFrmCadPedido
       Width = 798
       ExplicitWidth = 798
     end
+    object lblTotalBruto: TStaticText
+      Left = 132
+      Top = 10
+      Width = 103
+      Height = 23
+      Caption = 'Total Bruto:'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 0
+    end
+    object lblDesconto: TStaticText
+      Left = 359
+      Top = 10
+      Width = 85
+      Height = 23
+      Caption = 'Desconto:'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 1
+    end
+    object lblTotalLiquido: TStaticText
+      Left = 569
+      Top = 10
+      Width = 117
+      Height = 23
+      Caption = 'Total L'#237'quido:'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 2
+    end
+    object edtTotalBruto: TDBEdit
+      Left = 233
+      Top = 8
+      Width = 99
+      Height = 24
+      DataField = 'VLRBRUTO_PEDIDO'
+      DataSource = DSCadastro
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clBlue
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 3
+    end
+    object edtDesconto: TDBEdit
+      Left = 442
+      Top = 8
+      Width = 99
+      Height = 24
+      DataField = 'VLRDESCONTO_PEDIDO'
+      DataSource = DSCadastro
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clBlue
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 4
+    end
+    object edtTotalLiquido: TDBEdit
+      Left = 684
+      Top = 8
+      Width = 99
+      Height = 24
+      DataField = 'VLRLIQUIDO_PEDIDO'
+      DataSource = DSCadastro
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clBlue
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 5
+    end
   end
   inherited pnlTop: TPanel
     Width = 800
@@ -319,7 +406,7 @@ inherited FrmCadPedido: TFrmCadPedido
         object ctrlgrdPrazos: TDBCtrlGrid
           Left = 166
           Top = 93
-          Width = 331
+          Width = 329
           Height = 25
           ColCount = 6
           DataSource = DSPedido_Prazos
@@ -342,7 +429,6 @@ inherited FrmCadPedido: TFrmCadPedido
             Font.Style = []
             ParentFont = False
             TabOrder = 0
-            ExplicitWidth = 47
             ExplicitHeight = 24
           end
         end

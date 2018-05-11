@@ -75,3 +75,15 @@ Porque o AbreFilhos; não funciona ? Tem como fazer ?
 11)
 
 Como funciona o AutoIncDetalhe do ERP ??
+
+
+
+
+--------------------------------
+
+1 - Erro RAZAOSOCIAL_PESSOA na hora de gravar (ProviderFlags);
+2 - Ordenação da Grid alternando o tempo todo?
+  - Aparentemente a Ordenação está atrapalhando o Validate nos Campos da Grid (Quantidade e ValorUnitBruto);
+3 - Porque não posso colocar o Campo da Grid somente Leitura? Para atualizá-lo apenas no Validate;
+4 - Validate_PedidoTipoEndereco - Não consigo trocar a Descrição;
+

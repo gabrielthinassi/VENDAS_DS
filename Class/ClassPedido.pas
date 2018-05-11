@@ -48,6 +48,7 @@ begin
             'PEDIDO.DESCONTOVLR_PEDIDO,  ' + #13 +
             'PEDIDO.VLRBRUTO_PEDIDO,     ' + #13 +
             'PEDIDO.VLRLIQUIDO_PEDIDO,   ' + #13 +
+            'PEDIDO.VLRDESCONTO_PEDIDO,  ' + #13 +
             'PEDIDO.PEDCONSULTOR_PEDIDO  ' ;
 
 end;
@@ -68,7 +69,8 @@ begin
   {11} Lista.Add('Emissão');
   {12} Lista.Add('Valor Bruto');
   {13} Lista.Add('Valor Líquido');
-  {14} Lista.Add('Pedido do Consultor');
+  {14} Lista.Add('Valor Desconto');
+  {15} Lista.Add('Pedido do Consultor');
 
   {0}  Campos.Add('CODIGO_PEDIDO');
   {1}  Campos.Add('TIPO_PEDIDO');
@@ -84,7 +86,8 @@ begin
   {11} Campos.Add('DTEMISSAO_PEDIDO');
   {12} Campos.Add('VLRBRUTO_PEDIDO');
   {13} Campos.Add('VLRLIQUIDO_PEDIDO');
-  {14} Campos.Add('PEDCONSULTOR_PEDIDO');
+  {14} Campos.Add('VLRDESCONTO_PEDIDO');
+  {15} Campos.Add('PEDCONSULTOR_PEDIDO');
 
   Result := Lista;
 end;
@@ -118,7 +121,7 @@ begin
       else if (Campo = 'RAZAOSOCIAL_PESSOA') then
       begin
         DisplayLabel := 'Razão Social';
-        ProviderFlags := [];
+        Tag := CampoNaoAtualizavel;
       end
       else if (Campo = 'CODIGO_ENDERECOPESSOA') then
       begin
@@ -154,6 +157,10 @@ begin
       else if (Campo = 'VLRLIQUIDO_PEDIDO') then
       begin
         DisplayLabel := 'Valor Líquido';
+      end
+      else if (Campo = 'VLRDESCONTO_PEDIDO') then
+      begin
+        DisplayLabel := 'Valor Desconto';
       end
       else if (Campo = 'PEDCONSULTOR_PEDIDO') then
       begin
@@ -218,6 +225,7 @@ begin
             '  PEDIDO.DESCONTOVLR_PEDIDO,                ' + #13 +
             '  PEDIDO.VLRBRUTO_PEDIDO,                   ' + #13 +
             '  PEDIDO.VLRLIQUIDO_PEDIDO,                 ' + #13 +
+            '  PEDIDO.VLRDESCONTO_PEDIDO,                ' + #13 +
             '  PEDIDO.PEDCONSULTOR_PEDIDO                ' + #13 +
             'FROM PEDIDO                                 ' + #13 +
             'LEFT JOIN PESSOA ON (PESSOA.CODIGO_PESSOA = PEDIDO.CODIGO_PESSOA) ' + #13 +
@@ -252,6 +260,7 @@ begin
             '  PEDIDO.DESCONTOVLR_PEDIDO,                ' + #13 +
             '  PEDIDO.VLRBRUTO_PEDIDO,                   ' + #13 +
             '  PEDIDO.VLRLIQUIDO_PEDIDO,                 ' + #13 +
+            '  PEDIDO.VLRDESCONTO_PEDIDO,                ' + #13 +
             '  PEDIDO.PEDCONSULTOR_PEDIDO                ' + #13 +
             'FROM PEDIDO                                 ' + #13 +
             'LEFT JOIN PESSOA          ON (PEDIDO.CODIGO_PESSOA    = PESSOA.CODIGO_PESSOA)                  ' + #13 +
