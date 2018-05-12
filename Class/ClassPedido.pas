@@ -122,6 +122,7 @@ begin
       begin
         DisplayLabel := 'Razão Social';
         Tag := CampoNaoAtualizavel;
+        ProviderFlags := [];
       end
       else if (Campo = 'CODIGO_ENDERECOPESSOA') then
       begin

@@ -175,7 +175,7 @@ begin
   begin
     gridPedido_Item.Canvas.Brush.Color := clGradeSomenteLeitura;
     gridPedido_Item.Canvas.FillRect(rect);
-    //Column.Field.ReadOnly := True;
+    //Column.ReadOnly := True;
 
     gridPedido_Item.DefaultDrawColumnCell(Rect, DataCol, Column, State);
   end;

@@ -108,6 +108,7 @@ begin
   //Usando da forma abaixo, pode-se utilizar na Classe pai, pois só executará quando houver FClasseFilha setada.
   with FClasseFilha, DataSet do
     begin
+      ConfigurarPropriedadesDoCampo(DataSet);
       ConfigurarProviderFlags([CampoChave]);
     end;
 
