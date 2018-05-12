@@ -477,6 +477,14 @@ inherited FrmCadPedido: TFrmCadPedido
           DataSource = DSCadastro
           TabOrder = 3
         end
+        object JvDBNavigator1: TJvDBNavigator
+          Left = 295
+          Top = 62
+          Width = 200
+          Height = 25
+          DataSource = DSPedido_Prazos
+          TabOrder = 5
+        end
       end
     end
   end

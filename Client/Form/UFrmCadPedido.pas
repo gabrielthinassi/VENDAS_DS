@@ -88,6 +88,7 @@ type
     edtTotalBruto: TDBEdit;
     edtDesconto: TDBEdit;
     edtTotalLiquido: TDBEdit;
+    JvDBNavigator1: TJvDBNavigator;
     procedure btnPesquisarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
