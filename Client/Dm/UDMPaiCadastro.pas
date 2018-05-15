@@ -323,7 +323,7 @@ begin
     begin
       (Components[X] as TClientDataSet).Close;
       (Components[X] as TClientDataSet).AdicionarCampos();
-      (Components[X] as TClientDataSet).ProviderName := 'DSPCCadastro';
+
       (Components[X] as TClientDataSet).Open;
     end;
   end;
@@ -384,15 +384,20 @@ begin
             IntToStr(Codigo);
   end;
 
-  Descricao := DMConexao.ExecuteScalar(SQL);
+
+  Descricao := VarToStrDef(DMConexao.ExecuteScalar(SQL), '');
 
   if (Descricao <> '') and DataSet.Active then
   begin
     if not (DataSet.State in [dsEdit, dsInsert]) then
       DataSet.Edit;
-    DataSet.FieldByName(Classe.CampoDescricao).AsString := Descricao;
+    DataSet.FieldByName(Classe.CampoDescricao).AsString := Descricao
+  end
+  else
+  begin
+    ShowMessage(Classe.Descricao + ' não localizada!');
+    Abort;
   end;
-
 end;
 
 function TDMPaiCadastro.NovoCodigo: Integer;

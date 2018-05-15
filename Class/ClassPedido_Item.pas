@@ -110,7 +110,7 @@ begin
       else if (Campo = 'VLRUNITBRUTO_PEDITEM') then
       begin
         DisplayLabel := 'Vlr.Unit.Bruto';
-        Index := 4;
+        Index := 5;
         DisplayWidth := 5;
       end
       else if (Campo = 'VLRUNITLIQUIDO_PEDITEM') then

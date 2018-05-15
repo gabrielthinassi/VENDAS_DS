@@ -137,7 +137,7 @@ begin
         DisplayLabel := 'Emissão';
         EditMask := sMascaraData;
         //DefaultExpression pra buscar a Data Atual
-        //DefaultExpression := DateToStr(Date);
+        DefaultExpression := 'SYSDATE';
       end
       else if (Campo = 'CONDICAOPAG_PEDIDO') then
       begin
@@ -180,8 +180,9 @@ var
   Parametros: TListaDeParametrosSql;
 begin
     SetLength(Parametros, 1);
-    Parametros[0].Nome := 'COD';
-    Parametros[0].Tipo := ftInteger;
+    Parametros[0].Nome  := 'COD';
+    Parametros[0].Tipo  := ftInteger;
+    Parametros[0].Valor := -1;
 
     Result := Parametros;
 end;

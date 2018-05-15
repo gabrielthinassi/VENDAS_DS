@@ -191,6 +191,9 @@ inherited FrmCadPedido: TFrmCadPedido
           Top = 28
           Width = 93
           Height = 21
+          CheckOnExit = True
+          DecimalPlaces = 0
+          DisplayFormat = ',0'
           ImageKind = ikEllipsis
           ButtonWidth = 34
           TabOrder = 2
@@ -313,7 +316,7 @@ inherited FrmCadPedido: TFrmCadPedido
           Top = 81
           Width = 89
           Height = 21
-          DataField = 'TIPO_ENDERECOPESSOA'
+          DataField = 'DESCTIPO_ENDERECOPESSOA'
           DataSource = DSPessoa_Endereco
           Enabled = False
           TabOrder = 5
@@ -327,24 +330,6 @@ inherited FrmCadPedido: TFrmCadPedido
           DataSource = DSPessoa_Endereco
           Enabled = False
           TabOrder = 6
-        end
-        object edtEnderecoCodigo: TDBEdit
-          Left = 559
-          Top = 81
-          Width = 33
-          Height = 21
-          DataField = 'CODIGO_ENDERECO'
-          DataSource = DSCadastro
-          TabOrder = 7
-        end
-        object edtEnderecoCodigoPessoa: TDBEdit
-          Left = 607
-          Top = 81
-          Width = 33
-          Height = 21
-          DataField = 'CODIGO_ENDERECOPESSOA'
-          DataSource = DSPessoa_Endereco
-          TabOrder = 8
         end
       end
       object gridPedido_Item: TDBGrid

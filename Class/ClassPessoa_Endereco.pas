@@ -149,16 +149,24 @@ end;
 
 class function TClassPessoa_Endereco.SQLBaseCadastro: string;
 begin
-  Result := 'SELECT'                 + #13 +
-            CamposCadastro           + #13 +
-            'FROM PESSOA_ENDERECO'   + #13 +
+  Result := 'SELECT'                            + #13 +
+            CamposCadastro                      + #13 +
+            ' , case TIPO_ENDERECOPESSOA      ' + #13 +
+            ' when 0 then ''RESIDENCIAL''     ' + #13 +
+            ' when 1 then ''COMERCIAL''       ' + #13 +
+            ' end as  DESCTIPO_ENDERECOPESSOA ' + #13 +
+            'FROM PESSOA_ENDERECO             ' + #13 +
             'WHERE PESSOA_ENDERECO.CODIGO_PESSOA = :CODIGO_PESSOA';
 end;
 
 class function TClassPessoa_Endereco.SQLBaseConsulta: string;
 begin
-  Result := 'SELECT'               + #13 +
-            CamposCadastro         + #13 +
+  Result := 'SELECT'                           + #13 +
+            CamposCadastro                     + #13 +
+            ' , case TIPO_ENDERECOPESSOA     ' + #13 +
+            ' when 0 then ''RESIDENCIAL''    ' + #13 +
+            ' when 1 then ''COMERCIAL''      ' + #13 +
+            ' end as  DESCTIPO_ENDERECOPESSOA' + #13 +
             'FROM PESSOA_ENDERECO' ;
 end;
 

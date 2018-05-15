@@ -73,8 +73,6 @@ end;
 procedure TSMPaiCadastro.DSServerModuleDestroy(Sender: TObject);
 begin
   DSServerModuleDestroy_Filho(Sender);
-  //Verificar este FreeAndNil, pode não poder liberar este SQLDS ou tratar de uma outra forma
-  FreeAndNil(SQLDSCadastro);
   inherited;
 end;
 

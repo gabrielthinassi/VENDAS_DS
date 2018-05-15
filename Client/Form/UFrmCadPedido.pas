@@ -79,8 +79,6 @@ type
     DSPedido_Item: TDataSource;
     DSPessoa_Endereco: TDataSource;
     edtClienteCodigo: TJvDBCalcEdit;
-    edtEnderecoCodigo: TDBEdit;
-    edtEnderecoCodigoPessoa: TDBEdit;
     lblFormaPagamento: TLabel;
     lblTotalBruto: TStaticText;
     lblDesconto: TStaticText;
@@ -96,6 +94,7 @@ type
     procedure edtClienteCodigoButtonClick(Sender: TObject);
     procedure gridPedido_ItemDrawColumnCell(Sender: TObject; const Rect: TRect;
       DataCol: Integer; Column: TColumn; State: TGridDrawState);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
     FDMPessoa: TDMCadPessoa;
@@ -135,10 +134,11 @@ begin
   FrmPaiConsulta.Classe := TClassPessoa;
   try
     FrmPaiConsulta.ShowModal;
-    edtClienteCodigo.AsInteger := FrmPaiConsulta.Codigo;
+    DMCadastro.CDSCadastro.FieldByName('CODIGO_PESSOA').AsInteger := FrmPaiConsulta.Codigo;
+    //TJvDBCalcEdit(Sender).DataSource.DataSet.FieldByName(TJvDBCalcEdit(Sender).DataField).AsInteger := FrmPaiConsulta.Codigo;
   finally
-    Abort;
     FreeAndNil(FrmPaiConsulta);
+    Abort;
   end;
 end;
 
@@ -164,6 +164,17 @@ procedure TFrmCadPedido.FormDestroy(Sender: TObject);
 begin
   inherited;
   FrmCadPedido := nil;
+end;
+
+procedure TFrmCadPedido.FormShow(Sender: TObject);
+begin
+  inherited;
+  with gridPedido_Item do
+  begin
+    //CriarColuna('CODIGFO_ITEM', 'DESCRICAO_ITEM');
+
+    //Field.read
+  end;
 end;
 
 procedure TFrmCadPedido.gridPedido_ItemDrawColumnCell(Sender: TObject;
