@@ -9,6 +9,7 @@ uses
   Data.DB,
   Datasnap.DBClient,
   Datasnap.DSConnect,
+  Dialogs,
   //---//
   ClassPedido,
   ClassPedido_Item,
@@ -27,6 +28,7 @@ type
     procedure CDSPedido_ItemBeforePost(DataSet: TDataSet);
     procedure CDSPedido_PrazosBeforePost(DataSet: TDataSet);
     procedure CDSCadastroAfterOpen(DataSet: TDataSet);
+    procedure CDSCadastroBeforePost(DataSet: TDataSet);
   private
     { Private declarations }
     FlagCalculandoValores: Boolean;
@@ -70,6 +72,26 @@ begin
 
   //Abre os DataSetsDetalhe ***Deprecated***
   //AbreFilhos;
+end;
+
+procedure TDMCadPedido.CDSCadastroBeforePost(DataSet: TDataSet);
+begin
+  inherited;
+
+  if ((CDSCadastro.FieldByName('DESCONTOPERC_PEDIDO').Value < 0)
+    or (CDSCadastro.FieldByName('DESCONTOPERC_PEDIDO').Value > 100)) then
+  begin
+    ShowMessage('O Percentual de Desconto deve estar entre 0 e 100!');
+    Abort;
+  end;
+
+  if CDSCadastro.FieldByName('VLRDESCONTO_PEDIDO').Value
+    > CDSCadastro.FieldByName('VLRBRUTO_PEDIDO').Value then
+  begin
+    ShowMessage('O Valor de Desconto não pode ser maior que o Valor Bruto do Pedido!');
+    Abort;
+  end;
+
 end;
 
 procedure TDMCadPedido.CDSPedido_ItemBeforePost(DataSet: TDataSet);
