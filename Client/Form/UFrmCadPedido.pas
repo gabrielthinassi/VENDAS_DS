@@ -95,12 +95,13 @@ type
     procedure gridPedido_ItemDrawColumnCell(Sender: TObject; const Rect: TRect;
       DataCol: Integer; Column: TColumn; State: TGridDrawState);
     procedure FormShow(Sender: TObject);
+    procedure gridPedido_ItemColExit(Sender: TObject);
   private
     { Private declarations }
-    FDMPessoa: TDMCadPessoa;
+    //FDMPessoa: TDMCadPessoa;
   public
     { Public declarations }
-    property DMPessoa: TDMCadPessoa read FDMPessoa write FDMPessoa;
+    //property DMPessoa: TDMCadPessoa read FDMPessoa write FDMPessoa;
   end;
 
 var
@@ -151,7 +152,7 @@ end;
 procedure TFrmCadPedido.FormCreate(Sender: TObject);
 begin
   DMCadastro := TDMCadPedido.Create(Self);
-  DMPessoa   := TDMCadPessoa.Create(Self);
+  //DMPessoa   := TDMCadPessoa.Create(Self);
 
   DSPedido_Prazos.DataSet   := TDMCadPedido(DMCadastro).CDSPedido_Prazos;
   DSPedido_Item.DataSet     := TDMCadPedido(DMCadastro).CDSPedido_Item;
@@ -177,6 +178,13 @@ begin
   end;
 end;
 
+procedure TFrmCadPedido.gridPedido_ItemColExit(Sender: TObject);
+begin
+  inherited;
+  if TDBGrid(sender).DataSource.DataSet.State in [dsEdit, dsInsert] then
+    TDBGrid(sender).DataSource.DataSet.Post;
+end;
+
 procedure TFrmCadPedido.gridPedido_ItemDrawColumnCell(Sender: TObject;
   const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
 var
@@ -187,7 +195,7 @@ begin
   begin
     gridPedido_Item.Canvas.Brush.Color := clGradeSomenteLeitura;
     gridPedido_Item.Canvas.FillRect(rect);
-    //Column.ReadOnly := True;
+    Column.ReadOnly := True;
 
     gridPedido_Item.DefaultDrawColumnCell(Rect, DataCol, Column, State);
   end;
