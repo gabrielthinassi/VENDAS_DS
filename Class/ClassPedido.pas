@@ -121,8 +121,7 @@ begin
       else if (Campo = 'RAZAOSOCIAL_PESSOA') then
       begin
         DisplayLabel := 'Razão Social';
-        Tag := CampoNaoAtualizavel;
-        ProviderFlags := [];
+        //Tag := CampoNaoAtualizavel;
       end
       else if (Campo = 'CODIGO_ENDERECOPESSOA') then
       begin
@@ -137,7 +136,7 @@ begin
         DisplayLabel := 'Emissão';
         EditMask := sMascaraData;
         //DefaultExpression pra buscar a Data Atual
-        DefaultExpression := 'SYSDATE';
+        DefaultExpression := 'current_date';
       end
       else if (Campo = 'CONDICAOPAG_PEDIDO') then
       begin

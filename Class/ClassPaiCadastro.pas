@@ -44,8 +44,6 @@ type
 
     class function CamposConsulta(Lista, Campos: TStrings): TStrings; virtual;
 
-    //procedure AdicionarCampos(const bVerificarSeJaExiste: Boolean);
-
     class function ParametrosSql: TListaDeParametrosSql; virtual;
 
     class function CriarParametros(ASQLDataSet: TSQLDataSet): string;
@@ -66,7 +64,7 @@ function CriarClassePeloNome(const Nome: string): TClassPaiCadastro;
 
 implementation
 
-uses ClassDataSet;
+uses ClassHelper;
 
 class function TClassPaiCadastro.Descricao: string;
 begin
@@ -134,21 +132,6 @@ begin
   // ex: tabela de 'ClassPessoa_Endereco', a classe relacional é a 'ClassPessoa'
   Result := '';
 end;
-
-{procedure TClassPaiCadastro.AdicionarCampos(const bVerificarSeJaExiste: Boolean = True);
-var
-  X: Integer;
-begin
-  // Atualizando os tipos dos TFields, conforme tipos dos campos definidos no banco de dados
-  Active := False;
-  FieldDefs.Update;
-
-  // Criar os TFields inserindo-os no DataSet.
-  for X := 0 to FieldDefs.Count - 1 do
-    if (not bVerificarSeJaExiste) or (FindField(FieldDefs[x].Name) = nil) then
-      FieldDefs.Items[X].CreateField(Self);
-end;
-}
 
 class function TClassPaiCadastro.ParametrosSql: TListaDeParametrosSql;
 begin

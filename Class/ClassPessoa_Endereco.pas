@@ -8,7 +8,7 @@ uses
   SysUtils,
   ClassPaiCadastro,
   Constantes,
-  ClassDataSet;
+  ClassHelper;
 
 type
   TClassPessoa_Endereco = class(TClassPaiCadastro)

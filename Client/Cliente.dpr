@@ -9,7 +9,7 @@ uses
   UDMPai in 'Dm\UDMPai.pas' {DMPai: TDataModule},
   UDMPaiCadastro in 'Dm\UDMPaiCadastro.pas' {DMPaiCadastro: TDataModule},
   UFrmConfigServidorAplicacao in 'Form\UFrmConfigServidorAplicacao.pas' {FrmConfigServidorAplicacao},
-  ClassDataSet in '..\Class\ClassDataSet.pas',
+  ClassHelper in '..\Class\ClassHelper.pas',
   ClassExpositorDeClasses in '..\Class\ClassExpositorDeClasses.pas',
   ClassPai in '..\Class\ClassPai.pas',
   ClassStatus in '..\Class\ClassStatus.pas',

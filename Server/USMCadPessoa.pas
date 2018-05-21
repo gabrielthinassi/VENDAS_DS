@@ -18,7 +18,7 @@ uses
   Data.SqlExpr,
   USMPaiCadastro,
   //-------------------//
-  ClassDataSet,
+  ClassHelper,
   ClassPessoa,
   ClassPessoa_Endereco;
 

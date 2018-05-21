@@ -44,7 +44,7 @@ type
 
 implementation
 
-uses ClassDataSet,
+uses ClassHelper,
      Constantes,
      USMConexao;
 

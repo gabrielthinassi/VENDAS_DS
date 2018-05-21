@@ -15,7 +15,7 @@ uses
   ClassStatus in '..\Class\ClassStatus.pas',
   USMConexao in 'USMConexao.pas' {SMConexao: TDSServerModule},
   Constantes in '..\Class\Constantes.pas',
-  ClassDataSet in '..\Class\ClassDataSet.pas',
+  ClassHelper in '..\Class\ClassHelper.pas',
   USMPaiCadastro in 'USMPaiCadastro.pas' {SMPaiCadastro: TDSServerModule},
   USMCadStatus in 'USMCadStatus.pas' {SMCadStatus: TDSServerModule},
   ClassPessoa in '..\Class\ClassPessoa.pas',

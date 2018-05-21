@@ -59,7 +59,7 @@ var
 implementation
 
 uses
-  ClassDataSet;
+  ClassHelper;
 
 {%CLASSGROUP 'Vcl.Controls.TControl'}
 
@@ -150,7 +150,7 @@ begin
 
   CDSPedido_Item.DataSetField := TDataSetField(CDSCadastro.FieldByName('SQLDSPedido_Item'));
   CDSPedido_Item.AdicionarCampos;
-  FClassPedido_Item.ConfigurarPropriedadesDoCampo(CDSPedido_Item);
+  //FClassPedido_Item.ConfigurarPropriedadesDoCampo(CDSPedido_Item);
 
   // Flags
   FlagCalculandoValores := False;

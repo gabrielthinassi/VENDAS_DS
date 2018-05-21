@@ -75,7 +75,7 @@ var
 
 implementation
 
-uses Constantes, ClassDataSet;
+uses Constantes, ClassHelper;
 {$R *.dfm}
 
 procedure TDMConexao.DataModuleCreate(Sender: TObject);

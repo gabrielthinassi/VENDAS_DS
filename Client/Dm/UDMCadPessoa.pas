@@ -12,7 +12,7 @@ uses
   //------//
   ClassPessoa,
   ClassPessoa_Endereco,
-  ClassDataSet;
+  ClassHelper;
 
 type
   TDMCadPessoa = class(TDMPaiCadastro)

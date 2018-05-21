@@ -18,7 +18,7 @@ uses
   Data.DB,
   Data.SqlExpr,
   //---//
-  ClassDataSet,
+  ClassHelper,
   ClassPedido,
   ClassPedido_Item,
   ClassPedido_Prazos,

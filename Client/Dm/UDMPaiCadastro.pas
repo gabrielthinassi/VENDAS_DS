@@ -49,13 +49,11 @@ type
     procedure CDSCadastroBeforePost(DataSet: TDataSet);
 
   private
-    function GetIdDetalhe: Integer;
   protected
     FClasseFilha: TFClassPaiCadastro;
     FCodigoAtual: Integer;
   public
     property CodigoAtual: Integer read FCodigoAtual write FCodigoAtual;
-    property IdDetalhe: Integer read GetIdDetalhe;
 
     function GetClassNameClasseFilha: string;
 
@@ -92,7 +90,7 @@ implementation
 
 { %CLASSGROUP 'Vcl.Controls.TControl' }
 
-uses Constantes, ClassDataSet, UDMConexao;
+uses Constantes, ClassHelper, UDMConexao;
 
 {$R *.dfm}
 
@@ -322,7 +320,7 @@ begin
     if (Components[X] is TClientDataSet) and not (Components[X].Name = 'CDSCadastro') and (TClientDataSet(Components[X]).DataSetField <> nil) then
     begin
       (Components[X] as TClientDataSet).Close;
-      (Components[X] as TClientDataSet).AdicionarCampos();
+      (Components[X] as TClientDataSet).AdicionarCampos;
 
       (Components[X] as TClientDataSet).Open;
     end;
@@ -415,12 +413,6 @@ begin
     Result := FClasseFilha.ClassName
   else
     Result := '';
-end;
-
-function TDMPaiCadastro.GetIdDetalhe: Integer;
-begin
-  //FIdDetalhe := FIdDetalhe - 1;
-  //Result := FIdDetalhe;
 end;
 
 procedure TDMPaiCadastro.GravarRegistro;

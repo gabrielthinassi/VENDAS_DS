@@ -109,6 +109,9 @@ var
 
 implementation
 
+uses
+  ClassHelper;
+
 {$R *.dfm}
 
 procedure TFrmCadPedido.btnPesquisarClick(Sender: TObject);
@@ -172,9 +175,15 @@ begin
   inherited;
   with gridPedido_Item do
   begin
-    //CriarColuna('CODIGFO_ITEM', 'DESCRICAO_ITEM');
-
-    //Field.read
+    CriarColuna(['CODIGO_ITEM'], cbsEllipsis);
+    CriarColuna(['REFERENCIA_ITEM',
+                 'DESCRICAO_ITEM',
+                 'UNIDADE_ITEM',
+                 'QTD_PEDITEM',
+                 'VLRUNITBRUTO_PEDITEM',
+                 'VLRUNITLIQUIDO_PEDITEM',
+                 'VLRTOTBRUTO_PEDITEM',
+                 'VLRTOTLIQUIDO_PEDITEM']);
   end;
 end;
 
@@ -187,8 +196,6 @@ end;
 
 procedure TFrmCadPedido.gridPedido_ItemDrawColumnCell(Sender: TObject;
   const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
-var
-  X: Integer;
 begin
   inherited;
   if Column.Field.Tag = CampoNaoEditavel then
