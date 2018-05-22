@@ -127,7 +127,7 @@ var
   end;
 
 begin
-  Result := nil;
+  //Result := nil;
 
   if not Assigned(DataSource) then
     raise Exception.Create('Favor informar o DataSource da Grade ' + Name);
@@ -145,7 +145,7 @@ begin
       begin
         CampoTemp := DataSource.DataSet.FindField(Campos[I]);
 
-        if CampoTemp = nil then
+        if CampoTemp <> nil then
           AdicionaColuna(CampoTemp);
       end;
   finally

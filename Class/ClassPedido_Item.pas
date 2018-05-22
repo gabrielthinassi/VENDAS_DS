@@ -76,62 +76,62 @@ begin
       else if (Campo = 'CODIGO_ITEM') then
       begin
         DisplayLabel := 'Item';
-        Index := 1;
+        //Index := 1;
         DisplayWidth := 5;
       end
       else if (Campo = 'REFERENCIA_ITEM') then
       begin
         DisplayLabel := 'Referência';
         Tag := CampoNaoEditavel;
-        Index := 2;
+        //Index := 2;
         DisplayWidth := 10;
-        Visible := False;
+        //Visible := False;
       end
       else if (Campo = 'DESCRICAO_ITEM') then
       begin
         DisplayLabel := 'Descrição';
         Tag := CampoNaoEditavel;
-        Index := 3;
+        //Index := 3;
         DisplayWidth := 20;
       end
       else if (Campo = 'UNIDADE_ITEM') then
       begin
         DisplayLabel := 'UN';
         Tag := CampoNaoEditavel;
-        Index := 4;
+        //Index := 4;
         DisplayWidth := 3;
       end
       else if (Campo = 'QTD_PEDITEM') then
       begin
         DisplayLabel := 'Quantidade';
-        Index := 5;
+        //Index := 5;
         DisplayWidth := 5;
       end
       else if (Campo = 'VLRUNITBRUTO_PEDITEM') then
       begin
         DisplayLabel := 'Vlr.Unit.Bruto';
-        Index := 6;
+        //Index := 6;
         //DisplayWidth := 5;
       end
       else if (Campo = 'VLRUNITLIQUIDO_PEDITEM') then
       begin
         DisplayLabel := 'Vlr.Unit.Liquido';
         Tag := CampoNaoEditavel;
-        Index := 7;
+        //Index := 7;
         DisplayWidth := 5;
       end
       else if (Campo = 'VLRTOTBRUTO_PEDITEM') then
       begin
         DisplayLabel := 'Vlr.Tot.Bruto';
         Tag := CampoNaoEditavel;
-        Index := 8;
+        //Index := 8;
         DisplayWidth := 5;
       end
       else if (Campo = 'VLRTOTLIQUIDO_PEDITEM') then
       begin
         DisplayLabel := 'Vlr.Tot.Liquido';
         Tag := CampoNaoEditavel;
-        Index := 9;
+        //Index := 9;
         DisplayWidth := 5;
       end;
   end;
