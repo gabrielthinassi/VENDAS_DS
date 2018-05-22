@@ -121,7 +121,7 @@ begin
       else if (Campo = 'RAZAOSOCIAL_PESSOA') then
       begin
         DisplayLabel := 'Razão Social';
-        //Tag := CampoNaoAtualizavel;
+        Tag := CampoNaoAtualizavel;
       end
       else if (Campo = 'CODIGO_ENDERECOPESSOA') then
       begin
@@ -153,6 +153,7 @@ begin
       else if (Campo = 'VLRBRUTO_PEDIDO') then
       begin
         DisplayLabel := 'Valor Bruto';
+        //DisplayFormat := '###,###,##0.0000';
       end
       else if (Campo = 'VLRLIQUIDO_PEDIDO') then
       begin

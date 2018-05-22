@@ -66,12 +66,12 @@ begin
       if (Campo = 'AUTOINC_PEDITEM') then
       begin
         DisplayLabel := 'AutoIncremento';
-        //Visible := False;
+        Visible := False;
       end
       else if (Campo = 'CODIGO_PEDIDO') then
       begin
         DisplayLabel := 'Código do Pedido';
-        //Visible := False;
+        Visible := False;
       end
       else if (Campo = 'CODIGO_ITEM') then
       begin
@@ -85,7 +85,7 @@ begin
         Tag := CampoNaoEditavel;
         Index := 2;
         DisplayWidth := 10;
-        //Visible := False;
+        Visible := False;
       end
       else if (Campo = 'DESCRICAO_ITEM') then
       begin

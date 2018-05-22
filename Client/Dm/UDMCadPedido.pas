@@ -39,15 +39,16 @@ type
     FClassPedido_Item:     TClassPedido_Item;
 
     procedure CarregaEndereco(Codigo: Integer);
+    procedure CalcularValorBruto;
     procedure CalculaValores;
 
     //--Validates
     procedure Validate_PedidoPessoa(Sender: TField);
-    procedure CalcularValorBruto;
-    procedure CDSCadastro_DESCONTOPERC_PEDIDO_Validate(Sender: TField);
-    procedure CDSCadastro_DESCONTOVLR_PEDIDO_Validate(Sender: TField);
-    procedure CDSPedido_Item_QTD_PEDITEM_Validate(Sender: TField);
-    procedure CDSPedido_Item_VLRUNITBRUTO_PEDITEM_Validate(Sender: TField);
+    procedure Validate_CDSCadastro_DESCONTOPERC_PEDIDO(Sender: TField);
+    procedure Validate_CDSCadastro_DESCONTOVLR_PEDIDO(Sender: TField);
+    procedure Validate_CDSPedido_Item_QTD_PEDITEM(Sender: TField);
+    procedure Validate_CDSPedido_Item_VLRUNITBRUTO_PEDITEM(Sender: TField);
+    procedure Validate_CDSPedido_Item_CODIGO_ITEM(Sender: TField);
 
   public
     { Public declarations }
@@ -73,9 +74,8 @@ begin
 
   //--Validates--
   CDSCadastro.FieldByName('CODIGO_PESSOA').OnValidate       := Validate_PedidoPessoa;
-
-  CDSCadastro.FieldByName('DESCONTOPERC_PEDIDO').OnValidate := CDSCadastro_DESCONTOPERC_PEDIDO_Validate;
-  CDSCadastro.FieldByName('DESCONTOVLR_PEDIDO').OnValidate  := CDSCadastro_DESCONTOVLR_PEDIDO_Validate;
+  CDSCadastro.FieldByName('DESCONTOPERC_PEDIDO').OnValidate := Validate_CDSCadastro_DESCONTOPERC_PEDIDO;
+  CDSCadastro.FieldByName('DESCONTOVLR_PEDIDO').OnValidate  := Validate_CDSCadastro_DESCONTOVLR_PEDIDO;
 
   //Abre os DataSetsDetalhe ***Deprecated***
   //AbreFilhos;
@@ -97,9 +97,9 @@ procedure TDMCadPedido.CDSPedido_ItemAfterOpen(DataSet: TDataSet);
 begin
   inherited;
   CloneCDSPedido_Item.CloneCursor(CDSPedido_Item, True);
-  CDSPedido_Item.FieldByName('QTD_PEDITEM').OnValidate          := CDSPedido_Item_QTD_PEDITEM_Validate;
-  CDSPedido_Item.FieldByName('VLRUNITBRUTO_PEDITEM').OnValidate := CDSPedido_Item_VLRUNITBRUTO_PEDITEM_Validate;
-
+  CDSPedido_Item.FieldByName('QTD_PEDITEM').OnValidate          := Validate_CDSPedido_Item_QTD_PEDITEM;
+  CDSPedido_Item.FieldByName('VLRUNITBRUTO_PEDITEM').OnValidate := Validate_CDSPedido_Item_VLRUNITBRUTO_PEDITEM;
+  CDSPedido_Item.FieldByName('CODIGO_ITEM').OnValidate          := Validate_CDSPedido_Item_CODIGO_ITEM;
   end;
 
 
@@ -150,22 +150,27 @@ begin
 
   CDSPedido_Item.DataSetField := TDataSetField(CDSCadastro.FieldByName('SQLDSPedido_Item'));
   CDSPedido_Item.AdicionarCampos;
-  //FClassPedido_Item.ConfigurarPropriedadesDoCampo(CDSPedido_Item);
+  FClassPedido_Item.ConfigurarPropriedadesDoCampo(CDSPedido_Item);
 
   // Flags
   FlagCalculandoValores := False;
 end;
 
 
-procedure TDMCadPedido.CDSPedido_Item_QTD_PEDITEM_Validate(Sender: TField);
+procedure TDMCadPedido.Validate_CDSPedido_Item_CODIGO_ITEM(Sender: TField);
+begin
+  ValidateCampos(Sender.AsInteger, TClassPedido_Item, CDSPedido_Item);
+end;
+
+procedure TDMCadPedido.Validate_CDSPedido_Item_QTD_PEDITEM(Sender: TField);
 begin
   CalcularValorBruto;
 end;
-procedure TDMCadPedido.CDSPedido_Item_VLRUNITBRUTO_PEDITEM_Validate(Sender: TField);
+procedure TDMCadPedido.Validate_CDSPedido_Item_VLRUNITBRUTO_PEDITEM(Sender: TField);
 begin
   CalcularValorBruto;
 end;
-procedure TDMCadPedido.CDSCadastro_DESCONTOPERC_PEDIDO_Validate(Sender: TField);
+procedure TDMCadPedido.Validate_CDSCadastro_DESCONTOPERC_PEDIDO(Sender: TField);
 begin
   if ((CDSCadastro.FieldByName('DESCONTOPERC_PEDIDO').Value < 0)
   or (CDSCadastro.FieldByName('DESCONTOPERC_PEDIDO').Value > 100)) then
@@ -176,15 +181,15 @@ begin
 
   CalculaValores;
 end;
-procedure TDMCadPedido.CDSCadastro_DESCONTOVLR_PEDIDO_Validate(Sender: TField);
+procedure TDMCadPedido.Validate_CDSCadastro_DESCONTOVLR_PEDIDO(Sender: TField);
 begin
   CalculaValores;
 end;
 
 procedure TDMCadPedido.CalcularValorBruto;
 begin
-      CDSPedido_item.FieldByName('VLRTOTBRUTO_PEDITEM').AsCurrency   := CDSPedido_item.FieldByName('VLRUNITBRUTO_PEDITEM').AsCurrency *
-                                                                     CDSPedido_item.FieldByName('QTD_PEDITEM').AsCurrency;
+  CDSPedido_item.FieldByName('VLRTOTBRUTO_PEDITEM').AsCurrency   := CDSPedido_item.FieldByName('VLRUNITBRUTO_PEDITEM').AsCurrency *
+                                                                      CDSPedido_item.FieldByName('QTD_PEDITEM').AsCurrency;
 end;
 
 procedure TDMCadPedido.DataModuleDestroy(Sender: TObject);
