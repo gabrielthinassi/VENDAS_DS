@@ -42,8 +42,6 @@ uses
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  Application.CreateForm(TFrmPrincipal, FrmPrincipal);
-  Application.CreateForm(TDMPaiRelatorio, DMPaiRelatorio);
-  Application.CreateForm(TFrmAgendaXML, FrmAgendaXML);
+  Application.CreateForm(TDMConexao, DMConexao);
   Application.Run;
 end.

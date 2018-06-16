@@ -17,6 +17,7 @@ type
     procedure lblFecharClick(Sender: TObject);
     procedure edtSenhaKeyPress(Sender: TObject; var Key: Char);
     procedure lblLogarClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
@@ -41,6 +42,7 @@ begin
     if ActiveControl = edtSenha then
     begin
       lblLogar.OnClick(lblLogar);
+      FrmLogin.Close;
     end
     else
     begin
@@ -48,6 +50,12 @@ begin
     end;
   end;
 
+end;
+
+procedure TFrmLogin.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  inherited;
+  FrmLogin.Free;
 end;
 
 procedure TFrmLogin.lblFecharClick(Sender: TObject);
@@ -73,8 +81,7 @@ begin
     Exit;
   end;
 
-  FrmPrincipal := TFrmPrincipal(CriaForm(Self, FrmPrincipal, TFrmPrincipal, False, Sender));
-  //FrmLogin.Close;
+  FrmPrincipal := TFrmPrincipal(CriaForm(nil , FrmPrincipal, TFrmPrincipal, False, Sender));
 end;
 
 end.

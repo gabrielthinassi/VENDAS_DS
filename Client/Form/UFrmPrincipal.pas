@@ -51,7 +51,7 @@ end;
 
 procedure TFrmPrincipal.FormCreate(Sender: TObject);
 begin
-  DMConexao := TDMConexao.Create(Self);
+  //DMConexao := TDMConexao.Create(Self);
 end;
 
 procedure TFrmPrincipal.mmItemClick(Sender: TObject);

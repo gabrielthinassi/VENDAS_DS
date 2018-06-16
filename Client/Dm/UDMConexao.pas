@@ -44,7 +44,9 @@ uses
   ImgList,
   DBGrids,
   JvDBGrid,
-  Data.DBXCDSReaders;
+  Data.DBXCDSReaders,
+  Funcoes,
+  UFrmLogin;
 
 type
   TDMConexao = class(TDataModule)
@@ -82,7 +84,8 @@ procedure TDMConexao.DataModuleCreate(Sender: TObject);
 begin
   //CarregaDefaults;
   //CarregaConfigClasses;
-  CarregarListaDeTabelasEProceduresDoBDD;
+  //CarregarListaDeTabelasEProceduresDoBDD;
+  //FrmLogin := TFrmLogin(CriaForm(Self, FrmLogin, TFrmLogin, False, Sender));
 end;
 
 procedure TDMConexao.DataModuleDestroy(Sender: TObject);
