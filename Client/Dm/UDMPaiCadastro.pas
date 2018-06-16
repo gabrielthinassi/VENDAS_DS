@@ -70,7 +70,8 @@ type
     procedure AbreFilhos;
 
     //Validates
-    class procedure ValidateDescricao(Codigo: Integer; Classe: TFClassPaiCadastro; DataSet: TDataSet);
+    class procedure ValidateDescricao(Codigo: Integer; Classe: TFClassPaiCadastro; DataSet: TDataSet); overload;
+    class procedure ValidateDescricao(Codigo: Integer; Classe: TFClassPaiCadastro; Campos: array of string; DataSet: TDataSet); overload;
     class procedure ValidateCampos(Codigo: Integer; Classe: TFClassPaiCadastro; DataSet: TDataSet);
 
 
@@ -444,6 +445,56 @@ begin
     Abort;
   end;
 end;
+
+class procedure TDMPaiCadastro.ValidateDescricao(Codigo: Integer;
+Classe: TFClassPaiCadastro; Campos: array of string; DataSet: TDataSet);
+var
+  SQL, NomeCampos: String;
+  I: Integer;
+  CDS: TClientDataSet;
+begin
+  if Codigo = 0 then
+    exit;
+
+  CDS := TClientDataSet.Create(nil);
+  try
+    with Classe do
+    begin
+      NomeCampos := CampoChave;
+
+      for I := Low(Campos) to High(Campos) do
+        NomeCampos := NomeCampos + ',' + Campos[I];
+
+      SQL :=  'SELECT ' +
+              NomeCampos +
+              ' FROM ' +
+              TabelaPrincipal +
+              ' WHERE ' +
+              TabelaPrincipal + '.' +
+              CampoChave + ' = ' +
+              IntToStr(Codigo);
+    end;
+
+    CDS.Data := DMConexao.ExecuteReader(SQL);
+
+    if not CDS.IsEmpty then
+    begin
+      if not (DataSet.State in [dsEdit, dsInsert]) then
+        DataSet.Edit;
+
+      for I := Low(Campos) to High(Campos) do
+      DataSet.FieldByName(Campos[I]).AsString := CDS.FieldByName(Campos[I]).AsString;
+    end
+    else
+    begin
+      ShowMessage('Campos não localizados na Classe ' + Classe.Descricao);
+      Abort;
+    end;
+  finally
+    CDS.Free;
+  end;
+end;
+
 
 function TDMPaiCadastro.NovoCodigo: Integer;
 begin

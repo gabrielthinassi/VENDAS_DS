@@ -60,7 +60,7 @@ var
 implementation
 
 uses
-  ClassHelper;
+  ClassHelper, ClassItem;
 
 {%CLASSGROUP 'Vcl.Controls.TControl'}
 
@@ -159,7 +159,7 @@ end;
 
 procedure TDMCadPedido.Validate_CDSPedido_Item_CODIGO_ITEM(Sender: TField);
 begin
-  ValidateCampos(Sender.AsInteger, TClassPedido_Item, CDSPedido_Item);
+  ValidateDescricao(Sender.AsInteger, TClassItem, ['REFERENCIA_ITEM', 'DESCRICAO_ITEM', 'UNIDADE_ITEM'], CDSPedido_Item);
 end;
 
 procedure TDMCadPedido.Validate_CDSPedido_Item_QTD_PEDITEM(Sender: TField);

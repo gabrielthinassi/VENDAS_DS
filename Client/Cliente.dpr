@@ -43,5 +43,6 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TDMConexao, DMConexao);
+  Application.CreateForm(TFrmPrincipal, FrmPrincipal);
   Application.Run;
 end.
