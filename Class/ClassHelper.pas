@@ -96,7 +96,7 @@ end;
 {$ENDREGION}
 
 
-{$REGION 'TDataSetHelper'}
+{$REGION 'TGridHelper'}
 
 function TGridHelper.CriarColuna(const Campos: array of string;
   EstiloBotao: TColumnButtonStyle): TColumn;
@@ -120,15 +120,13 @@ var
     vFielKind := Campo.FieldKind;
     vProviderFlag := Campo.ProviderFlags;
 
-    Result.ReadOnly := (Campo.Tag = CampoNaoEditavel) or (vFielKind = fkInternalCalc) or (vProviderFlag = []);
+    //Result.ReadOnly := (Campo.Tag = CampoNaoEditavel) or (vFielKind = fkInternalCalc) or (vProviderFlag = []);
 
     if Campo.Tag <> CampoNaoEditavel then
       Result.ButtonStyle := EstiloBotao;
   end;
 
 begin
-  //Result := nil;
-
   if not Assigned(DataSource) then
     raise Exception.Create('Favor informar o DataSource da Grade ' + Name);
 

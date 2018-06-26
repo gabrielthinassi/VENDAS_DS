@@ -3,6 +3,7 @@ inherited FrmCadPedido: TFrmCadPedido
   ClientHeight = 600
   ClientWidth = 800
   OnDestroy = FormDestroy
+  ExplicitTop = -38
   ExplicitWidth = 806
   ExplicitHeight = 629
   PixelsPerInch = 96
@@ -65,6 +66,7 @@ inherited FrmCadPedido: TFrmCadPedido
       Height = 24
       DataField = 'VLRBRUTO_PEDIDO'
       DataSource = DSCadastro
+      Enabled = False
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlue
       Font.Height = -13
@@ -80,6 +82,7 @@ inherited FrmCadPedido: TFrmCadPedido
       Height = 24
       DataField = 'VLRDESCONTO_PEDIDO'
       DataSource = DSCadastro
+      Enabled = False
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlue
       Font.Height = -13
@@ -89,12 +92,13 @@ inherited FrmCadPedido: TFrmCadPedido
       TabOrder = 4
     end
     object edtTotalLiquido: TDBEdit
-      Left = 684
+      Left = 685
       Top = 8
       Width = 99
       Height = 24
       DataField = 'VLRLIQUIDO_PEDIDO'
       DataSource = DSCadastro
+      Enabled = False
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlue
       Font.Height = -13
@@ -493,5 +497,9 @@ inherited FrmCadPedido: TFrmCadPedido
   object DSPessoa_Endereco: TDataSource
     Left = 670
     Top = 419
+  end
+  object JvEnterAsTab1: TJvEnterAsTab
+    Left = 344
+    Top = 8
   end
 end

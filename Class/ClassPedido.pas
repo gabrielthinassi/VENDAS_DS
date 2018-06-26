@@ -202,36 +202,30 @@ end;
 
 class function TClassPedido.SQLBaseConsulta: string;
 begin
-  Result := 'SELECT                                      ' + #13 +
-            '  PEDIDO.CODIGO_PEDIDO,                     ' + #13 +
-            '  PEDIDO.TIPO_PEDIDO,                       ' + #13 +
-            '  PEDIDO.CODIGO_PESSOA,                     ' + #13 +
-            '  PESSOA.RAZAOSOCIAL_PESSOA,                ' + #13 +
-            '  PESSOA.NOMEFANTASIA_PESSOA,               ' + #13 +
-            '  PESSOA.CNPJ_PESSOA,                       ' + #13 +
-            '  PESSOA.CPF_PESSOA,                        ' + #13 +
-            '  PESSOA.EMAIL_PESSOA,                      ' + #13 +
-            '  PEDIDO.CODIGO_ENDERECO,                   ' + #13 +
-            '  PESSOA_ENDERECO.TIPO_ENDERECOPESSOA,      ' + #13 +
-            '  PESSOA_ENDERECO.RUA_ENDERECOPESSOA,       ' + #13 +
-            '  PESSOA_ENDERECO.NUMERO_ENDERECOPESSOA,    ' + #13 +
-            '  PESSOA_ENDERECO.BAIRRO_ENDERECOPESSOA,    ' + #13 +
-            '  PESSOA_ENDERECO.CIDADE_ENDERECOPESSOA,    ' + #13 +
-            '  PESSOA_ENDERECO.CEP_ENDERECOPESSOA,       ' + #13 +
-            '  PESSOA_ENDERECO.UF_ENDERECOPESSOA,        ' + #13 +
-            '  PESSOA_ENDERECO.PAIS_ENDERECOPESSOA,      ' + #13 +
-            '  PESSOA_ENDERECO.TELEFONE_ENDERECOPESSOA,  ' + #13 +
-            '  PEDIDO.DTEMISSAO_PEDIDO,                  ' + #13 +
-            '  PEDIDO.CONDICAOPAG_PEDIDO,                ' + #13 +
-            '  PEDIDO.DESCONTOPERC_PEDIDO,               ' + #13 +
-            '  PEDIDO.DESCONTOVLR_PEDIDO,                ' + #13 +
-            '  PEDIDO.VLRBRUTO_PEDIDO,                   ' + #13 +
-            '  PEDIDO.VLRLIQUIDO_PEDIDO,                 ' + #13 +
-            '  PEDIDO.VLRDESCONTO_PEDIDO,                ' + #13 +
-            '  PEDIDO.PEDCONSULTOR_PEDIDO                ' + #13 +
-            'FROM PEDIDO                                 ' + #13 +
+  Result := 'SELECT                                                   ' + #13 +
+            '  PEDIDO.CODIGO_PEDIDO as "Código Pedido",               ' + #13 +
+            '  PEDIDO.TIPO_PEDIDO as "Tipo Pedido",                   ' + #13 +
+            '  PEDIDO.CODIGO_PESSOA as "Código Pessoa",               ' + #13 +
+            '  PESSOA.RAZAOSOCIAL_PESSOA as "Razão Social",           ' + #13 +
+            '  PESSOA.NOMEFANTASIA_PESSOA as "Nome Fantasia",         ' + #13 +
+            '  PESSOA.CNPJ_PESSOA as "CNPJ",                          ' + #13 +
+            '  PESSOA.CPF_PESSOA as "CPF",                            ' + #13 +
+            '  PESSOA.EMAIL_PESSOA as "E-Mail",                       ' + #13 +
+            '  PESSOA_ENDERECO.CIDADE_ENDERECOPESSOA as "Cidade",     ' + #13 +
+            '  PESSOA_ENDERECO.UF_ENDERECOPESSOA as "UF",             ' + #13 +
+            '  PESSOA_ENDERECO.PAIS_ENDERECOPESSOA as "País",         ' + #13 +
+            '  PESSOA_ENDERECO.TELEFONE_ENDERECOPESSOA as "Telefone", ' + #13 +
+            '  PEDIDO.DTEMISSAO_PEDIDO as "Emissão",                  ' + #13 +
+            '  PEDIDO.CONDICAOPAG_PEDIDO as "Condição Pagamento",     ' + #13 +
+            '  PEDIDO.DESCONTOPERC_PEDIDO as "Desconto (%)",          ' + #13 +
+            '  PEDIDO.DESCONTOVLR_PEDIDO as "Desconto (Vlr)",         ' + #13 +
+            '  PEDIDO.VLRBRUTO_PEDIDO as "Total Bruto",               ' + #13 +
+            '  PEDIDO.VLRLIQUIDO_PEDIDO as "Total Líquido",           ' + #13 +
+            '  PEDIDO.VLRDESCONTO_PEDIDO as "Total Desconto",         ' + #13 +
+            '  PEDIDO.PEDCONSULTOR_PEDIDO as "Pedido Consultor"       ' + #13 +
+            'FROM PEDIDO                                              ' + #13 +
             'LEFT JOIN PESSOA ON (PESSOA.CODIGO_PESSOA = PEDIDO.CODIGO_PESSOA) ' + #13 +
-            'LEFT JOIN PESSOA_ENDERECO ON (PESSOA_ENDERECO.CODIGO_ENDERECOPESSOA = PEDIDO.ENDERECO_PEDIDO ' + #13 +
+            'LEFT JOIN PESSOA_ENDERECO ON (PESSOA_ENDERECO.CODIGO_ENDERECOPESSOA = PEDIDO.CODIGO_ENDERECO ' + #13 +
             '                          AND PESSOA_ENDERECO.CODIGO_PESSOA         = PEDIDO.CODIGO_PESSOA) ';
 end;
 

@@ -38,7 +38,7 @@ uses
   UDMCadPedido,
   ClassPessoa,
   UDMCadPessoa,
-  Constantes;
+  Constantes, JvComponentBase, JvEnterTab;
 
 type
   TFrmCadPedido = class(TFrmPaiCadastro)
@@ -87,6 +87,7 @@ type
     edtDesconto: TDBEdit;
     edtTotalLiquido: TDBEdit;
     JvDBNavigator1: TJvDBNavigator;
+    JvEnterAsTab1: TJvEnterAsTab;
     procedure btnPesquisarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
