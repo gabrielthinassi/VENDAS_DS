@@ -40,7 +40,7 @@ type
 
     procedure CarregaEndereco(Codigo: Integer);
     procedure CalcularValorBruto;
-    procedure CalculaValores;
+    procedure TotalizaPedido;
 
     //--Validates
     procedure Validate_PedidoPessoa(Sender: TField);
@@ -106,7 +106,7 @@ begin
 procedure TDMCadPedido.CDSPedido_ItemAfterPost(DataSet: TDataSet);
 begin
   inherited;
-  CalculaValores;
+  TotalizaPedido;
 end;
 
 procedure TDMCadPedido.CDSPedido_ItemBeforePost(DataSet: TDataSet);
@@ -179,11 +179,11 @@ begin
     Abort;
   end;
 
-  CalculaValores;
+  TotalizaPedido;
 end;
 procedure TDMCadPedido.Validate_CDSCadastro_DESCONTOVLR_PEDIDO(Sender: TField);
 begin
-  CalculaValores;
+  TotalizaPedido;
 end;
 
 procedure TDMCadPedido.CalcularValorBruto;
@@ -208,7 +208,7 @@ begin
   CarregaEndereco(Sender.AsInteger);
 end;
 
-procedure TDMCadPedido.CalculaValores;
+procedure TDMCadPedido.TotalizaPedido;
 var
   TotalBruto, TotalDesconto, TotalLiquido: Currency;
 begin

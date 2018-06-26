@@ -96,7 +96,7 @@ type
     procedure gridPedido_ItemDrawColumnCell(Sender: TObject; const Rect: TRect;
       DataCol: Integer; Column: TColumn; State: TGridDrawState);
     procedure FormShow(Sender: TObject);
-    procedure gridPedido_ItemColExit(Sender: TObject);
+    procedure gridPedido_ItemExit(Sender: TObject);
   private
     { Private declarations }
     //FDMPessoa: TDMCadPessoa;
@@ -188,13 +188,6 @@ begin
   end;
 end;
 
-procedure TFrmCadPedido.gridPedido_ItemColExit(Sender: TObject);
-begin
-  inherited;
-  if TDBGrid(sender).DataSource.DataSet.State in [dsEdit, dsInsert] then
-    TDBGrid(sender).DataSource.DataSet.Post;
-end;
-
 procedure TFrmCadPedido.gridPedido_ItemDrawColumnCell(Sender: TObject;
   const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
 begin
@@ -207,6 +200,13 @@ begin
 
     gridPedido_Item.DefaultDrawColumnCell(Rect, DataCol, Column, State);
   end;
+end;
+
+procedure TFrmCadPedido.gridPedido_ItemExit(Sender: TObject);
+begin
+  inherited;
+  if TDBGrid(sender).DataSource.DataSet.State in [dsEdit, dsInsert] then
+    TDBGrid(sender).DataSource.DataSet.Post;
 end;
 
 end.

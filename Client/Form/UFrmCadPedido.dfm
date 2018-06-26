@@ -3,7 +3,6 @@ inherited FrmCadPedido: TFrmCadPedido
   ClientHeight = 600
   ClientWidth = 800
   OnDestroy = FormDestroy
-  ExplicitTop = -38
   ExplicitWidth = 806
   ExplicitHeight = 629
   PixelsPerInch = 96
@@ -145,8 +144,6 @@ inherited FrmCadPedido: TFrmCadPedido
     ExplicitWidth = 674
     ExplicitHeight = 518
     inherited tsPrincipal: TTabSheet
-      ExplicitLeft = 4
-      ExplicitTop = 24
       ExplicitWidth = 666
       ExplicitHeight = 490
       object groupCliente: TGroupBox
@@ -348,8 +345,8 @@ inherited FrmCadPedido: TFrmCadPedido
         TitleFont.Height = -11
         TitleFont.Name = 'Tahoma'
         TitleFont.Style = []
-        OnColExit = gridPedido_ItemColExit
         OnDrawColumnCell = gridPedido_ItemDrawColumnCell
+        OnExit = gridPedido_ItemExit
       end
       object groupNegociacao: TGroupBox
         Left = 3
