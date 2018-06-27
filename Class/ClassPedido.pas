@@ -153,7 +153,6 @@ begin
       else if (Campo = 'VLRBRUTO_PEDIDO') then
       begin
         DisplayLabel := 'Valor Bruto';
-        //DisplayFormat := '###,###,##0.0000';
       end
       else if (Campo = 'VLRLIQUIDO_PEDIDO') then
       begin

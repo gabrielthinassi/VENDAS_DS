@@ -82,6 +82,8 @@ ResourceString
   sDisplayFormatHora_HoraMinSeg = 'hh:nn:ss';
   sDisplayFormatHora_HoraMinSegMS = 'hh:nn:ss,zzz';
 
+  sDisplayFormatDecimal = '###,###,##0.00';
+
   // Digitacao Invalida
   sDataInvalida = 'Data inválida, verifique.';
   sDataInicialMaiorQueFinal = 'Data inicial maior que a data final, verifique.';

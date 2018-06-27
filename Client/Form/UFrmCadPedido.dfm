@@ -58,53 +58,62 @@ inherited FrmCadPedido: TFrmCadPedido
       ParentFont = False
       TabOrder = 2
     end
-    object edtTotalBruto: TDBEdit
+    object edtTotalBruto: TJvDBCalcEdit
       Left = 233
       Top = 8
       Width = 99
       Height = 24
-      DataField = 'VLRBRUTO_PEDIDO'
-      DataSource = DSCadastro
-      Enabled = False
+      DisplayFormat = ',0.00'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlue
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
       ParentFont = False
+      ReadOnly = True
+      ShowButton = False
       TabOrder = 3
+      DecimalPlacesAlwaysShown = True
+      DataField = 'VLRBRUTO_PEDIDO'
+      DataSource = DSCadastro
     end
-    object edtDesconto: TDBEdit
+    object edtDesconto: TJvDBCalcEdit
       Left = 442
       Top = 8
       Width = 99
       Height = 24
-      DataField = 'VLRDESCONTO_PEDIDO'
-      DataSource = DSCadastro
-      Enabled = False
+      DisplayFormat = ',0.00'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlue
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
       ParentFont = False
+      ReadOnly = True
+      ShowButton = False
       TabOrder = 4
+      DecimalPlacesAlwaysShown = True
+      DataField = 'VLRDESCONTO_PEDIDO'
+      DataSource = DSCadastro
     end
-    object edtTotalLiquido: TDBEdit
+    object edtTotalLiquido: TJvDBCalcEdit
       Left = 685
       Top = 8
       Width = 99
       Height = 24
-      DataField = 'VLRLIQUIDO_PEDIDO'
-      DataSource = DSCadastro
-      Enabled = False
+      DisplayFormat = ',0.00'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlue
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
       ParentFont = False
+      ReadOnly = True
+      ShowButton = False
       TabOrder = 5
+      DecimalPlacesAlwaysShown = True
+      DataField = 'VLRLIQUIDO_PEDIDO'
+      DataSource = DSCadastro
     end
   end
   inherited pnlTop: TPanel
@@ -333,21 +342,6 @@ inherited FrmCadPedido: TFrmCadPedido
           TabOrder = 6
         end
       end
-      object gridPedido_Item: TDBGrid
-        Left = 2
-        Top = 327
-        Width = 660
-        Height = 177
-        DataSource = DSPedido_Item
-        TabOrder = 2
-        TitleFont.Charset = DEFAULT_CHARSET
-        TitleFont.Color = clWindowText
-        TitleFont.Height = -11
-        TitleFont.Name = 'Tahoma'
-        TitleFont.Style = []
-        OnDrawColumnCell = gridPedido_ItemDrawColumnCell
-        OnExit = gridPedido_ItemExit
-      end
       object groupNegociacao: TGroupBox
         Left = 3
         Top = 191
@@ -464,14 +458,27 @@ inherited FrmCadPedido: TFrmCadPedido
           DataSource = DSCadastro
           TabOrder = 3
         end
-        object JvDBNavigator1: TJvDBNavigator
-          Left = 295
-          Top = 62
-          Width = 200
-          Height = 25
-          DataSource = DSPedido_Prazos
-          TabOrder = 5
-        end
+      end
+      object gridPedido_Item: TJvDBGrid
+        Left = 2
+        Top = 327
+        Width = 660
+        Height = 177
+        DataSource = DSPedido_Item
+        TabOrder = 2
+        TitleFont.Charset = DEFAULT_CHARSET
+        TitleFont.Color = clWindowText
+        TitleFont.Height = -11
+        TitleFont.Name = 'Tahoma'
+        TitleFont.Style = []
+        OnDrawColumnCell = gridPedido_ItemDrawColumnCell
+        OnExit = gridPedido_ItemExit
+        SelectColumnsDialogStrings.Caption = 'Select columns'
+        SelectColumnsDialogStrings.OK = '&OK'
+        SelectColumnsDialogStrings.NoSelectionWarning = 'At least one column must be visible!'
+        EditControls = <>
+        RowsHeight = 17
+        TitleRowHeight = 17
       end
     end
   end
@@ -496,7 +503,12 @@ inherited FrmCadPedido: TFrmCadPedido
     Top = 419
   end
   object JvEnterAsTab1: TJvEnterAsTab
+    AllowDefault = False
     Left = 344
     Top = 8
+  end
+  object JvEnterAsTab2: TJvEnterAsTab
+    Left = 218
+    Top = 489
   end
 end

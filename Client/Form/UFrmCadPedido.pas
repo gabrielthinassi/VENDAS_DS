@@ -38,7 +38,7 @@ uses
   UDMCadPedido,
   ClassPessoa,
   UDMCadPessoa,
-  Constantes, JvComponentBase, JvEnterTab;
+  Constantes, JvComponentBase, JvEnterTab, JvExDBGrids, JvDBGrid;
 
 type
   TFrmCadPedido = class(TFrmPaiCadastro)
@@ -62,7 +62,6 @@ type
     edtTipoEndereco: TDBEdit;
     edtUfEndereco: TDBEdit;
     lblUfEndereco: TLabel;
-    gridPedido_Item: TDBGrid;
     groupNegociacao: TGroupBox;
     ctrlgrdPrazos: TDBCtrlGrid;
     rdgrpCondicaoPagamento: TDBRadioGroup;
@@ -83,20 +82,22 @@ type
     lblTotalBruto: TStaticText;
     lblDesconto: TStaticText;
     lblTotalLiquido: TStaticText;
-    edtTotalBruto: TDBEdit;
-    edtDesconto: TDBEdit;
-    edtTotalLiquido: TDBEdit;
-    JvDBNavigator1: TJvDBNavigator;
     JvEnterAsTab1: TJvEnterAsTab;
+    gridPedido_Item: TJvDBGrid;
+    edtTotalBruto: TJvDBCalcEdit;
+    edtDesconto: TJvDBCalcEdit;
+    edtTotalLiquido: TJvDBCalcEdit;
+    JvEnterAsTab2: TJvEnterAsTab;
     procedure btnPesquisarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure edtClienteCodigoButtonClick(Sender: TObject);
-    procedure gridPedido_ItemDrawColumnCell(Sender: TObject; const Rect: TRect;
-      DataCol: Integer; Column: TColumn; State: TGridDrawState);
     procedure FormShow(Sender: TObject);
     procedure gridPedido_ItemExit(Sender: TObject);
+    procedure gridPedido_ItemDrawColumnCell(Sender: TObject; const Rect: TRect;
+      DataCol: Integer; Column: TColumn; State: TGridDrawState);
+    procedure DSCadastroStateChange(Sender: TObject);
   private
     { Private declarations }
     //FDMPessoa: TDMCadPessoa;
@@ -126,6 +127,15 @@ begin
     DMCadastro.AbreCasdastro(edtCodigo.AsInteger);
   finally
     FreeAndNil(FrmPaiConsulta);
+  end;
+end;
+
+procedure TFrmCadPedido.DSCadastroStateChange(Sender: TObject);
+begin
+  inherited;
+  if DSCadastro.DataSet.State in [dsInsert, dsEdit] then
+  begin
+    DSPedido_Item.DataSet.Edit;
   end;
 end;
 
@@ -160,7 +170,6 @@ begin
 
   DSPedido_Prazos.DataSet   := TDMCadPedido(DMCadastro).CDSPedido_Prazos;
   DSPedido_Item.DataSet     := TDMCadPedido(DMCadastro).CDSPedido_Item;
-
   DSPessoa_Endereco.DataSet := TDMCadPedido(DMCadastro).CDSPedido_PessoaEndereco;
   inherited;
 end;
@@ -174,6 +183,7 @@ end;
 procedure TFrmCadPedido.FormShow(Sender: TObject);
 begin
   inherited;
+
   with gridPedido_Item do
   begin
     CriarColuna(['CODIGO_ITEM'], cbsEllipsis);
@@ -192,7 +202,8 @@ procedure TFrmCadPedido.gridPedido_ItemDrawColumnCell(Sender: TObject;
   const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
 begin
   inherited;
-  if Column.Field.Tag = CampoNaoEditavel then
+ if Column.Field <> nil then
+ if Column.Field.Tag = CampoNaoEditavel then
   begin
     gridPedido_Item.Canvas.Brush.Color := clGradeSomenteLeitura;
     gridPedido_Item.Canvas.FillRect(rect);

@@ -4,6 +4,9 @@ inherited SMCadPedido: TSMCadPedido
   inherited SQLDSCadastro: TSQLDataSet
     Left = 41
   end
+  inherited DSPCadastro: TDataSetProvider
+    BeforeUpdateRecord = DSPCadastroBeforeUpdateRecord
+  end
   object SQLDSPedido_Prazos: TSQLDataSet
     AfterOpen = SQLDSPedido_PrazosAfterOpen
     DataSource = dsLink
