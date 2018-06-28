@@ -60,7 +60,7 @@ var
 implementation
 
 uses
-  ClassHelper, ClassItem;
+  ClassHelper, ClassItem, Constantes;
 
 {%CLASSGROUP 'Vcl.Controls.TControl'}
 
@@ -90,7 +90,6 @@ begin
     ShowMessage('O Valor de Desconto não pode ser maior que o Valor Bruto do Pedido!');
     Abort;
   end;
-
 end;
 
 procedure TDMCadPedido.CDSPedido_ItemAfterOpen(DataSet: TDataSet);
@@ -129,6 +128,10 @@ begin
     if (UpdateStatus = usInserted) and
         ((FieldByName(CampoChave).IsNull)) then
       FieldByName(CampoChave).AsInteger := DMConexao.ProximoCodigo(TabelaPrincipal);
+
+    FieldByName('VENCIMENTO_PEDPRAZO').AsDateTime := CDSCadastro.FieldByName('DTEMISSAO_PEDIDO').AsDateTime +
+                                                       FieldByName('DIAS_PEDPRAZO').AsInteger;
+
   end;
 end;
 

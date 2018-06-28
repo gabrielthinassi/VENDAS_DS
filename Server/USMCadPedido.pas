@@ -69,7 +69,7 @@ begin
   inherited;
   if UpdateKind = ukInsert then
   begin
-    with SourceDS do
+    with SourceDS, DeltaDS do
       if SourceDS = SQLDSPedido_Item then
       begin
         Edit;

@@ -25,7 +25,13 @@ uses
   Data.DB,
   Vcl.DBCtrls,
   UDMPaiCadastro,
-  UFrmPaiConsulta, Vcl.Menus;
+  UFrmPaiConsulta,
+  Vcl.Menus,
+  Vcl.Grids,
+  Vcl.DBGrids,
+  JvExDBGrids,
+  JvDBGrid,
+  JvDBControls;
 
 type
   TFrmPaiCadastro = class(TFrmPai)

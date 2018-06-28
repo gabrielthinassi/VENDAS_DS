@@ -28,7 +28,7 @@ const
 
   // Controle de TAGs
   CampoNaoAtualizavel = 1;
-  CampoNaoEditavel = 2;
+  CampoNaoEditavel = 1;
 
   // Usado para limitar digitos nos campos numericos
   MaxDigitos = 14;

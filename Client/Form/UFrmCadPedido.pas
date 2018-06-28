@@ -72,7 +72,6 @@ type
     edtDescontoValor: TDBEdit;
     edtPedidoConsultor: TDBEdit;
     edtDescontoPercentual: TDBEdit;
-    edtPrazo: TDBEdit;
     rdgrpTipoPedido: TDBRadioGroup;
     DSPedido_Prazos: TDataSource;
     DSPedido_Item: TDataSource;
@@ -82,12 +81,11 @@ type
     lblTotalBruto: TStaticText;
     lblDesconto: TStaticText;
     lblTotalLiquido: TStaticText;
-    JvEnterAsTab1: TJvEnterAsTab;
     gridPedido_Item: TJvDBGrid;
     edtTotalBruto: TJvDBCalcEdit;
     edtDesconto: TJvDBCalcEdit;
     edtTotalLiquido: TJvDBCalcEdit;
-    JvEnterAsTab2: TJvEnterAsTab;
+    edtPrazo: TJvDBCalcEdit;
     procedure btnPesquisarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -98,9 +96,15 @@ type
     procedure gridPedido_ItemDrawColumnCell(Sender: TObject; const Rect: TRect;
       DataCol: Integer; Column: TColumn; State: TGridDrawState);
     procedure DSCadastroStateChange(Sender: TObject);
+    procedure edtPrazoKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure ctrlgrdPrazosEnter(Sender: TObject);
   private
     { Private declarations }
     //FDMPessoa: TDMCadPessoa;
+    ExecutandoKeyDown: Boolean;
+    FFieldOrigem: string;
+    FPrazos: Boolean;
   public
     { Public declarations }
     //property DMPessoa: TDMCadPessoa read FDMPessoa write FDMPessoa;
@@ -130,6 +134,12 @@ begin
   end;
 end;
 
+procedure TFrmCadPedido.ctrlgrdPrazosEnter(Sender: TObject);
+begin
+  inherited;
+  ExecutandoKeyDown := False;
+end;
+
 procedure TFrmCadPedido.DSCadastroStateChange(Sender: TObject);
 begin
   inherited;
@@ -154,6 +164,49 @@ begin
   finally
     FreeAndNil(FrmPaiConsulta);
     Abort;
+  end;
+end;
+
+procedure TFrmCadPedido.edtPrazoKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  inherited;
+  if ExecutandoKeyDown then
+    Exit;
+
+  ExecutandoKeyDown := True;
+  try
+    if Shift = [] then
+    begin
+      with DSPedido_Prazos.DataSet do
+        case Key of
+          VK_UP: //38: // seta para cima
+            begin
+              if not Bof then
+              begin
+                if State in [dsEdit, dsINsert] then
+                  Post;
+                Prior;
+                abort;
+              end;
+            end;
+          VK_DOWN: //40: // seta para baixo
+            begin
+              if not Eof then
+              begin
+                Next;
+                abort;
+              end;
+            end;
+          VK_TAB: edtDescontoPercentual.SetFocus;
+        end;
+    end
+    else if (Shift = [ssShift]) then // Voltando o controle
+      if Key = VK_TAB then
+        edtPedidoConsultor.SetFocus;
+  finally
+    ExecutandoKeyDown := False;
+    Key := 0;
   end;
 end;
 

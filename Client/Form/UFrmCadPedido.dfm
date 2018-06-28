@@ -153,6 +153,8 @@ inherited FrmCadPedido: TFrmCadPedido
     ExplicitWidth = 674
     ExplicitHeight = 518
     inherited tsPrincipal: TTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 24
       ExplicitWidth = 666
       ExplicitHeight = 490
       object groupCliente: TGroupBox
@@ -183,7 +185,7 @@ inherited FrmCadPedido: TFrmCadPedido
           Height = 21
           DataField = 'RAZAOSOCIAL_PESSOA'
           DataSource = DSCadastro
-          TabOrder = 0
+          TabOrder = 1
         end
         object edtEmissao: TJvDBDateEdit
           Left = 520
@@ -194,7 +196,7 @@ inherited FrmCadPedido: TFrmCadPedido
           DataSource = DSCadastro
           ButtonWidth = 34
           ShowNullDate = False
-          TabOrder = 1
+          TabOrder = 2
         end
         object edtClienteCodigo: TJvDBCalcEdit
           Left = 20
@@ -206,7 +208,7 @@ inherited FrmCadPedido: TFrmCadPedido
           DisplayFormat = ',0'
           ImageKind = ikEllipsis
           ButtonWidth = 34
-          TabOrder = 2
+          TabOrder = 0
           DecimalPlacesAlwaysShown = False
           OnButtonClick = edtClienteCodigoButtonClick
           DataField = 'CODIGO_PESSOA'
@@ -289,7 +291,7 @@ inherited FrmCadPedido: TFrmCadPedido
           DataField = 'BAIRRO_ENDERECOPESSOA'
           DataSource = DSPessoa_Endereco
           Enabled = False
-          TabOrder = 1
+          TabOrder = 3
         end
         object edtCepEndereco: TDBEdit
           Left = 232
@@ -299,7 +301,7 @@ inherited FrmCadPedido: TFrmCadPedido
           DataField = 'CEP_ENDERECOPESSOA'
           DataSource = DSPessoa_Endereco
           Enabled = False
-          TabOrder = 2
+          TabOrder = 4
         end
         object edtNumeroEndereco: TDBEdit
           Left = 359
@@ -309,7 +311,7 @@ inherited FrmCadPedido: TFrmCadPedido
           DataField = 'NUMERO_ENDERECOPESSOA'
           DataSource = DSPessoa_Endereco
           Enabled = False
-          TabOrder = 3
+          TabOrder = 1
         end
         object edtCidadeEndereco: TDBEdit
           Left = 464
@@ -319,7 +321,7 @@ inherited FrmCadPedido: TFrmCadPedido
           DataField = 'CIDADE_ENDERECOPESSOA'
           DataSource = DSPessoa_Endereco
           Enabled = False
-          TabOrder = 4
+          TabOrder = 2
         end
         object edtTipoEndereco: TDBEdit
           Left = 464
@@ -329,7 +331,7 @@ inherited FrmCadPedido: TFrmCadPedido
           DataField = 'DESCTIPO_ENDERECOPESSOA'
           DataSource = DSPessoa_Endereco
           Enabled = False
-          TabOrder = 5
+          TabOrder = 6
         end
         object edtUfEndereco: TDBEdit
           Left = 359
@@ -339,7 +341,7 @@ inherited FrmCadPedido: TFrmCadPedido
           DataField = 'UF_ENDERECOPESSOA'
           DataSource = DSPessoa_Endereco
           Enabled = False
-          TabOrder = 6
+          TabOrder = 5
         end
       end
       object groupNegociacao: TGroupBox
@@ -393,23 +395,29 @@ inherited FrmCadPedido: TFrmCadPedido
           DataSource = DSPedido_Prazos
           PanelHeight = 25
           PanelWidth = 52
-          TabOrder = 0
+          TabOrder = 2
           RowCount = 1
-          object edtPrazo: TDBEdit
+          OnEnter = ctrlgrdPrazosEnter
+          object edtPrazo: TJvDBCalcEdit
             Left = 0
             Top = 0
             Width = 52
             Height = 25
             Align = alClient
-            DataField = 'DIAS_PEDPRAZO'
-            DataSource = DSPedido_Prazos
+            DecimalPlaces = 0
+            DisplayFormat = ',0'
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
             Font.Height = -13
             Font.Name = 'Tahoma'
             Font.Style = []
             ParentFont = False
+            ShowButton = False
             TabOrder = 0
+            DecimalPlacesAlwaysShown = False
+            OnKeyDown = edtPrazoKeyDown
+            DataField = 'DIAS_PEDPRAZO'
+            DataSource = DSPedido_Prazos
             ExplicitHeight = 24
           end
         end
@@ -425,7 +433,7 @@ inherited FrmCadPedido: TFrmCadPedido
             #192' Vista'
             #192' Prazo'
             'Outros')
-          TabOrder = 1
+          TabOrder = 0
           Values.Strings = (
             '0'
             '1'
@@ -447,7 +455,7 @@ inherited FrmCadPedido: TFrmCadPedido
           Height = 21
           DataField = 'PEDCONSULTOR_PEDIDO'
           DataSource = DSCadastro
-          TabOrder = 2
+          TabOrder = 1
         end
         object edtDescontoPercentual: TDBEdit
           Left = 568
@@ -501,14 +509,5 @@ inherited FrmCadPedido: TFrmCadPedido
   object DSPessoa_Endereco: TDataSource
     Left = 670
     Top = 419
-  end
-  object JvEnterAsTab1: TJvEnterAsTab
-    AllowDefault = False
-    Left = 344
-    Top = 8
-  end
-  object JvEnterAsTab2: TJvEnterAsTab
-    Left = 218
-    Top = 489
   end
 end
