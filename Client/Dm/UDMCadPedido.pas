@@ -122,16 +122,24 @@ end;
 procedure TDMCadPedido.CDSPedido_PrazosBeforePost(DataSet: TDataSet);
 begin
   inherited;
-  inherited;
+
   with DataSet, TClassPedido_Prazos do
   begin
+
     if (UpdateStatus = usInserted) and
         ((FieldByName(CampoChave).IsNull)) then
       FieldByName(CampoChave).AsInteger := DMConexao.ProximoCodigo(TabelaPrincipal);
 
-    FieldByName('VENCIMENTO_PEDPRAZO').AsDateTime := CDSCadastro.FieldByName('DTEMISSAO_PEDIDO').AsDateTime +
-                                                       FieldByName('DIAS_PEDPRAZO').AsInteger;
-
+    if FieldByName('DIAS_PEDPRAZO').AsInteger <> 0 then
+    begin
+      FieldByName('VENCIMENTO_PEDPRAZO').AsDateTime := CDSCadastro.FieldByName('DTEMISSAO_PEDIDO').AsDateTime +
+                                                         FieldByName('DIAS_PEDPRAZO').AsInteger;
+    end else
+    begin
+      ShowMessage('Não é permitido atribuir Prazo 0!');
+      Cancel;
+      Abort;
+    end;
   end;
 end;
 
