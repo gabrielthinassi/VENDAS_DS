@@ -16,7 +16,9 @@ uses
   System.JSON.Writers,
   System.StrUtils,
   Vcl.Grids,
-  Vcl.DBGrids;
+  Vcl.DBGrids,
+  JvExDBGrids,
+  JvDBGrid;
 
 type
 
@@ -28,8 +30,10 @@ type
   end;
 
   TGridHelper = class Helper for TCustomDBGrid
+  private
   public
     function CriarColuna(const Campos: array of string; EstiloBotao: TColumnButtonStyle = cbsAuto): TColumn;
+    procedure ProximaColunaNaGrade(var Key: Char);
   end;
 
 implementation
@@ -149,6 +153,35 @@ begin
   finally
     Columns.EndUpdate;
   end;
+end;
+
+procedure TGridHelper.ProximaColunaNaGrade(var Key: Char);
+var Novo, Anterior: Integer;
+begin
+  if ReadOnly then
+    Exit;
+
+  if (Key = #13) then
+    begin
+      Key      := #0;
+      Anterior := SelectedIndex;
+      Novo     := Anterior;
+      repeat
+        if (Novo = (Columns.Count - 1)) then
+          begin
+            if (Self is TJvDBGrid) then
+              Novo := (Self as TJvDBGrid).FixedCols
+            else
+              Novo := 0;
+          end
+        else
+          Inc(Novo);
+      until
+        ( ((Columns[Novo].Visible) and (not Columns[Novo].ReadOnly)) or
+          (Anterior = Novo) );
+
+      SelectedIndex := Novo;
+    end;
 end;
 
 {$ENDREGION}
