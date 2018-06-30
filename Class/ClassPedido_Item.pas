@@ -81,20 +81,19 @@ begin
       else if (Campo = 'REFERENCIA_ITEM') then
       begin
         DisplayLabel := 'Referência';
-        Tag := CampoNaoAtualizavel;
+        Tag := CampoNaoEditavelENaoAtualizavel;
         DisplayWidth := 10;
-        ProviderFlags := [];
       end
       else if (Campo = 'DESCRICAO_ITEM') then
       begin
         DisplayLabel := 'Descrição';
-        Tag := CampoNaoAtualizavel;
+        Tag := CampoNaoEditavelENaoAtualizavel;
         DisplayWidth := 20;
       end
       else if (Campo = 'UNIDADE_ITEM') then
       begin
         DisplayLabel := 'UN';
-        Tag := CampoNaoAtualizavel;
+        Tag := CampoNaoEditavelENaoAtualizavel;
         DisplayWidth := 3;
       end
       else if (Campo = 'QTD_PEDITEM') then

@@ -416,7 +416,8 @@ var
   SQL, Descricao: String;
 begin
   if Codigo = 0 then
-    exit;
+    Abort;
+
 
   with Classe do
   begin

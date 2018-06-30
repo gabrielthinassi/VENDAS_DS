@@ -67,6 +67,7 @@ procedure TSMCadPedido.DSPCadastroBeforeUpdateRecord(Sender: TObject;
   var Applied: Boolean);
 begin
   inherited;
+
   if UpdateKind = ukInsert then
   begin
     with SourceDS, DeltaDS do
@@ -105,12 +106,14 @@ end;
 procedure TSMCadPedido.SQLDSPedido_ItemAfterOpen(DataSet: TDataSet);
 begin
   inherited;
+  TClassPedido_Item.ConfigurarPropriedadesDoCampo(SQLDSPedido_Item);
   SQLDSPedido_Item.ConfigurarProviderFlags([TClassPedido_Item.CampoChave]);
 end;
 
 procedure TSMCadPedido.SQLDSPedido_PrazosAfterOpen(DataSet: TDataSet);
 begin
   inherited;
+  TClassPedido_Prazos.ConfigurarPropriedadesDoCampo(SQLDSPedido_Prazos);
   SQLDSPedido_Prazos.ConfigurarProviderFlags([TClassPedido_Prazos.CampoChave]);
 end;
 

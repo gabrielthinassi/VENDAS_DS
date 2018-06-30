@@ -154,8 +154,6 @@ inherited FrmCadPedido: TFrmCadPedido
     ExplicitWidth = 674
     ExplicitHeight = 518
     inherited tsPrincipal: TTabSheet
-      ExplicitLeft = 4
-      ExplicitTop = 24
       ExplicitWidth = 666
       ExplicitHeight = 490
       object groupCliente: TGroupBox
@@ -282,6 +280,7 @@ inherited FrmCadPedido: TFrmCadPedido
           DataSource = DSCadastro
           LookupField = 'CODIGO_ENDERECOPESSOA'
           LookupDisplay = 'RUA_ENDERECOPESSOA'
+          LookupDisplayIndex = 1
           LookupSource = DSPessoa_Endereco
           TabOrder = 0
         end

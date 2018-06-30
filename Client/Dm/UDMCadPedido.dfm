@@ -17,6 +17,7 @@ inherited DMCadPedido: TDMCadPedido
     AfterOpen = CDSPedido_ItemAfterOpen
     BeforePost = CDSPedido_ItemBeforePost
     AfterPost = CDSPedido_ItemAfterPost
+    AfterDelete = CDSPedido_ItemAfterDelete
     Left = 48
     Top = 169
   end

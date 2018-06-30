@@ -73,7 +73,7 @@ begin
   for x := 0 to FieldDefList.Count - 1 do
   begin
     // Para todos os campos
-    if Fields[x].Tag = CampoNaoAtualizavel then
+    if Fields[x].Tag in [CampoNaoAtualizavel, CampoNaoEditavelENaoAtualizavel] then
     begin
       Fields[x].ProviderFlags := [];
       Fields[x].CustomConstraint := '';

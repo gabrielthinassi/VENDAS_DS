@@ -277,7 +277,7 @@ procedure TFrmCadPedido.gridPedido_ItemDrawColumnCell(Sender: TObject;
 begin
   inherited;
  if Column.Field <> nil then
- if Column.Field.Tag = CampoNaoEditavel then
+ if Column.Field.Tag in [CampoNaoEditavel, CampoNaoEditavelENaoAtualizavel] then
   begin
     gridPedido_Item.Canvas.Brush.Color := clGradeSomenteLeitura;
     gridPedido_Item.Canvas.FillRect(rect);
