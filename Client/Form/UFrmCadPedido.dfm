@@ -3,7 +3,6 @@ inherited FrmCadPedido: TFrmCadPedido
   ClientHeight = 600
   ClientWidth = 800
   OnDestroy = FormDestroy
-  ExplicitTop = -38
   ExplicitWidth = 806
   ExplicitHeight = 629
   PixelsPerInch = 96
@@ -143,6 +142,7 @@ inherited FrmCadPedido: TFrmCadPedido
         'Venda'
         'Assist'#234'ncia')
       TabOrder = 0
+      TabStop = True
       Values.Strings = (
         '0'
         '1')
@@ -195,6 +195,7 @@ inherited FrmCadPedido: TFrmCadPedido
           Height = 21
           DataField = 'DTEMISSAO_PEDIDO'
           DataSource = DSCadastro
+          DefaultToday = True
           ButtonWidth = 34
           ShowNullDate = False
           TabOrder = 2

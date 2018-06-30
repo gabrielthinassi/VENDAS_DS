@@ -32,6 +32,7 @@ type
     procedure CDSCadastroBeforePost(DataSet: TDataSet);
     procedure CDSPedido_ItemAfterOpen(DataSet: TDataSet);
     procedure CDSPedido_ItemAfterPost(DataSet: TDataSet);
+    procedure CDSCadastroNewRecord(DataSet: TDataSet);
   private
     { Private declarations }
     FlagCalculandoValores: Boolean;
@@ -90,6 +91,13 @@ begin
     ShowMessage('O Valor de Desconto não pode ser maior que o Valor Bruto do Pedido!');
     Abort;
   end;
+end;
+
+procedure TDMCadPedido.CDSCadastroNewRecord(DataSet: TDataSet);
+begin
+  inherited;
+  //DataSet.FieldByName('DTEMISSAO_PEDIDO').AsDateTime := Date;
+  //DataSet.FieldByName('TIPO_PEDIDO').AsInteger := 0;
 end;
 
 procedure TDMCadPedido.CDSPedido_ItemAfterOpen(DataSet: TDataSet);

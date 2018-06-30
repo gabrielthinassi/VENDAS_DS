@@ -111,8 +111,9 @@ begin
       else if (Campo = 'TIPO_PEDIDO') then
       begin
         DisplayLabel := 'Tipo';
-        CustomConstraint := sCC_ValueIsNotNullAndNotVazio;
-        ConstraintErrorMessage := DisplayLabel + sCC_ErrorMessage;
+        //DefaultExpression := '0';
+        //CustomConstraint := sCC_ValueIsNotNullAndNotVazio;
+        //ConstraintErrorMessage := DisplayLabel + sCC_ErrorMessage;
       end
       else if (Campo = 'CODIGO_PESSOA') then
       begin
@@ -136,7 +137,7 @@ begin
         DisplayLabel := 'Emissão';
         EditMask := sMascaraData;
         //DefaultExpression pra buscar a Data Atual
-        DefaultExpression := 'current_date';
+        //DefaultExpression := DateToStr(Date);
       end
       else if (Campo = 'CONDICAOPAG_PEDIDO') then
       begin

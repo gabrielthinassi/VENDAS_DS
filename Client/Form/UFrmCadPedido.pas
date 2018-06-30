@@ -99,6 +99,8 @@ type
     procedure edtPrazoKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure ctrlgrdPrazosEnter(Sender: TObject);
+    procedure btnIncluirClick(Sender: TObject);
+    procedure btnGravarClick(Sender: TObject);
   private
     { Private declarations }
     //FDMPessoa: TDMCadPessoa;
@@ -119,6 +121,21 @@ uses
   ClassHelper;
 
 {$R *.dfm}
+
+procedure TFrmCadPedido.btnGravarClick(Sender: TObject);
+begin
+  if not DSPedido_Item.DataSet.IsEmpty then
+    inherited
+  else
+    ShowMessage('Não ha Itens no Pedido!');
+end;
+
+procedure TFrmCadPedido.btnIncluirClick(Sender: TObject);
+begin
+  inherited;
+  if edtClienteCodigo.CanFocus then
+    edtClienteCodigo.SetFocus;
+end;
 
 procedure TFrmCadPedido.btnPesquisarClick(Sender: TObject);
 begin
