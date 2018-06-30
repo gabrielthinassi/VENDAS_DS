@@ -180,9 +180,13 @@ begin
     begin
       with DSPedido_Prazos.DataSet do
         case Key of
+          VK_RETURN: //13: // tecla enter
+            begin
+              Perform(WM_KEYDOWN, VK_TAB, 0);
+            end;
           VK_UP: //38: // seta para cima
             begin
-              if not Bof then
+              if not Bof then //BeginOfFile
               begin
                 if State in [dsEdit, dsINsert] then
                   Post;
@@ -192,7 +196,7 @@ begin
             end;
           VK_DOWN: //40: // seta para baixo
             begin
-              if not Eof then
+              if not Eof then //EndOfFile
               begin
                 Next;
                 abort;
@@ -219,7 +223,7 @@ end;
 procedure TFrmCadPedido.FormCreate(Sender: TObject);
 begin
   DMCadastro := TDMCadPedido.Create(Self);
-  //DMPessoa   := TDMCadPessoa.Create(Self);
+  //DMPessoa   := TDMCadPessoa.Create(Self);     //Estava causando problema de Midas.dll
 
   DSPedido_Prazos.DataSet   := TDMCadPedido(DMCadastro).CDSPedido_Prazos;
   DSPedido_Item.DataSet     := TDMCadPedido(DMCadastro).CDSPedido_Item;

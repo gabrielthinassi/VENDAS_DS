@@ -3,7 +3,7 @@ inherited FrmCadPedido: TFrmCadPedido
   ClientHeight = 600
   ClientWidth = 800
   OnDestroy = FormDestroy
-  ExplicitTop = -43
+  ExplicitTop = -38
   ExplicitWidth = 806
   ExplicitHeight = 629
   PixelsPerInch = 96

@@ -130,7 +130,8 @@ begin
         ((FieldByName(CampoChave).IsNull)) then
       FieldByName(CampoChave).AsInteger := DMConexao.ProximoCodigo(TabelaPrincipal);
 
-    if FieldByName('DIAS_PEDPRAZO').AsInteger <> 0 then
+    if ((FieldByName('DIAS_PEDPRAZO').AsInteger <> 0) or
+        (not FieldByName('DIAS_PEDPRAZO').IsNull)) then
     begin
       FieldByName('VENCIMENTO_PEDPRAZO').AsDateTime := CDSCadastro.FieldByName('DTEMISSAO_PEDIDO').AsDateTime +
                                                          FieldByName('DIAS_PEDPRAZO').AsInteger;
@@ -138,6 +139,7 @@ begin
     begin
       ShowMessage('Não é permitido atribuir Prazo 0!');
       Cancel;
+      Delete;
       Abort;
     end;
   end;
