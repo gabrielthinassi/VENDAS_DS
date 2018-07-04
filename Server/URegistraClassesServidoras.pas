@@ -29,7 +29,8 @@ uses
   USMCadStatus,
   USMCadItem,
   USMCadPessoa,
-  USMCadPedido;
+  USMCadPedido,
+  USMCadSituacao;
 
 
 
@@ -46,6 +47,7 @@ begin
   TExpositorDeClasses.Create(AOwner, AServer, TSMCadItem,     True, TDSLifeCycle.Session);
   TExpositorDeClasses.Create(AOwner, AServer, TSMCadPessoa,   True, TDSLifeCycle.Session);
   TExpositorDeClasses.Create(AOwner, AServer, TSMCadPedido,   True, TDSLifeCycle.Session);
+  TExpositorDeClasses.Create(AOwner, AServer, TSMCadSituacao, True, TDSLifeCycle.Session);
 end;
 
 {

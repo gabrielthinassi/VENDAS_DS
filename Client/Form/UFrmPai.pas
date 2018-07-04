@@ -143,13 +143,13 @@ begin
 
       // Se Antes de pressionar ('T', '+', '-') a Data estava vazia ou foi pressionado a Tecla 'T'
       // Preencher com da Data de Hoje
-      if ((DataDBGridIsNull) and 
-          (UpCase(Key) <> Char(Ord('I'))) and 
+      if ((DataDBGridIsNull) and
+          (UpCase(Key) <> Char(Ord('I'))) and
           (UpCase(Key) <> Char(Ord('U')))) or (UpCase(Key) = Char(Ord('T')))then
         (T as TDBGrid).SelectedField.AsDateTime := Date
       else
       // Se a Data estava vazia ou foi pressionado a Tecla 'I'
-      if ((DataDBGridIsNull) and (UpCase(Key) <> char(Ord('U')))) or 
+      if ((DataDBGridIsNull) and (UpCase(Key) <> char(Ord('U')))) or
           (UpCase(Key) = Char(Ord('I'))) then
       begin
         // Se havia Data informada preencher com o primeiro dia do mês informado na data.
@@ -192,8 +192,18 @@ begin
 end;
 
 procedure TFrmPai.ConfiguraComponentes;
+var
+  T: TComponent;
 begin
-// Sobrescrever nos filhos
+  T := Screen.ActiveControl;
+
+  if (T is TDBEdit) or (T is TJvDBCalcEdit) then
+  begin
+    if T.Tag = CampoNaoEditavelENaoAtualizavel then
+    begin
+      ActiveControl.Enabled := False;
+    end;
+  end;
 end;
 
 procedure TFrmPai.FormClose(Sender: TObject; var Action: TCloseAction);

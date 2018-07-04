@@ -63,6 +63,7 @@ inherited FrmCadPedido: TFrmCadPedido
       Top = 8
       Width = 99
       Height = 24
+      TabStop = False
       DisplayFormat = ',0.00'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlue
@@ -82,6 +83,7 @@ inherited FrmCadPedido: TFrmCadPedido
       Top = 8
       Width = 99
       Height = 24
+      TabStop = False
       DisplayFormat = ',0.00'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlue
@@ -101,6 +103,7 @@ inherited FrmCadPedido: TFrmCadPedido
       Top = 8
       Width = 99
       Height = 24
+      TabStop = False
       DisplayFormat = ',0.00'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlue
@@ -154,6 +157,8 @@ inherited FrmCadPedido: TFrmCadPedido
     ExplicitWidth = 674
     ExplicitHeight = 518
     inherited tsPrincipal: TTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 24
       ExplicitWidth = 666
       ExplicitHeight = 490
       object groupCliente: TGroupBox
@@ -381,7 +386,7 @@ inherited FrmCadPedido: TFrmCadPedido
           Caption = 'Desconto ( $ )'
         end
         object lblFormaPagamento: TLabel
-          Left = 286
+          Left = 271
           Top = 24
           Width = 102
           Height = 13
@@ -435,6 +440,7 @@ inherited FrmCadPedido: TFrmCadPedido
             #192' Prazo'
             'Outros')
           TabOrder = 0
+          TabStop = True
           Values.Strings = (
             '0'
             '1'
@@ -466,6 +472,22 @@ inherited FrmCadPedido: TFrmCadPedido
           DataField = 'DESCONTOPERC_PEDIDO'
           DataSource = DSCadastro
           TabOrder = 3
+        end
+        object JvDBCalcEdit1: TJvDBCalcEdit
+          Left = 271
+          Top = 43
+          Width = 66
+          Height = 21
+          CheckOnExit = True
+          DecimalPlaces = 0
+          DisplayFormat = ',0'
+          ImageKind = ikEllipsis
+          ButtonWidth = 34
+          TabOrder = 5
+          DecimalPlacesAlwaysShown = False
+          OnButtonClick = edtClienteCodigoButtonClick
+          DataField = 'CODIGO_PESSOA'
+          DataSource = DSCadastro
         end
       end
       object gridPedido_Item: TJvDBGrid

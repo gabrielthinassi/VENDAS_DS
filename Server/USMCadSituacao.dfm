@@ -1,0 +1,2 @@
+inherited SMCadSituacao: TSMCadSituacao
+end

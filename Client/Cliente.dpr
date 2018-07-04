@@ -35,7 +35,10 @@ uses
   ClassPedido_Prazos in '..\Class\ClassPedido_Prazos.pas',
   UDMCadPedido in 'Dm\UDMCadPedido.pas' {DMCadPedido: TDataModule},
   UDMPaiRelatorio in 'Dm\UDMPaiRelatorio.pas' {DMPaiRelatorio: TDataModule},
-  UFrmAgendaXML in 'Form\UFrmAgendaXML.pas' {FrmAgendaXML};
+  UFrmAgendaXML in 'Form\UFrmAgendaXML.pas' {FrmAgendaXML},
+  ClassSituacao in '..\Class\ClassSituacao.pas',
+  UDMCadSituacao in 'Dm\UDMCadSituacao.pas' {DMCadSituacao: TDataModule},
+  UFrmCadSituacao in 'Form\UFrmCadSituacao.pas' {FrmCadSituacao};
 
 {$R *.res}
 

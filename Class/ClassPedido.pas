@@ -122,7 +122,7 @@ begin
       else if (Campo = 'RAZAOSOCIAL_PESSOA') then
       begin
         DisplayLabel := 'Razão Social';
-        Tag := CampoNaoAtualizavel;
+        Tag := CampoNaoEditavelENaoAtualizavel;
       end
       else if (Campo = 'CODIGO_ENDERECOPESSOA') then
       begin

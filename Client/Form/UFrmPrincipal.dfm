@@ -2,7 +2,7 @@ object FrmPrincipal: TFrmPrincipal
   Left = 560
   Top = 332
   Caption = 'FrmPrincipal'
-  ClientHeight = 692
+  ClientHeight = 672
   ClientWidth = 900
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -21,7 +21,7 @@ object FrmPrincipal: TFrmPrincipal
     Left = 0
     Top = 0
     Width = 900
-    Height = 640
+    Height = 620
     Align = alClient
     BevelKind = bkFlat
     BevelOuter = bvNone
@@ -29,7 +29,7 @@ object FrmPrincipal: TFrmPrincipal
   end
   object pnlBot: TPanel
     Left = 0
-    Top = 640
+    Top = 620
     Width = 900
     Height = 52
     Align = alBottom
@@ -46,13 +46,17 @@ object FrmPrincipal: TFrmPrincipal
         Caption = 'Status'
         OnClick = mmStatusClick
       end
-      object mmPessoa: TMenuItem
-        Caption = 'Pessoa'
-        OnClick = mmPessoaClick
+      object mmSituacao: TMenuItem
+        Caption = 'Situa'#231#227'o'
+        OnClick = mmSituacaoClick
       end
       object mmItem: TMenuItem
         Caption = 'Item'
         OnClick = mmItemClick
+      end
+      object mmPessoa: TMenuItem
+        Caption = 'Pessoa'
+        OnClick = mmPessoaClick
       end
     end
     object mmLancamentos: TMenuItem

@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Vcl.ExtCtrls, Vcl.ComCtrls, UFrmCadItem, UFrmCadPessoa, UFrmCadPedido, UFrmAgendaXML;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Vcl.ExtCtrls, Vcl.ComCtrls, UFrmCadItem, UFrmCadPessoa, UFrmCadPedido, UFrmAgendaXML, UFrmCadSituacao;
 
 type
   TFrmPrincipal = class(TForm)
@@ -20,6 +20,7 @@ type
     pnlBot: TPanel;
     mmItem: TMenuItem;
     mnAgendaXML: TMenuItem;
+    mmSituacao: TMenuItem;
     procedure mmStatusClick(Sender: TObject);
     procedure mnConfiguracoesClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -28,6 +29,7 @@ type
     procedure mmPedidoClick(Sender: TObject);
     procedure mmItemClick(Sender: TObject);
     procedure mnAgendaXMLClick(Sender: TObject);
+    procedure mmSituacaoClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -67,6 +69,11 @@ end;
 procedure TFrmPrincipal.mmPessoaClick(Sender: TObject);
 begin
   FrmCadPessoa := TFrmCadPessoa(CriaForm(Self, FrmCadPessoa, TFrmCadPessoa, False, Sender));
+end;
+
+procedure TFrmPrincipal.mmSituacaoClick(Sender: TObject);
+begin
+  FrmCadSituacao := TFrmCadSituacao(CriaForm(Self, FrmCadSituacao, TFrmCadSituacao, False, Sender));
 end;
 
 procedure TFrmPrincipal.mmStatusClick(Sender: TObject);

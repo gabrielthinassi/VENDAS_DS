@@ -29,7 +29,9 @@ uses
   ClassPedido_Prazos in '..\Class\ClassPedido_Prazos.pas',
   ClassPedido_Item in '..\Class\ClassPedido_Item.pas',
   USMCadPedido in 'USMCadPedido.pas' {SMCadPedido: TDSServerModule},
-  USMRelatorio in 'USMRelatorio.pas' {SMRelatorio: TDSServerModule};
+  USMRelatorio in 'USMRelatorio.pas' {SMRelatorio: TDSServerModule},
+  ClassSituacao in '..\Class\ClassSituacao.pas',
+  USMCadSituacao in 'USMCadSituacao.pas' {SMCadSituacao: TDSServerModule};
 
 {$R *.res}
 
@@ -39,6 +41,7 @@ begin
   Application.CreateForm(TSMConexao, SMConexao);
   Application.CreateForm(TSC, SC);
   Application.CreateForm(TFrmServidor, FrmServidor);
+  Application.CreateForm(TSMCadSituacao, SMCadSituacao);
   Application.Run;
 end.
 
