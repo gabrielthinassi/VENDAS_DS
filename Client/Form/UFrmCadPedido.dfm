@@ -486,8 +486,17 @@ inherited FrmCadPedido: TFrmCadPedido
           TabOrder = 5
           DecimalPlacesAlwaysShown = False
           OnButtonClick = edtClienteCodigoButtonClick
-          DataField = 'CODIGO_PESSOA'
+          DataField = 'SITUACAO_PEDIDO'
           DataSource = DSCadastro
+        end
+        object dbedtPEDCONSULTOR_PEDIDO: TDBEdit
+          Left = 343
+          Top = 43
+          Width = 152
+          Height = 21
+          DataField = 'DESCRICAO_SITUACAO'
+          DataSource = DSCadastro
+          TabOrder = 6
         end
       end
       object gridPedido_Item: TJvDBGrid

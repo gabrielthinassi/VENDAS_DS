@@ -87,6 +87,7 @@ type
     edtTotalLiquido: TJvDBCalcEdit;
     edtPrazo: TJvDBCalcEdit;
     JvDBCalcEdit1: TJvDBCalcEdit;
+    dbedtPEDCONSULTOR_PEDIDO: TDBEdit;
     procedure btnPesquisarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);

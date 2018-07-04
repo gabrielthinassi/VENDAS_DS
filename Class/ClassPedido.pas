@@ -49,7 +49,8 @@ begin
             'PEDIDO.VLRBRUTO_PEDIDO,     ' + #13 +
             'PEDIDO.VLRLIQUIDO_PEDIDO,   ' + #13 +
             'PEDIDO.VLRDESCONTO_PEDIDO,  ' + #13 +
-            'PEDIDO.PEDCONSULTOR_PEDIDO  ' ;
+            'PEDIDO.PEDCONSULTOR_PEDIDO, ' + #13 +
+            'PEDIDO.SITUACAO_PEDIDO      ' ;
 
 end;
 
@@ -71,6 +72,7 @@ begin
   {13} Lista.Add('Valor Líquido');
   {14} Lista.Add('Valor Desconto');
   {15} Lista.Add('Pedido do Consultor');
+  {16} Lista.Add('Situação do Pedido (Código)');
 
   {0}  Campos.Add('CODIGO_PEDIDO');
   {1}  Campos.Add('TIPO_PEDIDO');
@@ -88,6 +90,7 @@ begin
   {13} Campos.Add('VLRLIQUIDO_PEDIDO');
   {14} Campos.Add('VLRDESCONTO_PEDIDO');
   {15} Campos.Add('PEDCONSULTOR_PEDIDO');
+  {16} Campos.Add('SITUACAO_PEDIDO');
 
   Result := Lista;
 end;
@@ -166,6 +169,10 @@ begin
       else if (Campo = 'PEDCONSULTOR_PEDIDO') then
       begin
         DisplayLabel := 'Pedido do Consultor';
+      end
+      else if (Campo = 'SITUACAO_PEDIDO') then
+      begin
+        DisplayLabel := 'Situação do Pedido';
       end;
   end;
 end;
@@ -189,14 +196,16 @@ end;
 
 class function TClassPedido.SQLBaseCadastro: string;
 begin
-  Result := 'SELECT                                  ' + #13 +
-            CamposCadastro                      + ', ' + #13 +
-            '  PESSOA.RAZAOSOCIAL_PESSOA,            ' + #13 +
-            '  PESSOA_ENDERECO.CODIGO_ENDERECOPESSOA ' + #13 +
+  Result := 'SELECT                                   ' + #13 +
+            CamposCadastro                       + ', ' + #13 +
+            '  PESSOA.RAZAOSOCIAL_PESSOA,             ' + #13 +
+            '  PESSOA_ENDERECO.CODIGO_ENDERECOPESSOA, ' + #13 +
+            '  SITUACAO.DESCRICAO_SITUACAO            ' + #13 +
             'FROM PEDIDO                  ' + #13 +
             'LEFT JOIN PESSOA ON (PESSOA.CODIGO_PESSOA = PEDIDO.CODIGO_PESSOA) ' + #13 +
             'LEFT JOIN PESSOA_ENDERECO ON (PESSOA_ENDERECO.CODIGO_ENDERECOPESSOA = PEDIDO.CODIGO_ENDERECO ' + #13 +
             '                          AND PESSOA_ENDERECO.CODIGO_PESSOA         = PEDIDO.CODIGO_PESSOA) ' + #13 +
+            'LEFT JOIN SITUACAO ON (SITUACAO.CODIGO_SITUACAO = PEDIDO.SITUACAO_PEDIDO) ' + #13 +
             'WHERE PEDIDO.CODIGO_PEDIDO = :COD';
 end;
 
