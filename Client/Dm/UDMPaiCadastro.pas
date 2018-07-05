@@ -70,9 +70,8 @@ type
     procedure AbreFilhos;
 
     //Validates
-    class procedure ValidateDescricao(Codigo: Integer; Classe: TFClassPaiCadastro; DataSet: TDataSet); overload;
+    class procedure ValidateDescricao(Codigo: Integer; Classe: TFClassPaiCadastro; DataSet: TDataSet); overload; //DEPRECATED//
     class procedure ValidateDescricao(Codigo: Integer; Classe: TFClassPaiCadastro; Campos: array of string; DataSet: TDataSet); overload;
-    class procedure ValidateCampos(Codigo: Integer; Classe: TFClassPaiCadastro; DataSet: TDataSet);
 
 
 
@@ -364,57 +363,12 @@ begin
   Result := DMConexao.ExecuteScalar(SQL);
 end;
 
-class procedure TDMPaiCadastro.ValidateCampos(Codigo: Integer;
-  Classe: TFClassPaiCadastro; DataSet: TDataSet);
-var
-  CDSTemp: TClientDataSet;
-  SQL: String;
-  I: Integer;
-begin
-  if Codigo = 0 then
-    exit;
-
-  CDSTemp := TClientDataSet.Create(nil);
-  try
-    with Classe do
-    begin
-      SQL :=  'SELECT ' +
-              CamposCadastro +
-              ' FROM ' +
-              TabelaPrincipal +
-              ' WHERE ' +
-              TabelaPrincipal + '.' +
-              CampoChave + ' = ' +
-              IntToStr(Codigo);
-
-      CDSTemp.Data := DMConexao.ExecuteScalar(SQL);
-
-      if (not CDSTemp.IsEmpty) and DataSet.Active then
-      begin
-        if not (DataSet.State in [dsEdit, dsInsert]) then
-          DataSet.Edit;
-
-        for I := 0 to Pred(DataSet.FieldCount) do
-        begin
-          DataSet.Fields[I].Value := CDSTemp.Fields[I].Value;
-        end;
-      end
-      else
-      begin
-        ShowMessage(Classe.Descricao + ' não localizado(a)!');
-        Abort;
-      end;
-    end;
-  finally
-    FreeAndNil(CDSTemp);
-  end;
-end;
-
 class procedure TDMPaiCadastro.ValidateDescricao(Codigo: Integer;
   Classe: TFClassPaiCadastro; DataSet: TDataSet);
 var
   SQL, Descricao: String;
 begin
+//***** DEPRECATED ******//
   if Codigo = 0 then
     Abort;
 
@@ -445,6 +399,7 @@ begin
     ShowMessage(Classe.Descricao + ' não localizada!');
     Abort;
   end;
+//***** DEPRECATED ******//
 end;
 
 class procedure TDMPaiCadastro.ValidateDescricao(Codigo: Integer;

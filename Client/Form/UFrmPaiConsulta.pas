@@ -25,7 +25,7 @@ uses
   //--------------------//
   UDMConexao,
   ClassPaiCadastro,
-  Constantes;
+  Constantes, ClassHelper;
 
 type
   TFrmPaiConsulta = class(TFrmPai)
@@ -43,6 +43,7 @@ type
     CDSConsulta: TClientDataSet;
     DSConsulta: TDataSource;
     DSPCConsulta: TDSProviderConnection;
+    lblTituloConsulta: TLabel;
     procedure lblFecharClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
@@ -132,7 +133,8 @@ var
   Lista: TStrings;
 begin
   inherited;
-  frmPaiConsulta.Caption := 'Consulta de ' + FClasse.Descricao;
+  frmPaiConsulta.Caption    := 'Consulta de ' + FClasse.Descricao;
+  lblTituloConsulta.Caption := 'Consulta de ' + FClasse.Descricao;
 
   Lista := TStringList.Create;
   try
@@ -158,9 +160,14 @@ begin
 end;
 
 procedure TFrmPaiConsulta.imgConfirmarClick(Sender: TObject);
+var
+  X: Integer;
 begin
   inherited;
-  FCodigo := DSConsulta.DataSet.Fields[0].AsInteger;
+  X := DSConsulta.DataSet.Fields[0].AsInteger;
+
+  if X > 0 then
+    FCodigo := X;
   Self.Close;
 end;
 
@@ -174,6 +181,8 @@ begin
 
   CDSConsulta.Close;
   CDSConsulta.CommandText := SQL;
+  CDSConsulta.AdicionarCampos;
+  FClasse.ConfigurarPropriedadesDoCampo(CDSConsulta);
   CDSConsulta.Open;
 end;
 

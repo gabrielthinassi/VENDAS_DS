@@ -19,39 +19,39 @@ inherited FrmPaiConsulta: TFrmPaiConsulta
     TabOrder = 0
     object lblCampo: TLabel
       Left = 16
-      Top = 55
-      Width = 64
-      Height = 19
+      Top = 58
+      Width = 50
+      Height = 16
       Caption = 'Campos'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
-      Font.Height = -16
+      Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
       ParentFont = False
     end
     object lblOperador: TLabel
       Left = 159
-      Top = 55
-      Width = 94
-      Height = 19
+      Top = 58
+      Width = 76
+      Height = 16
       Caption = 'Operadores'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
-      Font.Height = -16
+      Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
       ParentFont = False
     end
     object lblValorConsulta: TLabel
       Left = 302
-      Top = 55
-      Width = 43
-      Height = 19
+      Top = 58
+      Width = 34
+      Height = 16
       Caption = 'Valor'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
-      Font.Height = -16
+      Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
       ParentFont = False
@@ -236,6 +236,21 @@ inherited FrmPaiConsulta: TFrmPaiConsulta
       Proportional = True
       ShowHint = True
       OnClick = imgConfirmarClick
+    end
+    object lblTituloConsulta: TLabel
+      Left = 18
+      Top = 12
+      Width = 148
+      Height = 19
+      Align = alCustom
+      Alignment = taCenter
+      Caption = 'Nome da Consulta'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
     end
     object cbxOperadores: TComboBox
       Left = 159

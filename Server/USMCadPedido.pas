@@ -67,7 +67,6 @@ procedure TSMCadPedido.DSPCadastroBeforeUpdateRecord(Sender: TObject;
   var Applied: Boolean);
 begin
   inherited;
-
   if UpdateKind = ukInsert then
   begin
     with SourceDS, DeltaDS do
@@ -75,13 +74,13 @@ begin
       begin
         Edit;
         FieldByName('CODIGO_PEDIDO').AsInteger := DataSetField.DataSet.FieldByName('CODIGO_PEDIDO').AsInteger;
-        post;
+        //post;
       end else
       if SourceDS = SQLDSPedido_Prazos then
       begin
         Edit;
         FieldByName('CODIGO_PEDIDO').AsInteger := DataSetField.DataSet.FieldByName('CODIGO_PEDIDO').AsInteger;
-        post;
+        //post;
       end;
   end;
 end;
@@ -91,8 +90,8 @@ begin
   inherited;
   FClasseFilha := TClassPedido;
 
-  SQLDSPedido_Prazos.DataSource := nil;
-  SQLDSPedido_Item.DataSource := nil;
+  //SQLDSPedido_Prazos.DataSource := nil;
+  //SQLDSPedido_Item.DataSource := nil;
 
   SQLDSPedido_Prazos.CommandText := TClassPedido_Prazos.SQLBaseCadastro;
   TClassPedido_Prazos.CriarParametros(SQLDSPedido_Prazos);

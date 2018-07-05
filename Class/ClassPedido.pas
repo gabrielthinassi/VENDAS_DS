@@ -172,7 +172,12 @@ begin
       end
       else if (Campo = 'SITUACAO_PEDIDO') then
       begin
-        DisplayLabel := 'Situação do Pedido';
+        DisplayLabel := 'Situação';
+      end
+      else if (Campo = 'DESCRICAO_SITUACAO') then
+      begin
+        DisplayLabel := 'Descrição Situação';
+        Tag := CampoNaoEditavelENaoAtualizavel;
       end;
   end;
 end;

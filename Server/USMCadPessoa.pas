@@ -57,7 +57,7 @@ end;
 procedure TSMCadPessoa.SQLDSPessoa_EnderecoAfterOpen(DataSet: TDataSet);
 begin
   inherited;
-
+  TClassPessoa_Endereco.ConfigurarPropriedadesDoCampo(SQLDSPessoa_Endereco);
   SQLDSPessoa_Endereco.ConfigurarProviderFlags([TClassPessoa_Endereco.CampoChave]);
 
   {with FClasseFilha, DataSet do

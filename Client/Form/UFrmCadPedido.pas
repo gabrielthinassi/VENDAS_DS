@@ -38,7 +38,7 @@ uses
   UDMCadPedido,
   ClassPessoa,
   UDMCadPessoa,
-  Constantes, JvComponentBase, JvEnterTab, JvExDBGrids, JvDBGrid;
+  Constantes, JvComponentBase, JvEnterTab, JvExDBGrids, JvDBGrid, ClassSituacao;
 
 type
   TFrmCadPedido = class(TFrmPaiCadastro)
@@ -86,8 +86,8 @@ type
     edtDesconto: TJvDBCalcEdit;
     edtTotalLiquido: TJvDBCalcEdit;
     edtPrazo: TJvDBCalcEdit;
-    JvDBCalcEdit1: TJvDBCalcEdit;
-    dbedtPEDCONSULTOR_PEDIDO: TDBEdit;
+    edtSituacaoCodigo: TJvDBCalcEdit;
+    edtSituacaoDescricao: TDBEdit;
     procedure btnPesquisarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -103,6 +103,7 @@ type
     procedure ctrlgrdPrazosEnter(Sender: TObject);
     procedure btnIncluirClick(Sender: TObject);
     procedure btnGravarClick(Sender: TObject);
+    procedure edtSituacaoCodigoButtonClick(Sender: TObject);
   private
     { Private declarations }
     //FDMPessoa: TDMCadPessoa;
@@ -294,6 +295,24 @@ begin
   inherited;
   if TDBGrid(sender).DataSource.DataSet.State in [dsEdit, dsInsert] then
     TDBGrid(sender).DataSource.DataSet.Post;
+end;
+
+procedure TFrmCadPedido.edtSituacaoCodigoButtonClick(Sender: TObject);
+begin
+  inherited;
+  if not (DMCadastro.CDSCadastro.State in [dsEdit, dsInsert]) then
+    DMCadastro.CDSCadastro.Edit;
+
+  FrmPaiConsulta := TFrmPaiConsulta.Create(Self);
+  FrmPaiConsulta.Classe := TClassSituacao;
+  try
+    FrmPaiConsulta.ShowModal;
+    if FrmPaiConsulta.Codigo <> 0 then
+      DMCadastro.CDSCadastro.FieldByName('SITUACAO_PEDIDO').AsInteger := FrmPaiConsulta.Codigo;
+  finally
+    FreeAndNil(FrmPaiConsulta);
+    Abort;
+  end;
 end;
 
 end.

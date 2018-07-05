@@ -157,8 +157,6 @@ inherited FrmCadPedido: TFrmCadPedido
     ExplicitWidth = 674
     ExplicitHeight = 518
     inherited tsPrincipal: TTabSheet
-      ExplicitLeft = 4
-      ExplicitTop = 24
       ExplicitWidth = 666
       ExplicitHeight = 490
       object groupCliente: TGroupBox
@@ -473,7 +471,7 @@ inherited FrmCadPedido: TFrmCadPedido
           DataSource = DSCadastro
           TabOrder = 3
         end
-        object JvDBCalcEdit1: TJvDBCalcEdit
+        object edtSituacaoCodigo: TJvDBCalcEdit
           Left = 271
           Top = 43
           Width = 66
@@ -485,11 +483,11 @@ inherited FrmCadPedido: TFrmCadPedido
           ButtonWidth = 34
           TabOrder = 5
           DecimalPlacesAlwaysShown = False
-          OnButtonClick = edtClienteCodigoButtonClick
+          OnButtonClick = edtSituacaoCodigoButtonClick
           DataField = 'SITUACAO_PEDIDO'
           DataSource = DSCadastro
         end
-        object dbedtPEDCONSULTOR_PEDIDO: TDBEdit
+        object edtSituacaoDescricao: TDBEdit
           Left = 343
           Top = 43
           Width = 152
