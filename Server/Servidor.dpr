@@ -41,7 +41,6 @@ begin
   Application.CreateForm(TSMConexao, SMConexao);
   Application.CreateForm(TSC, SC);
   Application.CreateForm(TFrmServidor, FrmServidor);
-  Application.CreateForm(TSMCadSituacao, SMCadSituacao);
   Application.Run;
 end.
 
